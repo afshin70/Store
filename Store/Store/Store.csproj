@@ -18,11 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Models\DataBase\Entities\" />
-    <Folder Include="Models\IService\" />
-    <Folder Include="Models\Utility\" />
-    <Folder Include="Models\ViewModels\" />
-    <Folder Include="Models\Services\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
