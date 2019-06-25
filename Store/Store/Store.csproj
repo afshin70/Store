@@ -6,6 +6,63 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Template\Stroyka\css\**" />
+    <Compile Remove="wwwroot\Template\Stroyka\fonts\**" />
+    <Compile Remove="wwwroot\Template\Stroyka\images\**" />
+    <Compile Remove="wwwroot\Template\Stroyka\js\**" />
+    <Compile Remove="wwwroot\Template\Stroyka\vendor\**" />
+    <Content Remove="wwwroot\Template\Stroyka\css\**" />
+    <Content Remove="wwwroot\Template\Stroyka\fonts\**" />
+    <Content Remove="wwwroot\Template\Stroyka\images\**" />
+    <Content Remove="wwwroot\Template\Stroyka\js\**" />
+    <Content Remove="wwwroot\Template\Stroyka\vendor\**" />
+    <EmbeddedResource Remove="wwwroot\Template\Stroyka\css\**" />
+    <EmbeddedResource Remove="wwwroot\Template\Stroyka\fonts\**" />
+    <EmbeddedResource Remove="wwwroot\Template\Stroyka\images\**" />
+    <EmbeddedResource Remove="wwwroot\Template\Stroyka\js\**" />
+    <EmbeddedResource Remove="wwwroot\Template\Stroyka\vendor\**" />
+    <None Remove="wwwroot\Template\Stroyka\css\**" />
+    <None Remove="wwwroot\Template\Stroyka\fonts\**" />
+    <None Remove="wwwroot\Template\Stroyka\images\**" />
+    <None Remove="wwwroot\Template\Stroyka\js\**" />
+    <None Remove="wwwroot\Template\Stroyka\vendor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Template\Stroyka\404.html" />
+    <Content Remove="wwwroot\Template\Stroyka\about-us.html" />
+    <Content Remove="wwwroot\Template\Stroyka\account-addresses.html" />
+    <Content Remove="wwwroot\Template\Stroyka\account-dashboard.html" />
+    <Content Remove="wwwroot\Template\Stroyka\account-login.html" />
+    <Content Remove="wwwroot\Template\Stroyka\account-orders.html" />
+    <Content Remove="wwwroot\Template\Stroyka\account-password.html" />
+    <Content Remove="wwwroot\Template\Stroyka\account-profile.html" />
+    <Content Remove="wwwroot\Template\Stroyka\blog-classic.html" />
+    <Content Remove="wwwroot\Template\Stroyka\blog-grid.html" />
+    <Content Remove="wwwroot\Template\Stroyka\blog-list.html" />
+    <Content Remove="wwwroot\Template\Stroyka\blog-right-sidebar.html" />
+    <Content Remove="wwwroot\Template\Stroyka\cart-empty.html" />
+    <Content Remove="wwwroot\Template\Stroyka\cart.html" />
+    <Content Remove="wwwroot\Template\Stroyka\checkout.html" />
+    <Content Remove="wwwroot\Template\Stroyka\compare.html" />
+    <Content Remove="wwwroot\Template\Stroyka\components.html" />
+    <Content Remove="wwwroot\Template\Stroyka\contact-us-alt.html" />
+    <Content Remove="wwwroot\Template\Stroyka\contact-us.html" />
+    <Content Remove="wwwroot\Template\Stroyka\faq.html" />
+    <Content Remove="wwwroot\Template\Stroyka\index.html" />
+    <Content Remove="wwwroot\Template\Stroyka\post-without-sidebar.html" />
+    <Content Remove="wwwroot\Template\Stroyka\post.html" />
+    <Content Remove="wwwroot\Template\Stroyka\product-alt.html" />
+    <Content Remove="wwwroot\Template\Stroyka\shop-grid-3-columns-sidebar.html" />
+    <Content Remove="wwwroot\Template\Stroyka\shop-grid-4-columns-full.html" />
+    <Content Remove="wwwroot\Template\Stroyka\shop-grid-5-columns-full.html" />
+    <Content Remove="wwwroot\Template\Stroyka\shop-list.html" />
+    <Content Remove="wwwroot\Template\Stroyka\terms-and-conditions.html" />
+    <Content Remove="wwwroot\Template\Stroyka\track-order.html" />
+    <Content Remove="wwwroot\Template\Stroyka\wishlist.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
@@ -14,11 +71,45 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Template\Stroyka\404.html" />
+    <None Include="wwwroot\Template\Stroyka\about-us.html" />
+    <None Include="wwwroot\Template\Stroyka\account-addresses.html" />
+    <None Include="wwwroot\Template\Stroyka\account-dashboard.html" />
+    <None Include="wwwroot\Template\Stroyka\account-login.html" />
+    <None Include="wwwroot\Template\Stroyka\account-orders.html" />
+    <None Include="wwwroot\Template\Stroyka\account-password.html" />
+    <None Include="wwwroot\Template\Stroyka\account-profile.html" />
+    <None Include="wwwroot\Template\Stroyka\blog-classic.html" />
+    <None Include="wwwroot\Template\Stroyka\blog-grid.html" />
+    <None Include="wwwroot\Template\Stroyka\blog-list.html" />
+    <None Include="wwwroot\Template\Stroyka\blog-right-sidebar.html" />
+    <None Include="wwwroot\Template\Stroyka\cart-empty.html" />
+    <None Include="wwwroot\Template\Stroyka\cart.html" />
+    <None Include="wwwroot\Template\Stroyka\checkout.html" />
+    <None Include="wwwroot\Template\Stroyka\compare.html" />
+    <None Include="wwwroot\Template\Stroyka\components.html" />
+    <None Include="wwwroot\Template\Stroyka\contact-us-alt.html" />
+    <None Include="wwwroot\Template\Stroyka\contact-us.html" />
+    <None Include="wwwroot\Template\Stroyka\faq.html" />
+    <None Include="wwwroot\Template\Stroyka\index.html" />
+    <None Include="wwwroot\Template\Stroyka\post-without-sidebar.html" />
+    <None Include="wwwroot\Template\Stroyka\post.html" />
+    <None Include="wwwroot\Template\Stroyka\product-alt.html" />
+    <None Include="wwwroot\Template\Stroyka\shop-grid-3-columns-sidebar.html" />
+    <None Include="wwwroot\Template\Stroyka\shop-grid-4-columns-full.html" />
+    <None Include="wwwroot\Template\Stroyka\shop-grid-5-columns-full.html" />
+    <None Include="wwwroot\Template\Stroyka\shop-list.html" />
+    <None Include="wwwroot\Template\Stroyka\terms-and-conditions.html" />
+    <None Include="wwwroot\Template\Stroyka\track-order.html" />
+    <None Include="wwwroot\Template\Stroyka\wishlist.html" />
   </ItemGroup>
 
 </Project>
