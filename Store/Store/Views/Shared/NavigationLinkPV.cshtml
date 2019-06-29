@@ -116,12 +116,12 @@
             <div class="nav-links__menu">
                 <!-- .menu -->
                 <ul class="menu menu--layout--classic">
-                    <li><a href="account-login.html">ورود</a></li>
-                    <li><a href="account-dashboard.html">داشبورد</a></li>
-                    <li><a href="account-profile.html">ویرایش پروفایل</a></li>
-                    <li><a href="account-orders.html">سابقه خرید</a></li>
-                    <li><a href="account-addresses.html">دفتر آدرس</a></li>
-                    <li><a href="account-password.html">تغییر رمز عبور</a></li>
+                    <li><a href="@Url.Action("Login","Account")">ورود</a></li>
+                    <li><a href="@Url.Action("Index","Account")">داشبورد</a></li>
+                    <li><a href="@Url.Action("Profile")">پروفایل</a></li>
+                    <li><a href="@Url.Action("Orders")">سابقه خرید</a></li>
+                    <li><a href="@Url.Action("ChangePassword")">دفتر آدرس</a></li>
+                    <li><a href="@Url.Action("ChangePassword")">تغییر رمز عبور</a></li>
                 </ul>
                 <!-- .menu / end -->
             </div>
@@ -141,23 +141,31 @@
                 <!-- .menu / end -->
             </div>
         </li>
-        <li class="nav-links__item nav-links__item--with-submenu">
-            <a href=""><span>صفحات <svg class="nav-links__arrow" width="9px" height="6px"><use xlink:href="@Url.Content("~/lib/images/sprite.svg#arrow-rounded-down-9x6")"></use></svg></span></a>
-            <div class="nav-links__menu">
-                <!-- .menu -->
-                <ul class="menu menu--layout--classic">
-                    <li><a href="about-us.html">درباره ما</a></li>
-                    <li><a href="contact-us.html">تماس با ما</a></li>
-                    <li><a href="contact-us-alt.html">تماس با ما طرح 2</a></li>
-                    <li><a href="404.html">404</a></li>
-                    <li><a href="terms-and-conditions.html">قوانین و مقررات</a></li>
-                    <li><a href="faq.html">سوالات متداول</a></li>
-                    <li><a href="components.html">اجزاء</a></li>
-                    <li><a href="typography.html">تایپوگرافی</a></li>
-                </ul>
-                <!-- .menu / end -->
-            </div>
-        </li>
-        <li class="nav-links__item"><a href="https://www.rtl-theme.com"><span>خرید قالب</span></a></li>
+        <li class="nav-links__item"><a href="@Url.Action("AboutUs","Home")"><span>درباره ما</span></a></li>
+        <li class="nav-links__item"><a href="@Url.Action("ContactUs","Home")"><span>تماس با ما</span></a></li>
     </ul>
+</div>
+<!-- .nav-links / end -->
+<div class="nav-panel__indicators">
+    <div class="indicator indicator--mobile">
+        <a href="@Url.Action("index","Account")" class="indicator__button">
+            <span class="indicator__area">
+                <span class="indicator__value">محسن نورمحمدی</span>&nbsp;
+                <i class="fas fa-user-alt"></i>
+            </span>
+        </a>
+    </div>
+    <div class="indicator indicator--trigger--click">
+        <a href="cart.html" class="indicator__button">
+            <span class="indicator__area">
+                <i class="fas fa-shopping-cart"></i>&nbsp;
+                <span class="indicator__value">3</span>
+            </span>
+        </a>
+        <div class="indicator__dropdown">
+            <!-- .dropcart -->
+            <partial name="DropCartPV" />
+            <!-- .dropcart / end -->
+        </div>
+    </div>
 </div>

@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "| ویرایش پروفایل";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">خانه</a>
+                            <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                <use xlink:href="@Url.Content("~/lib/images/sprite.svg#arrow-rounded-right-6x9")"></use>
+                            </svg>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">حساب کاربری</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>پروفایل</h1>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <partial name="AccountDashboardPV" />
+                <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>ویرایش پروفایل</h5>
+                        </div>
+                        <div class="card-divider"></div>
+                        <div class="card-body">
+                            <div class="row no-gutters">
+                                <div class="col-12 col-lg-7 col-xl-6">
+                                    <div class="form-group">
+                                        <label for="profile-first-name">نام</label>
+                                        <input type="text" class="form-control" id="profile-first-name" placeholder="نام">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profile-last-name">نام خانوادگی</label>
+                                        <input type="text" class="form-control" id="profile-last-name" placeholder="نام خانوادگی">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profile-email">آدرس ایمیل</label>
+                                        <input type="email" class="form-control" id="profile-email" placeholder="آدرس ایمیل">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profile-phone">شماره تلفن</label>
+                                        <input type="text" class="form-control" id="profile-phone" placeholder="شماره تلفن">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profile-phone">آدرس</label>
+                                        <textarea rows="3" class="form-control" placeholder="آدرس"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profile-phone">کد پستی</label>
+                                        <input type="text" class="form-control" id="profile-phone" placeholder="شماره تلفن">
+                                    </div>
+                                    <div class="form-group mt-5 mb-0">
+                                        <button class="btn btn-primary">ذخیره</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

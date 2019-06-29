@@ -75,10 +75,67 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\lib\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="Views\Account\Cart.cshtml" />
+    <None Include="Views\Account\ChangePassword.cshtml" />
+    <None Include="Views\Account\CheckOut.cshtml" />
+    <None Include="Views\Account\Index.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\Orders.cshtml" />
+    <None Include="Views\Account\Profile.cshtml" />
+    <None Include="Views\Home\AboutUs.cshtml" />
+    <None Include="Views\Home\ContactUs.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\PageNotFound.cshtml" />
+    <None Include="Views\Shared\AccountDashboardPV.cshtml" />
+    <None Include="Views\Shared\BanerPV.cshtml" />
+    <None Include="Views\Shared\DropCartPV.cshtml" />
+    <None Include="Views\Shared\FooterPV.cshtml" />
+    <None Include="Views\Shared\HeaderPV.cshtml" />
+    <None Include="Views\Shared\MainCategory_CloseModPV.cshtml" />
+    <None Include="Views\Shared\MainCategory_OpenModPV.cshtml" />
+    <None Include="Views\Shared\MobileMenuPV.cshtml" />
+    <None Include="Views\Shared\MobileSiteHeaderPV.cshtml" />
+    <None Include="Views\Shared\NavigationLinkPV.cshtml" />
+    <None Include="Views\Shared\scriptsPV.cshtml" />
+    <None Include="Views\Shared\SliderPV.cshtml" />
+    <None Include="Views\Shared\stylesPV.cshtml" />
+    <None Include="Views\Shared\_DefaultLayout.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="wwwroot\lib\fonts\aviny-700.woff2" />
+    <None Include="wwwroot\lib\fonts\droid-naskh-400.woff2" />
+    <None Include="wwwroot\lib\fonts\helvetica-neue-700.woff2" />
+    <None Include="wwwroot\lib\fonts\iran-sans-400.woff2" />
+    <None Include="wwwroot\lib\fonts\iran-sans-700.woff2" />
+    <None Include="wwwroot\lib\fonts\lalezar-700.woff2" />
+    <None Include="wwwroot\lib\fonts\myriad-400.woff2" />
+    <None Include="wwwroot\lib\fonts\myriad-700.woff2" />
+    <None Include="wwwroot\lib\fonts\neirizi-400.woff2" />
+    <None Include="wwwroot\lib\fonts\palatino-sans-400.woff2" />
+    <None Include="wwwroot\lib\fonts\sahel-400.woff2" />
+    <None Include="wwwroot\lib\fonts\shabnam-400.woff2" />
+    <None Include="wwwroot\lib\fonts\shabnam-700.woff2" />
+    <None Include="wwwroot\lib\fonts\stroyka\stroyka.svg" />
+    <None Include="wwwroot\lib\fonts\vazir-400.woff2" />
+    <None Include="wwwroot\lib\fonts\vazir-700.woff2" />
+    <None Include="wwwroot\lib\fonts\yekan-2-400.woff2" />
+    <None Include="wwwroot\lib\images\sprite.svg" />
+    <None Include="wwwroot\lib\js\main.js" />
+    <None Include="wwwroot\lib\js\number.js" />
+    <None Include="wwwroot\lib\vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\vendor\fontawesome-5.6.3\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\lib\vendor\fontawesome-5.6.3\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\lib\vendor\fontawesome-5.6.3\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\lib\vendor\fontawesome-5.6.3\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\lib\vendor\fontawesome-5.6.3\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\lib\vendor\fontawesome-5.6.3\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\lib\vendor\jquery-3.3.1\jquery.min.js" />
+    <None Include="wwwroot\lib\vendor\lightgallery-1.6.12\fonts\lg.svg" />
+    <None Include="wwwroot\lib\vendor\lightgallery-1.6.12\js\lg-thumbnail.min.js" />
+    <None Include="wwwroot\lib\vendor\lightgallery-1.6.12\js\lg-zoom.min.js" />
+    <None Include="wwwroot\lib\vendor\lightgallery-1.6.12\js\lightgallery.min.js" />
+    <None Include="wwwroot\lib\vendor\nouislider-12.1.0\nouislider.min.js" />
+    <None Include="wwwroot\lib\vendor\owl-carousel-2.3.4\owl.carousel.min.js" />
+    <None Include="wwwroot\lib\vendor\svg4everybody-2.1.9\svg4everybody.min.js" />
     <None Include="wwwroot\Template\Stroyka\404.html" />
     <None Include="wwwroot\Template\Stroyka\about-us.html" />
     <None Include="wwwroot\Template\Stroyka\account-addresses.html" />

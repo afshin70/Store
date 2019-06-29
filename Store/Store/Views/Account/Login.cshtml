@@ -1,0 +1,94 @@
+﻿@model UserAccountVM
+
+@{
+    ViewData["Title"] = "| صفحه ورود";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<div class="site__body">
+    <div class="page-header">
+        <div class="page-header__container container">
+            <div class="page-header__breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">خانه</a>
+                            <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                            </svg>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page"> ورود یا ایجاد حساب</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="page-header__title">
+                <h1>حساب کاربری</h1>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex">
+                    <div class="card flex-grow-1 mb-md-0">
+                        <div class="card-body">
+                            <h3 class="card-title">ورود</h3>
+                            <form asp-action="Login" method="post" asp-antiforgery="true">
+                                <div class="form-group">
+                                    <label>آدرس ایمیل</label>
+                                    <input type="email" asp-for="loginVM.Email" class="form-control" placeholder="ایمیل را وارد کنید">
+                                    <span asp-validation-for="loginVM.Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>رمز عبور</label>
+                                    <input type="password" asp-for="loginVM.Password" class="form-control" placeholder="رمز عبور را وارد کنید"> <small class="form-text text-muted"><a href="">فراموشی رمز عبور</a></small>
+                                    <span asp-validation-for="loginVM.Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <span class="form-check-input input-check">
+                                            <span class="input-check__body">
+                                                <input asp-for="loginVM.RememberMe" class="input-check__input" type="checkbox" id="login-remember"> <span class="input-check__box"></span>
+                                                <svg class="input-check__icon" width="9px" height="7px">
+                                                    <use xlink:href="images/sprite.svg#check-9x7"></use>
+                                                </svg>
+                                            </span>
+                                        </span>
+                                        <label class="form-check-label" for="login-remember">به خاطر سپاری</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-4">ورود</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex mt-4 mt-md-0">
+                    <div class="card flex-grow-1 mb-0">
+                        <div class="card-body">
+                            <h3 class="card-title">ثبت نام</h3>
+                            <form asp-action="Register">
+                                <div class="form-group">
+                                    <label>آدرس ایمیل</label>
+                                    <input type="email" asp-for="RegisterVM.RegisterEmail" class="form-control" placeholder="ایمیل را وارد کنید">
+                                    <span asp-validation-for="RegisterVM.RegisterEmail" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>رمز عبور</label>
+                                    <input type="password" asp-for="RegisterVM.RegisterPassword" class="form-control" placeholder="گذرواژه را وارد کنید">
+                                    <span asp-validation-for="RegisterVM.RegisterPassword" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>تایید رمز عبور</label>
+                                    <input type="password" asp-for="RegisterVM.ConfirmPassword" class="form-control" placeholder="رمز را مجددا وارد کنید">
+                                    <span asp-validation-for="RegisterVM.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-4">ثبت نام</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

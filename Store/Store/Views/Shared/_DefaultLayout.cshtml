@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <title>@ViewBag.Title</title>
+    <title>فروشگاه @ViewBag.Title</title>
     <link rel="icon" type="image/png" href="@Url.Content("~/lib/images/favicon.png")">
     <partial name="stylesPV" />
     @RenderSection("css", false)
@@ -66,31 +66,6 @@
                                 </div>
                                 <!-- .nav-links -->
                                 <partial name="NavigationLinkPV" />
-
-                                <!-- .nav-links / end -->
-                                <div class="nav-panel__indicators">
-                                    <div class="indicator">
-                                        <a href="wishlist.html" class="indicator__button">
-                                            <span class="indicator__area">
-                                                <i class="fas fa-heart"></i>
-                                                <span class="indicator__value">0</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="indicator indicator--trigger--click">
-                                        <a href="cart.html" class="indicator__button">
-                                            <span class="indicator__area">
-                                                <i class="fas fa-shopping-bag"></i>
-                                                <span class="indicator__value">3</span>
-                                            </span>
-                                        </a>
-                                        <div class="indicator__dropdown">
-                                            <!-- .dropcart -->
-                                            <partial name="DropCartPV" />
-                                            <!-- .dropcart / end -->
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

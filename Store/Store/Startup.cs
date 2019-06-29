@@ -44,7 +44,7 @@ namespace Store
                 option.ExpireTimeSpan = TimeSpan.FromDays(7);
 
             });
-            
+
             services.AddMvc();
         }
 
@@ -55,18 +55,18 @@ namespace Store
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+            app.UseNotFoundPage_404Error();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-           
+
             //app.Run(async (context) =>
             //{
             //    await context.Response.WriteAsync("Hello World!");

@@ -1,6 +1,8 @@
 @import url("font/primary-vazir.css");
 @import url("font/secondary-vazir.css");
-
+.text-danger {
+    color:red;
+}
 .ltr_text {
 	display: inline-block;
 	direction: ltr;
