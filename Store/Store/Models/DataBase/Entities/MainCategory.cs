@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
+        public int MainCategoryId { get; set; }
         /// <summary>
         /// نام
         /// </summary>
@@ -21,7 +23,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// نام انگلیسی
         /// </summary>
-        public string Ename { get; set; }
+        public string EName { get; set; }
         /// <summary>
         /// آیکن
         /// </summary>
@@ -34,5 +36,25 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت حذف
         /// </summary>
         public bool IsDeleted { get; set; }
+
+        #region NavigationProps
+        public ICollection<Category> Categories { get; set; }
+        #endregion
+    }
+    public class MainCategoryConfig : IEntityTypeConfiguration<MainCategory>
+    {
+        public void Configure(EntityTypeBuilder<MainCategory> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.MainCategoryId);
+            builder.HasMany<Category>().WithOne(p => p.MainCategory).HasForeignKey(fk => fk.MainCategoryId);
+            #endregion
+
+            #region Properties
+            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Icon).HasColumnType("nvarchar(50)");
+            #endregion
+        }
     }
 }

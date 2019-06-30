@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,11 +15,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
-        /// <summary>
-        /// شماره سفارش
-        /// </summary>
-        public int OrderId { get; set; }
+        public int FactorId { get; set; }
         /// <summary>
         /// مبلغ فاکتور
         /// </summary>
@@ -30,5 +28,31 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت حذف
         /// </summary>
         public bool IsDeleted { get; set; }
+
+        #region ForeignKeys
+        /// <summary>
+        /// شماره سفارش
+        /// </summary>
+        public int OrderId { get; set; }
+        #endregion
+
+        #region NavigationProps
+        public Order Order { get; set; }
+        #endregion
+    }
+    public class FactorConfig : IEntityTypeConfiguration<Factor>
+    {
+        public void Configure(EntityTypeBuilder<Factor> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.FactorId);
+            builder.HasOne<Order>().WithMany(b => b.Factors).HasForeignKey(fk => fk.OrderId);
+            #endregion
+
+            #region Properties
+            builder.Property(p => p.SumPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.FactorDate).HasColumnType("datetime");
+            #endregion
+        }
     }
 }

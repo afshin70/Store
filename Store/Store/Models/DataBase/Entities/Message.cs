@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
+        public int MessageId { get; set; }
         /// <summary>
         /// عنوان
         /// </summary>
@@ -22,6 +24,21 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت دیده شدن پیام
         /// </summary>
         public bool IsSeen { get; set; }
+        
+        /// <summary>
+        /// تاریخ ارسال
+        /// </summary>
+        public DateTime SendedDate { get; set; }
+        /// <summary>
+        /// سطح پیام پاسخ داده شده
+        /// </summary>
+        public int MessageLevel { get; set; }
+        /// <summary>
+        /// وضعیت حذف پیام
+        /// </summary>
+        public int IsDeleted { get; set; }
+
+        #region ForeignKeys
         /// <summary>
         /// کاربر ارسال کننده پیام
         /// </summary>
@@ -31,20 +48,27 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public int ReciverUserId { get; set; }
         /// <summary>
-        /// تاریخ ارسال
-        /// </summary>
-        public DateTime SendedDate { get; set; }
-        /// <summary>
         /// پاسخ به پیام با آی دی
         /// </summary>
         public int ReplyedId { get; set; }
-        /// <summary>
-        /// سطح پیام پاسخ داده شده
-        /// </summary>
-        public int MessageLevel { get; set; }
-        /// <summary>
-        /// وضعیت حذف پیام
-        /// </summary>
-        public int IsDeleted { get; set; }
+        #endregion
+
+        #region NavigationProps
+        public User User { get; set; }
+        #endregion
+    }
+    public class MessageConfig : IEntityTypeConfiguration<Message>
+    {
+        public void Configure(EntityTypeBuilder<Message> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.MessageId);
+            #endregion
+
+            #region Properties
+            builder.Property(p => p.Title).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.SendedDate).HasColumnType("nvarchar(50)");
+            #endregion
+        }
     }
 }

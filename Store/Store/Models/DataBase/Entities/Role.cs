@@ -6,33 +6,25 @@ using System.Threading.Tasks;
 namespace Store.Models.DataBase.Entities
 {
     /// <summary>
-    /// اسلایدر
+    /// نقش کاربر
     /// </summary>
-    public class Slider
+    public class Role
     {
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
+        public int RoleId { get; set; }
         /// <summary>
-        /// تصویر
+        /// نام نقش
         /// </summary>
-        public string Image { get; set; }
-        /// <summary>
-        /// عنوان
-        /// </summary>
-        public string Title { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// توضیحات
         /// </summary>
         public string Description { get; set; }
         /// <summary>
-        /// متن لینک
+        /// نامی که استفاده میشود جهت استفاده آیدنتیتی
         /// </summary>
-        public string UrlText { get; set; }
-        /// <summary>
-        /// آدرس لینک
-        /// </summary>
-        public string UrlLink { get; set; }
+        public string RoleUniqName { get; set; }
     }
 }

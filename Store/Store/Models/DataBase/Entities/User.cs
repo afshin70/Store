@@ -32,10 +32,7 @@ namespace Store.Models.DataBase.Entities
         /// بیوگرافی
         /// </summary>
         public string Biography { get; set; }
-        /// <summary>
-        /// آی دی شهر
-        /// </summary>
-        public int CityId { get; set; }
+
         /// <summary>
         /// جنسیت
         /// </summary>
@@ -48,10 +45,6 @@ namespace Store.Models.DataBase.Entities
         /// مقدار ترکیب شده با گذر واژه
         /// </summary>
         public string Salt { get; set; }
-        /// <summary>
-        /// نقش کاربر
-        /// </summary>
-        public int RoleId { get; set; }
         /// <summary>
         /// تاریخ ثبت نام
         /// </summary>
@@ -99,6 +92,50 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// محصولات مورد علاقه
         /// </summary>
-        public string FavorateProduct { get; set; }
+        public string FavorateProduct_Json { get; set; }
+        
+        #region ForeignKeys
+        /// <summary>
+        /// آی دی شهر
+        /// </summary>
+        public int CityId { get; set; }
+        /// <summary>
+        /// نقش کاربر
+        /// </summary>
+        public int RoleId { get; set; }
+        #endregion
+
+        #region NavigationProps
+        public City City { get; set; }
+        public ShopingCart ShopingCart { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        #endregion
+    }
+    public class UserConfig : IEntityTypeConfiguration<User>
+    {
+        public void Configure(EntityTypeBuilder<User> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.UserId);
+            builder.HasOne<City>().WithMany(b => b.Users).HasForeignKey(fk => fk.CityId);
+            builder.HasMany<Order>().WithOne(p => p.User).HasForeignKey(fk => fk.UserId);
+            #endregion
+
+            #region Properties
+            builder.Property(p => p.UserName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.FullName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.MobileNo).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Biography).HasColumnType("nvarchar(500)");
+            builder.Property(p => p.PassWord).HasColumnType("nvarchar(250)");
+            builder.Property(p => p.Salt).HasColumnType("nvarchar(250)");
+            builder.Property(p => p.RegisterDate).HasColumnType("smalldatetime");
+            builder.Property(p => p.UserIpRegistered).HasColumnType("nvarchar(20)");
+            builder.Property(p => p.Email).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.ActivationCode).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.ActivationCodeExpireDate).HasColumnType("smalldatetime");
+            builder.Property(p => p.BlockedDate).HasColumnType("smalldatetime");
+            builder.Property(p => p.DeletedDate).HasColumnType("smalldatetime");
+            #endregion
+        }
     }
 }

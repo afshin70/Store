@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,15 +15,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
-        /// <summary>
-        /// آی دی کاربر
-        /// </summary>
-        public int UserId { get; set; }
-        /// <summary>
-        /// آی دی کد تخفیف
-        /// </summary>
-        public int DiscountId { get; set; }
+        public int OrderId { get; set; }
         /// <summary>
         /// وضعیت پرداخت مالی
         /// </summary>
@@ -82,5 +76,43 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت حذف
         /// </summary>
         public bool IsDeleted { get; set; }
+
+        #region ForeignKeys
+        /// <summary>
+        /// آی دی کاربر
+        /// </summary>
+        public int UserId { get; set; }
+        /// <summary>
+        /// آی دی کد تخفیف
+        /// </summary>
+        public int DiscountId { get; set; }
+        #endregion
+
+        #region NavigationProps
+        public User User { get; set; }
+        public Discount Discount { get; set; }
+        public ICollection<Factor> Factors { get; set; }
+        #endregion
+    }
+    public class OrderConfig : IEntityTypeConfiguration<Order>
+    {
+        public void Configure(EntityTypeBuilder<Order> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.OrderId);
+            builder.HasOne<User>().WithMany(b => b.Orders).HasForeignKey(fk => fk.UserId);
+            builder.HasMany<Factor>().WithOne(p => p.Order).HasForeignKey(fk => fk.OrderId);
+            #endregion
+
+            #region Properties
+            builder.Property(p => p.Mobile).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Telphone).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.PayCost).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.BuyTime).HasColumnType("datetime");
+            builder.Property(p => p.SumPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.SumPriceNoDiscount).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.TrackingCode).HasColumnType("nvarchar(50)");
+            #endregion
+        }
     }
 }

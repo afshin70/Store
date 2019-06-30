@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,11 +15,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
-        /// <summary>
-        /// آی دی دسته بندی اصلی
-        /// </summary>
-        public int MainCategoryId { get; set; }
+        public int CategoryId { get; set; }
         /// <summary>
         /// نام
         /// </summary>
@@ -29,7 +27,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// توضیحات
         /// </summary>
-        public string Descriptions { get; set; }
+        public string Description { get; set; }
         /// <summary>
         /// آدرس تصویر
         /// </summary>
@@ -54,5 +52,37 @@ namespace Store.Models.DataBase.Entities
         /// آیا جزو دسته محبو ها است؟
         /// </summary>
         public bool IsFavorate { get; set; }
+
+        #region ForeignKeys
+        /// <summary>
+        /// آی دی دسته بندی اصلی
+        /// </summary>
+        public int MainCategoryId { get; set; }
+
+        #endregion
+
+        #region NavigationProps
+        public MainCategory MainCategory { get; set; }
+        public ICollection<SubCategory> SubCategories { get; set; }
+        #endregion
+    }
+    public class CategoryConfig : IEntityTypeConfiguration<Category>
+    {
+        public void Configure(EntityTypeBuilder<Category> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.CategoryId);
+            builder.HasOne<MainCategory>().WithMany(b => b.Categories).HasForeignKey(fk => fk.MainCategory);
+            builder.HasMany<SubCategory>().WithOne(p => p.Category).HasForeignKey(fk => fk.CategoryId);
+            #endregion
+
+            #region Properties
+            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
+            builder.Property(p => p.ImageUrl).HasColumnType("nvarchar(250)");
+            builder.Property(p => p.Icon).HasColumnType("nvarchar(50)");
+            #endregion
+        }
     }
 }

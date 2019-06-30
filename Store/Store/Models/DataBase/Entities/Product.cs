@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
+        public int ProductId { get; set; }
         /// <summary>
         /// نام
         /// </summary>
@@ -39,13 +41,9 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public string Tags { get; set; }
         /// <summary>
-        /// آی دی دسته بندی
+        /// برند کالا
         /// </summary>
-        public int CategoryId { get; set; }
-        /// <summary>
-        /// آی دی زیر دسته بندی
-        /// </summary>
-        public int SubCategoryId { get; set; }
+        public int BrandId { get; set; }
         /// <summary>
         /// تعداد فروش
         /// </summary>
@@ -102,5 +100,42 @@ namespace Store.Models.DataBase.Entities
         /// امتیاز کالا
         /// </summary>
         public int Rating { get; set; }
+
+        #region ForeignKeys
+        /// <summary>
+        /// آی دی زیر دسته بندی
+        /// </summary>
+        public int SubCategoryId { get; set; }
+        #endregion
+
+        #region NavigationProps
+        public SubCategory SubCategory { get; set; }
+        public Brand Brand { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        #endregion
+    }
+    public class ProductConfig : IEntityTypeConfiguration<Product>
+    {
+        public void Configure(EntityTypeBuilder<Product> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.ProductId);
+            builder.HasOne<SubCategory>().WithMany(b => b.Products).HasForeignKey(fk => fk.SubCategoryId);
+            builder.HasOne<Brand>().WithMany(b => b.Products).HasForeignKey(fk => fk.BrandId);
+            builder.HasMany<Comment>().WithOne(p => p.Product).HasForeignKey(fk => fk.ProductId);
+            #endregion
+
+            #region Properties
+            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.ShortDescription).HasColumnType("nvarchar(1000)");
+            builder.Property(p => p.MaxDiscountPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.Tags).HasColumnType("nvarchar(250)");
+            builder.Property(p => p.UnitType).HasColumnType("nvarchar(20)");
+            builder.Property(p => p.SalesPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.WrittenPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.InsertedDate).HasColumnType("smalldatetime");
+            #endregion
+        }
     }
 }
