@@ -38,7 +38,7 @@ namespace Store.Models.DataBase.Entities
         public bool IsDeleted { get; set; }
 
         #region NavigationProps
-        public ICollection<Category> Categories { get; set; }
+        //public ICollection<Category> Categories { get; set; }
         #endregion
     }
     public class MainCategoryConfig : IEntityTypeConfiguration<MainCategory>

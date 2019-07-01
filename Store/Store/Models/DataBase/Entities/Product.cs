@@ -111,7 +111,7 @@ namespace Store.Models.DataBase.Entities
         #region NavigationProps
         public SubCategory SubCategory { get; set; }
         public Brand Brand { get; set; }
-        public ICollection<Comment> Comments { get; set; }
+        //public ICollection<Comment> Comments { get; set; }
         #endregion
     }
     public class ProductConfig : IEntityTypeConfiguration<Product>
@@ -120,8 +120,6 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.ProductId);
-            builder.HasOne<SubCategory>().WithMany(b => b.Products).HasForeignKey(fk => fk.SubCategoryId);
-            builder.HasOne<Brand>().WithMany(b => b.Products).HasForeignKey(fk => fk.BrandId);
             builder.HasMany<Comment>().WithOne(p => p.Product).HasForeignKey(fk => fk.ProductId);
             #endregion
 

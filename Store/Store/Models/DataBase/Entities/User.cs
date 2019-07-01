@@ -32,7 +32,6 @@ namespace Store.Models.DataBase.Entities
         /// بیوگرافی
         /// </summary>
         public string Biography { get; set; }
-
         /// <summary>
         /// جنسیت
         /// </summary>
@@ -41,6 +40,10 @@ namespace Store.Models.DataBase.Entities
         /// گذر واژه
         /// </summary>
         public string PassWord { get; set; }
+        /// <summary>
+        /// توکن ارسالی
+        /// </summary>
+        public string Token { get; set; }
         /// <summary>
         /// مقدار ترکیب شده با گذر واژه
         /// </summary>
@@ -102,13 +105,13 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// نقش کاربر
         /// </summary>
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
         #endregion
 
         #region NavigationProps
         public City City { get; set; }
-        public ShopingCart ShopingCart { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        //public ShopingCart ShopingCart { get; set; }
+        //public ICollection<Order> Orders { get; set; }
         #endregion
     }
     public class UserConfig : IEntityTypeConfiguration<User>
@@ -117,7 +120,7 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.UserId);
-            builder.HasOne<City>().WithMany(b => b.Users).HasForeignKey(fk => fk.CityId);
+            //builder.HasOne<City>().WithMany(b => b.Users).HasForeignKey(fk => fk.CityId);
             builder.HasMany<Order>().WithOne(p => p.User).HasForeignKey(fk => fk.UserId);
             #endregion
 
@@ -131,6 +134,7 @@ namespace Store.Models.DataBase.Entities
             builder.Property(p => p.RegisterDate).HasColumnType("smalldatetime");
             builder.Property(p => p.UserIpRegistered).HasColumnType("nvarchar(20)");
             builder.Property(p => p.Email).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.RoleId).HasColumnType("nvarchar(50)");
             builder.Property(p => p.ActivationCode).HasColumnType("nvarchar(50)");
             builder.Property(p => p.ActivationCodeExpireDate).HasColumnType("smalldatetime");
             builder.Property(p => p.BlockedDate).HasColumnType("smalldatetime");

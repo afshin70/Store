@@ -38,7 +38,7 @@ namespace Store.Models.DataBase.Entities
         #endregion
 
         #region NavigationProps
-        public User User { get; set; }
+        //public User User { get; set; }
         #endregion
     }
     public class ShopingCartConfig : IEntityTypeConfiguration<ShopingCart>
@@ -47,7 +47,7 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.ShopingCartId);
-            builder.HasOne<User>().WithOne(b => b.ShopingCart).HasForeignKey<ShopingCart>(fk => fk.UserId);
+            //builder.HasOne<User>().WithOne(b => b.ShopingCart).HasForeignKey<ShopingCart>(fk => fk.UserId);
             #endregion
 
             #region Properties

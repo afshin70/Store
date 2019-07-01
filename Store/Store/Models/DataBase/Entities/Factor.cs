@@ -46,7 +46,6 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.FactorId);
-            builder.HasOne<Order>().WithMany(b => b.Factors).HasForeignKey(fk => fk.OrderId);
             #endregion
 
             #region Properties

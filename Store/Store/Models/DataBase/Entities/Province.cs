@@ -22,7 +22,7 @@ namespace Store.Models.DataBase.Entities
         public string Name { get; set; }
 
         #region NavigationProps
-        public ICollection<City> Cities { get; set; }
+        //public ICollection<City> Cities { get; set; }
         #endregion
     }
     public class ProvinceConfig : IEntityTypeConfiguration<Province>

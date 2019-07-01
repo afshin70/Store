@@ -91,7 +91,7 @@ namespace Store.Models.DataBase.Entities
         #region NavigationProps
         public User User { get; set; }
         public Discount Discount { get; set; }
-        public ICollection<Factor> Factors { get; set; }
+        //public ICollection<Factor> Factors { get; set; }
         #endregion
     }
     public class OrderConfig : IEntityTypeConfiguration<Order>
@@ -100,7 +100,6 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.OrderId);
-            builder.HasOne<User>().WithMany(b => b.Orders).HasForeignKey(fk => fk.UserId);
             builder.HasMany<Factor>().WithOne(p => p.Order).HasForeignKey(fk => fk.OrderId);
             #endregion
 

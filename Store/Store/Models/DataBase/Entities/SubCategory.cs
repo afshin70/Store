@@ -58,7 +58,7 @@ namespace Store.Models.DataBase.Entities
 
         #region NavigationProps
         public Category Category { get; set; }
-        public ICollection<Product> Products { get; set; }
+        //public ICollection<Product> Products { get; set; }
         #endregion
     }
     public class SubCategoryConfig : IEntityTypeConfiguration<SubCategory>
@@ -67,7 +67,6 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.SubCategoryId);
-            builder.HasOne<Category>().WithMany(b => b.SubCategories).HasForeignKey(fk => fk.CategoryId);
             builder.HasMany<Product>().WithOne(p => p.SubCategory).HasForeignKey(fk => fk.SubCategoryId);
 
             #endregion

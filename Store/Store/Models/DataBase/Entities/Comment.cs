@@ -50,7 +50,6 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.CommentId);
-            builder.HasOne<Product>().WithMany(b => b.Comments).HasForeignKey(fk => fk.ProductId);
             #endregion
 
             #region Properties

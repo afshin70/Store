@@ -34,7 +34,7 @@ namespace Store.Models.DataBase.Entities
         public string TumbImageUrl { get; set; }
 
         #region NavigationProps
-        public ICollection<Product> Products { get; set; }
+        //public ICollection<Product> Products { get; set; }
         #endregion
     }
     public class BrandConfig : IEntityTypeConfiguration<Brand>

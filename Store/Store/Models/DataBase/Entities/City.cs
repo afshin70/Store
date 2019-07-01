@@ -31,7 +31,7 @@ namespace Store.Models.DataBase.Entities
 
         #region NavigationProps
         public Province Province { get; set; }
-        public ICollection<User> Users { get; set; }
+        //public ICollection<User> Users { get; set; }
         #endregion
     }
     public class CityConfig : IEntityTypeConfiguration<City>
@@ -40,7 +40,6 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.CityId);
-            builder.HasOne<Province>().WithMany(b => b.Cities).HasForeignKey(fk => fk.ProvinceId);
             builder.HasMany<User>().WithOne(p => p.City).HasForeignKey(fk => fk.CityId);
             #endregion
             

@@ -54,7 +54,7 @@ namespace Store.Models.DataBase.Entities
         public bool IsDeleted { get; set; }
 
         #region NavigationProps
-        public ICollection<Order> Orders { get; set; }
+        //public ICollection<Order> Orders { get; set; }
         #endregion
     }
     public class DiscountConfig : IEntityTypeConfiguration<Discount>

@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Store.Models.DataBase.Context;
+using Store.Models.IService;
+using Store.Models.Services;
 
 namespace Store
 {
@@ -25,8 +27,8 @@ namespace Store
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<StoreContext>(option =>
-            //option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<StoreContext>(option =>
+            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //Configure Authentication By Cooki Base
             services.AddAuthentication(options =>
