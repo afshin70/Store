@@ -169,4 +169,9 @@
     <None Include="wwwroot\Template\Stroyka\wishlist.html" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
 </Project>
