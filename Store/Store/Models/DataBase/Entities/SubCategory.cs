@@ -29,6 +29,10 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public string EName { get; set; }
         /// <summary>
+        /// لینک
+        /// </summary>
+        public string Url { get; set; }
+        /// <summary>
         /// آیکن
         /// </summary>
         public string Icon { get; set; }

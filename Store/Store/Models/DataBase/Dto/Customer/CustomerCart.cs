@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Store.Models.DataBase.Dto.Customer
 {
-    public class Cart
+    public class CustomerCart
     {
+
     }
 }
