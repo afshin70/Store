@@ -7,6 +7,6 @@ namespace Store.Models.DataBase.Dto.Index
 {
     public class SpecialProduct
     {
-        public List MyProperty { get; set; }
+        //public List MyProperty { get; set; }
     }
 }

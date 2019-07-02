@@ -13,14 +13,14 @@ namespace Store.Models.IService
         /// </summary>
         /// <param name="username">نام کاربری</param>
         /// <returns></returns>
-        Cart GetCartItems(string username);
+        //Cart GetCartItems(string username);
         /// <summary>
         /// حذف یک محصول از سبد خرید مشتری
         /// </summary>
         /// <param name="username">نام کاربری</param>
         /// <param name="ItemId">آیدی محصول</param>
         /// <returns></returns>
-        Cart DeleteCartItems(string username,int ItemId);
+        //Cart DeleteCartItems(string username,int ItemId);
 
     }
 }
