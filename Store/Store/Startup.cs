@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Store.Models.DataBase.Context;
 using Store.Models.IService;
-using Store.Models.Services;
 
 namespace Store
 {
@@ -46,7 +45,7 @@ namespace Store
                 option.ExpireTimeSpan = TimeSpan.FromDays(7);
 
             });
-
+            
             services.AddMvc();
         }
 

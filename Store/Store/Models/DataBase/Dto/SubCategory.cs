@@ -1,4 +1,4 @@
-﻿using Store.Models.DataBase.Dto.Shared;
+﻿//using Store.Models.DataBase.Dto.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace Store.Models.DataBase.Dto
 {
     public class SubCategory
     {
-        public List<ProductBlock> Products { get; set; }
+    //    public List<ProductBlock> Products { get; set; }
         public decimal MaxPrice { get; set; }
         public decimal MinPrice { get; set; }
         public string SearchedText { get; set; }

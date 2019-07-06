@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Store.Models.IService
 {
-    interface ICustomerDashboardService
+    interface ICustomerService
     {
         /// <summary>
         /// اطلاعات داشبورد مشتری
@@ -34,13 +34,6 @@ namespace Store.Models.IService
         /// <param name="page">شماره صفحه</param>
         /// <returns></returns>
         CustomerOrdersWithPagenation GetCustomerOrdersWithPagenation(string username,int page);
-        /// <summary>
-        /// تغییر رمز ورود پنل مشتری
-        /// </summary>
-        /// <param name="username">نام کاربری</param>
-        /// <param name="currentPassword">رمز فعلی</param>
-        /// <param name="newPassword">رمز جدید</param>
-        /// <returns></returns>
-        bool UpdatePassword(string username,string currentPassword,string newPassword);
+        
     }
 }

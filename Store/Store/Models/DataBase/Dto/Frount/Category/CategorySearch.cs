@@ -1,15 +1,15 @@
-﻿using Store.Models.DataBase.Dto.Shared;
+﻿//using Store.Models.DataBase.Dto.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.DataBase.Dto.BaseSearch
+namespace Store.Models.DataBase.Dto.Category
 {
-    public class Search
+    public class CategorySearch
     {
-        public List<ProductBlock> Products { get; set; }
-        public List<SearchFoundedCategory> SubCategories { get; set; }
+        ///public List<ProductBlock> Products { get; set; }
+        public List<SubCategoriesFinded> SubCategories { get; set; }
         public decimal MaxPrice { get; set; }
         public decimal MinPrice { get; set; }
         public string SearchedText { get; set; }
@@ -17,7 +17,7 @@ namespace Store.Models.DataBase.Dto.BaseSearch
         public int CurrnetPage { get; set; }
         public int ProductFoundedCount { get; set; }
     }
-    public class SearchFoundedCategory
+    public class SubCategoriesFinded
     {
         public int SubcategoryId { get; set; }
         public string Name { get; set; }

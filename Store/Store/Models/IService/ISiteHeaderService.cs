@@ -1,4 +1,6 @@
 ﻿using Store.Models.DataBase.Dto.Customer;
+using Store.Models.DataBase.Dto.Frount.Category;
+using Store.Models.DataBase.Dto.Frount.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,25 @@ namespace Store.Models.IService
     interface ISiteHeaderService
     {
         /// <summary>
-        /// سبد خرید مشتری
+        /// دریافت دسته بندی ها
         /// </summary>
-        /// <param name="username">نام کاربری</param>
         /// <returns></returns>
-        //Cart GetCartItems(string username);
+        Category GetCategory();
         /// <summary>
-        /// حذف یک محصول از سبد خرید مشتری
+        ///دریافت منو نویگیشن یا فوتر
         /// </summary>
-        /// <param name="username">نام کاربری</param>
-        /// <param name="ItemId">آیدی محصول</param>
         /// <returns></returns>
-        //Cart DeleteCartItems(string username,int ItemId);
+        NavBarMenu GetNavBarMenu();
+        /// <summary>
+        ///دریافت منو نویگیشن یا فوتر
+        /// </summary>
+        /// <returns></returns>
+        NavBarMenu GetFooterMenu();
+        /// <summary>
+        /// دریافت اسلایدر
+        /// </summary>
+        /// <returns></returns>
+        Slider GetSlider();
 
     }
 }
