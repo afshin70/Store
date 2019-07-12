@@ -7,6 +7,7 @@ namespace Store.Models.DataBase.Dto.Frount.Category
 {
     public class NavBarMenu
     {
+
         /// <summary>
         /// لوگوی سایت(عکس)
         /// </summary>

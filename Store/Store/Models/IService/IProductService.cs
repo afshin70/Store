@@ -55,7 +55,6 @@ namespace Store.Models.IService
         /// </summary>
         /// <returns></returns>
         List<DataBase.Dto.Admin.Product> GetAllProducts();
-        
         #endregion
 
         #region متدهای صفحه اصلی

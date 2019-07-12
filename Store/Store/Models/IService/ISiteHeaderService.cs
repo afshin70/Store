@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Store.Models.IService
 {
+    /// <summary>
+    /// سرویس هدر سایت و بنر صفحه اصلی
+    /// </summary>
     interface ISiteHeaderService
     {
         /// <summary>
@@ -16,12 +19,12 @@ namespace Store.Models.IService
         /// <returns></returns>
         Category GetCategory();
         /// <summary>
-        ///دریافت منو نویگیشن یا فوتر
+        ///دریافت منو نویگیشن
         /// </summary>
         /// <returns></returns>
         NavBarMenu GetNavBarMenu();
         /// <summary>
-        ///دریافت منو نویگیشن یا فوتر
+        ///دریافت منو فوتر
         /// </summary>
         /// <returns></returns>
         NavBarMenu GetFooterMenu();
@@ -30,6 +33,11 @@ namespace Store.Models.IService
         /// </summary>
         /// <returns></returns>
         Slider GetSlider();
+        /// <summary>
+        /// دریافت تصویر بنر و ...
+        /// </summary>
+        /// <returns></returns>
+        Banner GetBanner();
 
     }
 }
