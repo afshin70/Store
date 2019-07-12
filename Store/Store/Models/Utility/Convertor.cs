@@ -15,12 +15,16 @@ namespace Store.Models.Utility
 {
     public class Convertor
     {
+<<<<<<< HEAD
         /// <summary>
         /// ریسایز کردن تصویر با طول و عرض یکسان
         /// </summary>
         /// <param name="input_Image_Path">آدرس فایل</param>
         /// <param name="output_Image_Path">آدرس خروجی فایل</param>
         /// <param name="new_Width">طول یا عرض</param>
+=======
+
+>>>>>>> d78447a7d2cfbbcade1a538949e5b6006109d36a
         public void Image_resize(string input_Image_Path, string output_Image_Path, int new_Width)
         {
 
