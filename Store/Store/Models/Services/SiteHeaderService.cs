@@ -14,6 +14,7 @@ namespace Store.Models.Services
         {
             using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
             {
+                _Storedb.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
                 var categories = _Storedb.Categories.Where(x => x.IsDeleted == false & x.IsEnabled == true).OrderBy(x => x.OrderNumber).ToList();
                 List<Category> categories_list = new List<Category>();
                 foreach (var cat in categories)

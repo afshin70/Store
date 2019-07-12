@@ -42,6 +42,7 @@ namespace Store.Models.Services
                         VisitedCount = 0,
                         WrittenPrice = product.WrittenPrice
                     });
+                    _Storedb.SaveChanges();
                     return true;
                 }
             }
