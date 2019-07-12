@@ -11,6 +11,7 @@ namespace Store.Models.Utility
 {
     public class Convertor
     {
+
         public void Image_resize(string input_Image_Path, string output_Image_Path, int new_Width)
         {
 

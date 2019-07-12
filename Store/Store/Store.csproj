@@ -174,7 +174,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\DataBase\Dto\Admin\" />
-    <Folder Include="Models\Services\" />
   </ItemGroup>
 
 </Project>

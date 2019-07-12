@@ -61,9 +61,9 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public decimal MaxDiscountPrice { get; set; }
         /// <summary>
-        /// ویژگی ها بصورت جیسون
+        /// ویژگی ها بصورت html
         /// </summary>
-        public string Features_Json { get; set; }
+        public string Features { get; set; }
         /// <summary>
         /// وضعیت فعال بودن
         /// </summary>
