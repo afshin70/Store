@@ -10,6 +10,11 @@ namespace Store.Models.Services
 {
     public class SiteHeaderService : ISiteHeaderService
     {
+        public Banner GetBanner()
+        {
+            throw new NotImplementedException();
+        }
+
         public Category GetCategory()
         {
             using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -174,11 +174,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-<<<<<<< HEAD
     <Folder Include="Models\Services\" />
-=======
-    <Folder Include="Models\DataBase\Dto\Admin\" />
->>>>>>> d78447a7d2cfbbcade1a538949e5b6006109d36a
   </ItemGroup>
 
 </Project>

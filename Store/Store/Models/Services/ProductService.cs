@@ -11,6 +11,26 @@ namespace Store.Models.Services
 {
     public class ProductService : IProductService
     {
+        public bool AddComment(Comment comment, int ProductId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddMainCategory(Catrgory catrgory)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddMainCategory(MainCatrgory mainCatrgory)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddMainSubCategory(SubCatrgory subCatrgory)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool AddProduct(DataBase.Dto.Admin.Product product)
         {
             try
@@ -57,6 +77,36 @@ namespace Store.Models.Services
             throw new NotImplementedException();
         }
 
+        public bool CheckExistCategoryName(string CategoryName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckExistMainCategoryName(string CategoryName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckExistSubCategoryName(string SubCategoryName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CommentReaded(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CommentShow(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CommentVerification(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DataBase.Dto.Admin.Product> GetAllProducts()
         {
             throw new NotImplementedException();
@@ -67,12 +117,27 @@ namespace Store.Models.Services
             throw new NotImplementedException();
         }
 
+        public List<Catrgory> GetCatrgories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Catrgory> GetCatrgories(int MainCategoryId)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<DataBase.Dto.Frount.Product.Product> GetHighScoreProducts(int count_Of = 3)
         {
             throw new NotImplementedException();
         }
 
         public List<DataBase.Dto.Admin.Product> GetListProductByParameters(string name, string ename, string description, string tags)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MainCatrgory> GetMainCatrgories()
         {
             throw new NotImplementedException();
         }
@@ -102,12 +167,57 @@ namespace Store.Models.Services
             throw new NotImplementedException();
         }
 
+        public List<SubCatrgory> GetSubCatrgories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SubCatrgory> GetSubCatrgories(int CategoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveCategory(int CatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveComment(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveMainCategory(int mainCatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool RemoveProduct(int ProductId)
         {
             throw new NotImplementedException();
         }
 
+        public bool RemoveSubCategory(int CatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateCaregory(Catrgory catrgory, int CatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateMainCaregory(MainCatrgory mainCatrgory, int mainCatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool UpdateProduct(DataBase.Dto.Admin.Product product, int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateSubCaregory(SubCatrgory subCatrgory, int SubCatrgoryId)
         {
             throw new NotImplementedException();
         }
