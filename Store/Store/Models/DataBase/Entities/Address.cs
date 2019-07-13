@@ -8,52 +8,54 @@ using System.Threading.Tasks;
 namespace Store.Models.DataBase.Entities
 {
     /// <summary>
-    /// برند
+    /// آدرس کاربر
     /// </summary>
-    public class Brand
+    public class Address
     {
         /// <summary>
-        /// آی دی
+        /// آی دی آدرس
         /// </summary>
-        public int BrandId { get; set; }
+        public int AddressId { get; set; }
         /// <summary>
-        /// نام
+        /// آی دی کاربر
+        /// </summary>
+        public int UserId { get; set; }
+        /// <summary>
+        /// آی دی شهر
+        /// </summary>
+        public int CityId { get; set; }
+        /// <summary>
+        /// عنوان یا نام آدرس
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// نام انگلیسی
-        /// </summary>
-        public string EName { get; set; }
         /// <summary>
         /// توضیحات
         /// </summary>
         public string Description { get; set; }
         /// <summary>
-        /// تصویر بند انگشتی
+        /// کد پستی
         /// </summary>
-        public string TumbImageUrl { get; set; }
+        public string PostalCode { get; set; }
         /// <summary>
         /// وضعیت حذف
         /// </summary>
         public bool IsDeleted { get; set; }
         #region NavigationProps
-        //public ICollection<Product> Products { get; set; }
+        public User User { get; set; }
         #endregion
     }
-    public class BrandConfig : IEntityTypeConfiguration<Brand>
+    public class AddressConfig : IEntityTypeConfiguration<Address>
     {
-        public void Configure(EntityTypeBuilder<Brand> builder)
+        public void Configure(EntityTypeBuilder<Address> builder)
         {
             #region Relations
-            builder.HasKey(k => k.BrandId);
-            builder.HasMany<Product>().WithOne(p => p.Brand).HasForeignKey(fk => fk.BrandId);
+            builder.HasKey(k => k.AddressId);
             #endregion
 
             #region Properties
             builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
-            builder.Property(p => p.TumbImageUrl).HasColumnType("nvarchar(250)");
+            builder.Property(p => p.Description).HasColumnType("nvarchar(500)");
+            builder.Property(p => p.PostalCode).HasColumnType("nvarchar(50)");
             #endregion
         }
     }

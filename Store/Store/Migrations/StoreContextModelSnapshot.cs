@@ -15,9 +15,35 @@ namespace Store.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Store.Models.DataBase.Entities.Address", b =>
+                {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CityId");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("AddressId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Address");
+                });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Brand", b =>
                 {
@@ -116,6 +142,12 @@ namespace Store.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("IsSeen");
+
+                    b.Property<bool>("IsShow");
+
+                    b.Property<bool>("IsVerified");
+
                     b.Property<int>("ProductId");
 
                     b.HasKey("CommentId");
@@ -123,6 +155,37 @@ namespace Store.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("Store.Models.DataBase.Entities.ContactUsMessage", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("IsDeleted");
+
+                    b.Property<bool>("IsSeen");
+
+                    b.Property<int>("MessageLevel");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("SendedDate");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("MessageId");
+
+                    b.ToTable("ContactUsMessage");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Discount", b =>
@@ -158,6 +221,23 @@ namespace Store.Migrations
                     b.HasKey("DiscountId");
 
                     b.ToTable("Discounts");
+                });
+
+            modelBuilder.Entity("Store.Models.DataBase.Entities.FAQ", b =>
+                {
+                    b.Property<int>("FAQId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer");
+
+                    b.Property<int>("OrderNumber");
+
+                    b.Property<string>("Question");
+
+                    b.HasKey("FAQId");
+
+                    b.ToTable("FAQ");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Factor", b =>
@@ -205,41 +285,6 @@ namespace Store.Migrations
                     b.HasKey("MainCategoryId");
 
                     b.ToTable("MainCategories");
-                });
-
-            modelBuilder.Entity("Store.Models.DataBase.Entities.Message", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IsDeleted");
-
-                    b.Property<bool>("IsSeen");
-
-                    b.Property<int>("MessageLevel");
-
-                    b.Property<int>("ReciverUserId");
-
-                    b.Property<int>("ReplyedId");
-
-                    b.Property<string>("SendedDate")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 48)))
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("SenderUserId");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("UserId");
-
-                    b.HasKey("MessageId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.NewsLetter", b =>
@@ -491,6 +536,41 @@ namespace Store.Migrations
                     b.ToTable("SubCategories");
                 });
 
+            modelBuilder.Entity("Store.Models.DataBase.Entities.Ticket", b =>
+                {
+                    b.Property<int>("TicketId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IsDeleted");
+
+                    b.Property<bool>("IsSeen");
+
+                    b.Property<int>("MessageLevel");
+
+                    b.Property<int>("ReciverUserId");
+
+                    b.Property<int>("ReplyedId");
+
+                    b.Property<string>("SendedDate")
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 48)))
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("SenderUserId");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("TicketId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("Store.Models.DataBase.Entities.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -562,6 +642,14 @@ namespace Store.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Store.Models.DataBase.Entities.Address", b =>
+                {
+                    b.HasOne("Store.Models.DataBase.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Store.Models.DataBase.Entities.Category", b =>
                 {
                     b.HasOne("Store.Models.DataBase.Entities.MainCategory", "MainCategory")
@@ -592,13 +680,6 @@ namespace Store.Migrations
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Store.Models.DataBase.Entities.Message", b =>
-                {
-                    b.HasOne("Store.Models.DataBase.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Order", b =>
@@ -633,6 +714,13 @@ namespace Store.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Store.Models.DataBase.Entities.Ticket", b =>
+                {
+                    b.HasOne("Store.Models.DataBase.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.User", b =>

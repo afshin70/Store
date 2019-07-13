@@ -96,7 +96,7 @@ namespace Store.Models.DataBase.Entities
         /// محصولات مورد علاقه
         /// </summary>
         public string FavorateProduct_Json { get; set; }
-        
+
         #region ForeignKeys
         /// <summary>
         /// آی دی شهر
@@ -122,6 +122,7 @@ namespace Store.Models.DataBase.Entities
             builder.HasKey(k => k.UserId);
             //builder.HasOne<City>().WithMany(b => b.Users).HasForeignKey(fk => fk.CityId);
             builder.HasMany<Order>().WithOne(p => p.User).HasForeignKey(fk => fk.UserId);
+            builder.HasMany<Address>().WithOne(p => p.User).HasForeignKey(fk => fk.UserId);
             #endregion
 
             #region Properties

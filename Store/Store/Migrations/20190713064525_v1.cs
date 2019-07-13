@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Store.Migrations
 {
-    public partial class initial_db_v1 : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,26 @@ namespace Store.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Brands", x => x.BrandId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContactUsMessage",
+                columns: table => new
+                {
+                    MessageId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    IsSeen = table.Column<bool>(nullable: false),
+                    SendedDate = table.Column<DateTime>(nullable: false),
+                    MessageLevel = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactUsMessage", x => x.MessageId);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,6 +63,21 @@ namespace Store.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Discounts", x => x.DiscountId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FAQ",
+                columns: table => new
+                {
+                    FAQId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Question = table.Column<string>(nullable: true),
+                    Answer = table.Column<string>(nullable: true),
+                    OrderNumber = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FAQ", x => x.FAQId);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,6 +223,7 @@ namespace Store.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     EName = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Url = table.Column<string>(nullable: true),
                     Icon = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     OrderNumber = table.Column<int>(nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(50)", nullable: true),
@@ -263,7 +299,7 @@ namespace Store.Migrations
                     VisitedCount = table.Column<int>(nullable: false),
                     ExistCount = table.Column<int>(nullable: false),
                     MaxDiscountPrice = table.Column<decimal>(type: "decimal(16,3)", nullable: false),
-                    Features_Json = table.Column<string>(nullable: true),
+                    Features = table.Column<string>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     UnitType = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     SalesPrice = table.Column<decimal>(type: "decimal(16,3)", nullable: false),
@@ -293,10 +329,33 @@ namespace Store.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Address",
+                columns: table => new
+                {
+                    AddressId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(nullable: false),
+                    CityId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    PostalCode = table.Column<string>(type: "nvarchar(50)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.AddressId);
+                    table.ForeignKey(
+                        name: "FK_Address_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Messages",
                 columns: table => new
                 {
-                    MessageId = table.Column<int>(nullable: false)
+                    TicketId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     IsSeen = table.Column<bool>(nullable: false),
@@ -310,7 +369,7 @@ namespace Store.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Messages", x => x.MessageId);
+                    table.PrimaryKey("PK_Messages", x => x.TicketId);
                     table.ForeignKey(
                         name: "FK_Messages_Users_UserId",
                         column: x => x.UserId,
@@ -370,6 +429,9 @@ namespace Store.Migrations
                     FullName = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     CommentedDate = table.Column<DateTime>(type: "smalldatetime", nullable: false),
+                    IsSeen = table.Column<bool>(nullable: false),
+                    IsVerified = table.Column<bool>(nullable: false),
+                    IsShow = table.Column<bool>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -404,6 +466,11 @@ namespace Store.Migrations
                         principalColumn: "OrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Address_UserId",
+                table: "Address",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_MainCategoryId",
@@ -464,10 +531,19 @@ namespace Store.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Address");
+
+            migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
+                name: "ContactUsMessage");
+
+            migrationBuilder.DropTable(
                 name: "Factors");
+
+            migrationBuilder.DropTable(
+                name: "FAQ");
 
             migrationBuilder.DropTable(
                 name: "Messages");

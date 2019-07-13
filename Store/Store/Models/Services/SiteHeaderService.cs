@@ -1,4 +1,5 @@
 ﻿using Store.Models.DataBase.Dto.Frount.Category;
+using Store.Models.DataBase.Dto.Frount.Header;
 using Store.Models.DataBase.Dto.Frount.Public;
 using Store.Models.IService;
 using System;
@@ -10,6 +11,11 @@ namespace Store.Models.Services
 {
     public class SiteHeaderService : ISiteHeaderService
     {
+        public Banner GetBanner()
+        {
+            throw new NotImplementedException();
+        }
+
         public Category GetCategory()
         {
             using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
@@ -45,6 +51,11 @@ namespace Store.Models.Services
         }
 
         public Slider GetSlider()
+        {
+            throw new NotImplementedException();
+        }
+
+        NavBarMenu ISiteHeaderService.GetNavBarMenu()
         {
             throw new NotImplementedException();
         }

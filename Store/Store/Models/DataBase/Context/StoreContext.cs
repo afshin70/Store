@@ -18,7 +18,7 @@ namespace Store.Models.DataBase.Context
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Factor> Factors { get; set; }
         public DbSet<MainCategory> MainCategories { get; set; }
-        public DbSet<Message> Messages { get; set; }
+        public DbSet<Ticket> Ticket { get; set; }
         public DbSet<NewsLetter> NewsLetters { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -48,7 +48,10 @@ namespace Store.Models.DataBase.Context
             modelBuilder.ApplyConfiguration(new DiscountConfig());
             modelBuilder.ApplyConfiguration(new FactorConfig());
             modelBuilder.ApplyConfiguration(new MainCategoryConfig());
-            modelBuilder.ApplyConfiguration(new MessageConfig());
+            modelBuilder.ApplyConfiguration(new TicketConfig());
+            modelBuilder.ApplyConfiguration(new ContactUsMessageConfig());
+            modelBuilder.ApplyConfiguration(new AddressConfig());
+            modelBuilder.ApplyConfiguration(new FAQConfig());
             modelBuilder.ApplyConfiguration(new OrderConfig());
             modelBuilder.ApplyConfiguration(new ProductConfig());
             modelBuilder.ApplyConfiguration(new ProvinceConfig());
