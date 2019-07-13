@@ -1,13 +1,10 @@
-﻿using Store.Models.DataBase.Dto.Frount.Category;
-using Store.Models.DataBase.Dto.Frount.Product;
-using Store.Models.DataBase.Dto.Admin;
+﻿using Store.Models.DataBase.Dto.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-namespace Store.Models.IService
+namespace Store.Models.IService.Admin
 {
     interface IProductService
     {
@@ -63,7 +60,7 @@ namespace Store.Models.IService
         /// <param name="comment">کامنت</param>
         /// <param name="ProductId">آی دی محصول</param>
         /// <returns></returns>
-        bool AddComment(DataBase.Dto.Admin.Comment comment,int ProductId);
+        bool AddComment(DataBase.Dto.Admin.Comment comment, int ProductId);
         /// <summary>
         /// حذف کامنت
         /// </summary>
@@ -96,7 +93,7 @@ namespace Store.Models.IService
         /// </summary>
         /// <param name="subCatrgory">زیردسته جدید</param>
         /// <returns></returns>
-        bool AddMainSubCategory(DataBase.Dto.Admin.SubCatrgory subCatrgory);
+        bool AddMainSubCategory(SubCatrgory subCatrgory);
         /// <summary>
         /// حذف زیردسته
         /// </summary>
@@ -109,7 +106,7 @@ namespace Store.Models.IService
         /// <param name="subCatrgory">زیردسته بروزرسانی شده</param>
         /// <param name="SubCatrgoryId">آی دی زردسته ای که قرار است بروز شود</param>
         /// <returns></returns>
-        bool UpdateSubCaregory(DataBase.Dto.Admin.SubCatrgory subCatrgory, int SubCatrgoryId);
+        bool UpdateSubCaregory(SubCatrgory subCatrgory, int SubCatrgoryId);
         /// <summary>
         /// چک کردن زیردسته تکراری
         /// </summary>
@@ -120,13 +117,13 @@ namespace Store.Models.IService
         /// لیست زیردسته ها
         /// </summary>
         /// <returns></returns>
-        List<DataBase.Dto.Admin.SubCatrgory> GetSubCatrgories();
+        List<SubCatrgory> GetSubCatrgories();
         /// <summary>
         /// لیست زیردسته ها برحسب دسته
         /// </summary>
         /// <param name="CategoryId">آی دی دسته</param>
         /// <returns></returns>
-        List<DataBase.Dto.Admin.SubCatrgory> GetSubCatrgories(int CategoryId);
+        List<SubCatrgory> GetSubCatrgories(int CategoryId);
         #endregion
 
         #region عملیات دسته بندی محصول
@@ -207,7 +204,7 @@ namespace Store.Models.IService
         /// </summary>
         /// <param name="product">Admin/Dtto/Product</param>
         /// <returns></returns>
-        bool AddProduct(DataBase.Dto.Admin.Product product);
+        bool AddProduct(Product product);
         /// <summary>
         /// حذف یک محصول
         /// </summary>
@@ -220,7 +217,7 @@ namespace Store.Models.IService
         /// <param name="product">اطلاعات محصول</param>
         /// <param name="Id">آی دی محصولی که قرار است آپدیت شود</param>
         /// <returns></returns>
-        bool UpdateProduct(DataBase.Dto.Admin.Product product, int Id);
+        bool UpdateProduct(Product product, int Id);
         /// <summary>
         /// چک کردن نام انگلیسی یونیک در محصولات
         /// </summary>
@@ -232,59 +229,19 @@ namespace Store.Models.IService
         /// </summary>
         /// <param name="ProductId"></param>
         /// <returns></returns>
-        DataBase.Dto.Admin.Product GetProductById(int ProductId);
+        Product GetProductById(int ProductId);
         /// <summary>
         /// پیدا کردن یک محصول با نام،نام انگلیسی،توضیحات کوتاه،تگ ها
         /// این متد برای جستجوی محصولات در مدیریت محصولات استفاده میشود.
         /// </summary>
         /// <param name="ProductId"></param>
         /// <returns></returns>
-        List<DataBase.Dto.Admin.Product> GetListProductByParameters(string name, string ename, string description, string tags);
+        List<Product> GetListProductByParameters(string name, string ename, string description, string tags);
         /// <summary>
         /// دریافت تمام محصولات در صفحه مدیریت محصول
         /// </summary>
         /// <returns></returns>
-        List<DataBase.Dto.Admin.Product> GetAllProducts();
+        List<Product> GetAllProducts();
         #endregion
-
-        #region متدهای صفحه اصلی
-        /// <summary>
-        /// دریافت لیست محصولات ویژه
-        /// </summary>
-        /// <param name="count_Of">تعداد - پیشفرض 6 تا محصول</param>
-        /// <returns></returns>
-        List<DataBase.Dto.Admin.Product> GetSpecialProducts(int count_Of = 8);
-        /// <summary>
-        /// دریافت محصولات پرفروش
-        /// </summary>
-        /// <param name="count_Of">تعداد که مقدار پیشفرض 7 است</param>
-        /// <returns></returns>
-        List<DataBase.Dto.Admin.Product> GetbestSellersProducts(int count_Of = 7);
-        /// <summary>
-        /// دریافت محصولات امتیاز بالا
-        /// </summary>
-        /// <param name="count_Of">تعد محصولات که پیشفرض برابر 3 است</param>
-        /// <returns></returns>
-        List<DataBase.Dto.Admin.Product> GetHighScoreProducts(int count_Of = 3);
-        /// <summary>
-        /// دریافت محصولات فروش ویژه
-        /// </summary>
-        /// <param name="count_Of">تعداد که پیشفرض برابر 3 است</param>
-        /// <returns></returns>
-        List<DataBase.Dto.Admin.Product> GetSpecialOffersProducts(int count_Of = 3);
-        /// <summary>
-        /// دریافت محصولات تصادفی
-        /// </summary>
-        /// <param name="count_Of">تعداد که پیشفرض 3 هست</param>
-        /// <returns></returns>
-        List<DataBase.Dto.Admin.Product> GetRandomProducts(int count_Of = 3);
-        /// <summary>
-        /// -  دریافت دسته بندی های محبوب
-        /// دسته ها و زیر دسته ها
-        /// </summary>
-        /// <returns></returns>
-        Category GetPopularCategory();
-        #endregion
-
     }
 }

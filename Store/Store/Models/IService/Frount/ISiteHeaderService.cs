@@ -1,5 +1,7 @@
 ﻿using Store.Models.DataBase.Dto.Customer;
+using Store.Models.DataBase.Dto.Frount;
 using Store.Models.DataBase.Dto.Frount.Category;
+using Store.Models.DataBase.Dto.Frount.Header;
 using Store.Models.DataBase.Dto.Frount.Public;
 using System;
 using System.Collections.Generic;
@@ -24,11 +26,6 @@ namespace Store.Models.IService
         /// <returns></returns>
         NavBarMenu GetNavBarMenu();
         /// <summary>
-        ///دریافت منو فوتر
-        /// </summary>
-        /// <returns></returns>
-        NavBarMenu GetFooterMenu();
-        /// <summary>
         /// دریافت اسلایدر
         /// </summary>
         /// <returns></returns>
@@ -38,6 +35,8 @@ namespace Store.Models.IService
         /// </summary>
         /// <returns></returns>
         Banner GetBanner();
+
+       
 
     }
 }

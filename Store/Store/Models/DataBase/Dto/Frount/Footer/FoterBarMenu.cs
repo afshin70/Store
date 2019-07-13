@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.DataBase.Dto.Admin
+namespace Store.Models.DataBase.Dto.Frount.Footer
 {
-    public class SubCatrgory
+    public class FoterBarMenu
     {
- 
+
     }
 }

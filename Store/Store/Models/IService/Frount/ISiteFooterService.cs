@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Store.Models.DataBase.Dto.Frount;
+using Store.Models.DataBase.Dto.Frount.Footer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +17,10 @@ namespace Store.Models.IService
         /// </summary>
         /// <returns></returns>
         bool SubscribeByEmail();
-
+        /// <summary>
+        ///دریافت منو فوتر
+        /// </summary>
+        /// <returns></returns>
+        FoterBarMenu GetFooterMenu();
     }
 }
