@@ -40,7 +40,7 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.CityId);
-            builder.HasMany<User>().WithOne(p => p.City).HasForeignKey(fk => fk.CityId);
+            //builder.HasMany<User>().WithOne(p => p.City).HasForeignKey(fk => fk.CityId);
             #endregion
             
             #region Properties

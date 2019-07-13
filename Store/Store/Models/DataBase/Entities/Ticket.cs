@@ -24,7 +24,7 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت دیده شدن پیام
         /// </summary>
         public bool IsSeen { get; set; }
-        
+
         /// <summary>
         /// تاریخ ارسال
         /// </summary>
@@ -65,7 +65,7 @@ namespace Store.Models.DataBase.Entities
         public void Configure(EntityTypeBuilder<Ticket> builder)
         {
             #region Relations
-            //builder.HasKey(k => k.);
+            builder.HasKey(k => k.TicketId);
             #endregion
 
             #region Properties

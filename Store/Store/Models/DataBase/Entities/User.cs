@@ -99,10 +99,6 @@ namespace Store.Models.DataBase.Entities
 
         #region ForeignKeys
         /// <summary>
-        /// آی دی شهر
-        /// </summary>
-        public int CityId { get; set; }
-        /// <summary>
         /// نقش کاربر
         /// </summary>
         public string RoleId { get; set; }
