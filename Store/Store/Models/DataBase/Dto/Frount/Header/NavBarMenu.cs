@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.DataBase.Dto.Frount.Category
+namespace Store.Models.DataBase.Dto.Frount.Header
 {
     public class NavBarMenu
     {
+
         /// <summary>
         /// لوگوی سایت(عکس)
         /// </summary>
