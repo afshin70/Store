@@ -10,12 +10,12 @@ namespace Store.Models.DataBase.Entities
     /// <summary>
     /// پیام
     /// </summary>
-    public class Message
+    public class Ticket
     {
         /// <summary>
         /// آی دی
         /// </summary>
-        public int MessageId { get; set; }
+        public int TicketId { get; set; }
         /// <summary>
         /// عنوان
         /// </summary>
@@ -37,7 +37,10 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت حذف پیام
         /// </summary>
         public int IsDeleted { get; set; }
-
+        /// <summary>
+        /// تاریخ ارسال تیکت
+        /// </summary>
+        public DateTime TicketDate { get; set; }
         #region ForeignKeys
         /// <summary>
         /// کاربر ارسال کننده پیام
@@ -57,17 +60,17 @@ namespace Store.Models.DataBase.Entities
         public User User { get; set; }
         #endregion
     }
-    public class MessageConfig : IEntityTypeConfiguration<Message>
+    public class TicketConfig : IEntityTypeConfiguration<Ticket>
     {
-        public void Configure(EntityTypeBuilder<Message> builder)
+        public void Configure(EntityTypeBuilder<Ticket> builder)
         {
             #region Relations
-            builder.HasKey(k => k.MessageId);
+            //builder.HasKey(k => k.);
             #endregion
 
             #region Properties
             builder.Property(p => p.Title).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.SendedDate).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.SendedDate).HasColumnType("smalldatetime");
             #endregion
         }
     }

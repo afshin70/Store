@@ -9,7 +9,7 @@ namespace Store.Models.Utility
     public class BaseUtility
     {
         /// <summary>
-        /// ارسال ایمیل
+        /// ارسال ایمیل    
         /// </summary>
         /// <param name="mail_address">آدرس ایمیل</param>
         /// <param name="subject">عنوان ایمیل</param>

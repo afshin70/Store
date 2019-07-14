@@ -32,6 +32,18 @@ namespace Store.Models.DataBase.Entities
         /// تاریخ ارسال کامنت
         /// </summary>
         public DateTime CommentedDate { get; set; }
+        /// <summary>
+        /// وضعیت دیده شده توسط ادمین
+        /// </summary>
+        public bool IsSeen { get; set; }
+        /// <summary>
+        /// وضعیت تایید
+        /// </summary>
+        public bool IsVerified { get; set; }
+        /// <summary>
+        /// وضعیت نمایش
+        /// </summary>
+        public bool IsShow { get; set; }
 
         #region ForeignKeys
         /// <summary>
