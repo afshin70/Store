@@ -10,7 +10,16 @@ namespace Store.Models.IService
 {
     interface IProductService
     {
-        
+
+        #region کامنت
+        /// <summary>
+        /// کامنت جدید
+        /// </summary>
+        /// <param name="comment">کامنت</param>
+        /// <param name="ProductId">آی دی محصول</param>
+        /// <returns></returns>
+        bool AddComment(DataBase.Dto.Admin.Comment comment, int ProductId);
+        #endregion
 
         #region متدهای صفحه اصلی
         /// <summary>

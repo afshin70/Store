@@ -54,13 +54,7 @@ namespace Store.Models.IService.Admin
         #endregion
 
         #region عملیات کامنت
-        /// <summary>
-        /// کامنت جدید
-        /// </summary>
-        /// <param name="comment">کامنت</param>
-        /// <param name="ProductId">آی دی محصول</param>
-        /// <returns></returns>
-        bool AddComment(DataBase.Dto.Admin.Comment comment, int ProductId);
+       
         /// <summary>
         /// حذف کامنت
         /// </summary>

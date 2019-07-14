@@ -13,10 +13,11 @@ namespace Store.Models.IService
     public interface ISiteFooterService
     {
         /// <summary>
-        /// عضویت در خبرنامه
+        ///  عضویت در خبرنامه
         /// </summary>
+        /// <param name="email">ایمیل</param>
         /// <returns></returns>
-        bool SubscribeByEmail();
+        bool SubscribeByEmail(string email);
         /// <summary>
         ///دریافت منو فوتر
         /// </summary>
