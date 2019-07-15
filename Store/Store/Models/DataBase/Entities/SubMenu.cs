@@ -28,7 +28,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// وضعیت حذف
         /// </summary>
-        public bool IsDeleted { get; set; }
+        //public bool IsDeleted { get; set; }
 
         #region ForeignKeys
         /// <summary>

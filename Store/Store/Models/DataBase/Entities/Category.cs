@@ -43,7 +43,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// وضعیت فعال بودن
         /// </summary>
-        public bool IsEnabled { get; set; }
+        public bool IsActive { get; set; }
         /// <summary>
         /// وضعیت حذف شدن
         /// </summary>

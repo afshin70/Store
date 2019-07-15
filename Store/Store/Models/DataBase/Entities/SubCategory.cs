@@ -31,7 +31,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// لینک
         /// </summary>
-        public string Url { get; set; }
+        //public string Url { get; set; }
         /// <summary>
         /// آیکن
         /// </summary>

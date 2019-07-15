@@ -28,10 +28,10 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت فعال
         /// </summary>
         public bool IsActive { get; set; }
-        /// <summary>
-        /// وضعیت حذف
-        /// </summary>
-        public bool IsDeleted { get; set; }
+        ///// <summary>
+        ///// وضعیت حذف
+        ///// </summary>
+        //public bool IsDeleted { get; set; }
 
     }
     public class MenuConfig : IEntityTypeConfiguration<Menu>

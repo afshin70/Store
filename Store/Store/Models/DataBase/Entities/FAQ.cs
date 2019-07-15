@@ -28,6 +28,10 @@ namespace Store.Models.DataBase.Entities
         /// اولویت
         /// </summary>
         public int OrderNumber { get; set; }
+        /// <summary>
+        /// وضعیت فعال بودن
+        /// </summary>
+        public bool IsActive { get; set; }
     }
     public class FAQConfig : IEntityTypeConfiguration<FAQ>
     {
