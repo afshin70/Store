@@ -19,7 +19,11 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// تصویر
         /// </summary>
-        public string ImageUrl { get; set; }
+        public string ImageName { get; set; }
+        /// <summary>
+        /// نسخه موبایل
+        /// </summary>
+        public string ImageNameMob { get; set; }
         /// <summary>
         /// عنوان
         /// </summary>
@@ -36,6 +40,10 @@ namespace Store.Models.DataBase.Entities
         /// آدرس لینک
         /// </summary>
         public string UrlLink { get; set; }
+        /// <summary>
+        /// وضعیت نمایش در صفحه اصلی
+        /// </summary>
+        public bool IsShowInMainPage { get; set; }
     }
     public class SliderConfig : IEntityTypeConfiguration<Slider>
     {

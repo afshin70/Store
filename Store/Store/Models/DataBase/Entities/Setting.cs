@@ -49,6 +49,8 @@ namespace Store.Models.DataBase.Entities
         /// صفحه سوالات متداول
         /// </summary>
         public string FAQPage { get; set; }
+        public string BanerImageName { get; set; }
+        public string BanerImageNameMob { get; set; }
     }
     public class SettingConfig : IEntityTypeConfiguration<Setting>
     {
