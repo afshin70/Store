@@ -1,5 +1,6 @@
 ﻿using Store.Models.DataBase.Dto.Frount.Category;
 using Store.Models.DataBase.Dto.Frount.Header;
+using Store.Models.DataBase.Dto.Frount.Product;
 using Store.Models.DataBase.Dto.Frount.Public;
 using Store.Models.IService;
 using System;
@@ -46,6 +47,11 @@ namespace Store.Models.Services
         }
 
         public NavBarMenu GetNavBarMenu()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetProductsBySearch(string search_text)
         {
             throw new NotImplementedException();
         }

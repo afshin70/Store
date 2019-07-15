@@ -10,14 +10,14 @@ using Store.Models.DataBase.Context;
 namespace Store.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20190713064525_v1")]
-    partial class v1
+    [Migration("13980423075641_update_Db")]
+    partial class update_Db
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,6 +31,8 @@ namespace Store.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)");
@@ -58,6 +60,8 @@ namespace Store.Migrations
 
                     b.Property<string>("EName")
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)");
@@ -180,7 +184,8 @@ namespace Store.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("SendedDate");
+                    b.Property<DateTime>("SendedDate")
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(50)");
@@ -554,12 +559,12 @@ namespace Store.Migrations
 
                     b.Property<int>("ReplyedId");
 
-                    b.Property<string>("SendedDate")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 48)))
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<DateTime>("SendedDate")
+                        .HasColumnType("smalldatetime");
 
                     b.Property<int>("SenderUserId");
+
+                    b.Property<DateTime>("TicketDate");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(50)");
@@ -570,7 +575,7 @@ namespace Store.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Ticket");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.User", b =>
