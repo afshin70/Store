@@ -8,8 +8,13 @@ namespace Store.Models.DataBase.Dto.Category
 {
     public class CategorySearch
     {
-        ///public List<ProductBlock> Products { get; set; }
-        public List<SubCategoriesFinded> SubCategories { get; set; }
+        /// <summary>
+        /// لیست زیر دسته بندی
+        /// </summary>
+        public List<SubCategoriesFinded> SubCategoriesFindeds { get; set; }
+        /// <summary>
+        /// بیشترین 
+        /// </summary>
         public decimal MaxPrice { get; set; }
         public decimal MinPrice { get; set; }
         public string SearchedText { get; set; }

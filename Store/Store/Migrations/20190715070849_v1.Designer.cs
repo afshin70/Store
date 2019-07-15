@@ -10,7 +10,7 @@ using Store.Models.DataBase.Context;
 namespace Store.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20190713064525_v1")]
+    [Migration("20190715070849_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,32 +20,6 @@ namespace Store.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Store.Models.DataBase.Entities.Address", b =>
-                {
-                    b.Property<int>("AddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CityId");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("AddressId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Address");
-                });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Brand", b =>
                 {
@@ -57,13 +31,13 @@ namespace Store.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("EName")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .IsUnicode(true);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("TumbImageUrl")
-                        .HasColumnType("nvarchar(250)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("BrandId");
 
@@ -80,15 +54,9 @@ namespace Store.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("EName")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<bool>("IsDeleted");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .IsUnicode(true);
 
                     b.Property<bool>("IsEnabled");
 
@@ -97,7 +65,8 @@ namespace Store.Migrations
                     b.Property<int>("MainCategoryId");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("OrderNumber");
 
@@ -108,24 +77,6 @@ namespace Store.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Store.Models.DataBase.Entities.City", b =>
-                {
-                    b.Property<int>("CityId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("ProvinceId");
-
-                    b.HasKey("CityId");
-
-                    b.HasIndex("ProvinceId");
-
-                    b.ToTable("Cities");
-                });
-
             modelBuilder.Entity("Store.Models.DataBase.Entities.Comment", b =>
                 {
                     b.Property<int>("CommentId")
@@ -133,16 +84,19 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CommentText")
+                        .IsRequired()
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("CommentedDate")
                         .HasColumnType("smalldatetime");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsSeen");
 
@@ -166,28 +120,30 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(500)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("IsDeleted");
 
                     b.Property<bool>("IsSeen");
 
-                    b.Property<int>("MessageLevel");
-
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("SendedDate");
+                    b.Property<DateTime>("SendedDate")
+                        .HasColumnType("smalldatetime");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("MessageId");
 
-                    b.ToTable("ContactUsMessage");
+                    b.ToTable("ContactUsMessages");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Discount", b =>
@@ -199,23 +155,25 @@ namespace Store.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<decimal>("DiscountPrice")
+                        .HasColumnType("decimal(16,3)");
+
                     b.Property<string>("EName")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .IsUnicode(true);
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("smalldatetime");
 
                     b.Property<bool>("IsActive");
 
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<int>("MaxPercent");
-
-                    b.Property<decimal>("MaxPrice")
+                    b.Property<decimal>("MinPriceToDiscount")
                         .HasColumnType("decimal(16,3)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("smalldatetime");
@@ -231,15 +189,17 @@ namespace Store.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Answer");
+                    b.Property<string>("Answer")
+                        .IsRequired();
 
                     b.Property<int>("OrderNumber");
 
-                    b.Property<string>("Question");
+                    b.Property<string>("Question")
+                        .IsRequired();
 
                     b.HasKey("FAQId");
 
-                    b.ToTable("FAQ");
+                    b.ToTable("FAQs");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Factor", b =>
@@ -248,12 +208,21 @@ namespace Store.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Authority")
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime>("FactorDate")
                         .HasColumnType("datetime");
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<int>("OrderId");
+
+                    b.Property<string>("RefID")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("SumPrice")
                         .HasColumnType("decimal(16,3)");
@@ -272,21 +241,41 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("EName")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .IsUnicode(true);
+
+                    b.HasKey("MainCategoryId");
+
+                    b.ToTable("MainCategories");
+                });
+
+            modelBuilder.Entity("Store.Models.DataBase.Entities.Menu", b =>
+                {
+                    b.Property<int>("MenuId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("MainCategoryId");
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(300)");
 
-                    b.ToTable("MainCategories");
+                    b.HasKey("MenuId");
+
+                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.NewsLetter", b =>
@@ -295,17 +284,17 @@ namespace Store.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .IsUnicode(true);
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<bool>("IsVerified");
-
-                    b.Property<DateTime>("VerifiedDate");
-
-                    b.Property<string>("VerifyCode");
-
-                    b.Property<DateTime>("VerifyCodeDate");
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .IsUnicode(true);
 
                     b.HasKey("Id");
 
@@ -320,14 +309,11 @@ namespace Store.Migrations
 
                     b.Property<string>("AddressDetailes_Json");
 
-                    b.Property<bool>("BuyIsOk");
+                    b.Property<string>("DiscountName")
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("BuyStatus");
-
-                    b.Property<DateTime>("BuyTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("DiscountId");
+                    b.Property<decimal>("DiscountPrice")
+                        .HasColumnType("decimal(16,3)");
 
                     b.Property<bool>("FinanceIsOk");
 
@@ -337,31 +323,28 @@ namespace Store.Migrations
 
                     b.Property<bool>("IsFinished");
 
-                    b.Property<string>("Mobile")
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime");
 
-                    b.Property<decimal>("PayCost")
+                    b.Property<decimal>("OrderPrice")
                         .HasColumnType("decimal(16,3)");
+
+                    b.Property<decimal>("OrderPriceNoDiscount")
+                        .HasColumnType("decimal(16,3)");
+
+                    b.Property<int>("OrderStatus");
+
+                    b.Property<string>("PaymentCode");
 
                     b.Property<string>("ShopingCartDetails_Json");
 
-                    b.Property<decimal>("SumPrice")
-                        .HasColumnType("decimal(16,3)");
-
-                    b.Property<decimal>("SumPriceNoDiscount")
-                        .HasColumnType("decimal(16,3)");
-
-                    b.Property<string>("Telphone")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("TrackingCode")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .IsUnicode(true);
 
                     b.Property<int>("UserId");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("DiscountId");
 
                     b.HasIndex("UserId");
 
@@ -377,7 +360,9 @@ namespace Store.Migrations
                     b.Property<int>("BrandId");
 
                     b.Property<string>("EName")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .IsUnicode(true);
 
                     b.Property<int>("ExistCount");
 
@@ -402,7 +387,8 @@ namespace Store.Migrations
                     b.Property<int>("MinCountNotify");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Rating");
 
@@ -417,10 +403,10 @@ namespace Store.Migrations
                     b.Property<int>("SubCategoryId");
 
                     b.Property<string>("Tags")
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("UnitType")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("VisitedCount");
 
@@ -436,23 +422,9 @@ namespace Store.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Store.Models.DataBase.Entities.Province", b =>
-                {
-                    b.Property<int>("ProvinceId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("ProvinceId");
-
-                    b.ToTable("Provinces");
-                });
-
             modelBuilder.Entity("Store.Models.DataBase.Entities.Setting", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SettingId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -474,28 +446,34 @@ namespace Store.Migrations
 
                     b.Property<string>("UserAccountLink_json");
 
-                    b.HasKey("Id");
+                    b.HasKey("SettingId");
 
                     b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Slider", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("SliderId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("Image");
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("UrlLink");
+                    b.Property<string>("UrlLink")
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("UrlText");
+                    b.Property<string>("UrlText")
+                        .HasColumnType("nvarchar(300)");
 
-                    b.HasKey("Id");
+                    b.HasKey("SliderId");
 
                     b.ToTable("Sliders");
                 });
@@ -512,20 +490,15 @@ namespace Store.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("EName")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Icon")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .IsUnicode(true);
 
                     b.Property<bool>("IsActive");
 
-                    b.Property<bool>("IsDeleted");
-
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("OrderNumber");
 
@@ -536,6 +509,32 @@ namespace Store.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("SubCategories");
+                });
+
+            modelBuilder.Entity("Store.Models.DataBase.Entities.SubMenu", b =>
+                {
+                    b.Property<int>("SubMenuId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("MenuId");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Url")
+                        .IsRequired();
+
+                    b.HasKey("SubMenuId");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("SubMenus");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Ticket", b =>
@@ -554,15 +553,16 @@ namespace Store.Migrations
 
                     b.Property<int>("ReplyedId");
 
-                    b.Property<string>("SendedDate")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 48)))
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<DateTime>("SendedDate")
+                        .HasColumnType("smalldatetime");
 
                     b.Property<int>("SenderUserId");
 
+                    b.Property<DateTime>("TicketDate");
+
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("UserId");
 
@@ -570,7 +570,7 @@ namespace Store.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Ticket");
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.User", b =>
@@ -585,24 +585,25 @@ namespace Store.Migrations
                     b.Property<DateTime>("ActivationCodeExpireDate")
                         .HasColumnType("smalldatetime");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("Biography")
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("BlockedDate")
                         .HasColumnType("smalldatetime");
 
-                    b.Property<int>("CityId");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("smalldatetime");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("FavorateProduct_Json");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("Gender");
 
@@ -617,39 +618,34 @@ namespace Store.Migrations
                     b.Property<string>("MobileNo")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("PassWord")
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Province")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("smalldatetime");
 
-                    b.Property<string>("RoleId")
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("Tel")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Token");
 
-                    b.Property<string>("UserIpRegistered")
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("CityId");
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Store.Models.DataBase.Entities.Address", b =>
-                {
-                    b.HasOne("Store.Models.DataBase.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Category", b =>
@@ -657,14 +653,6 @@ namespace Store.Migrations
                     b.HasOne("Store.Models.DataBase.Entities.MainCategory", "MainCategory")
                         .WithMany()
                         .HasForeignKey("MainCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Store.Models.DataBase.Entities.City", b =>
-                {
-                    b.HasOne("Store.Models.DataBase.Entities.Province", "Province")
-                        .WithMany()
-                        .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -686,11 +674,6 @@ namespace Store.Migrations
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Order", b =>
                 {
-                    b.HasOne("Store.Models.DataBase.Entities.Discount", "Discount")
-                        .WithMany()
-                        .HasForeignKey("DiscountId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Store.Models.DataBase.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -718,19 +701,19 @@ namespace Store.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Store.Models.DataBase.Entities.SubMenu", b =>
+                {
+                    b.HasOne("Store.Models.DataBase.Entities.Menu", "Menu")
+                        .WithMany()
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Store.Models.DataBase.Entities.Ticket", b =>
                 {
                     b.HasOne("Store.Models.DataBase.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Store.Models.DataBase.Entities.User", b =>
-                {
-                    b.HasOne("Store.Models.DataBase.Entities.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

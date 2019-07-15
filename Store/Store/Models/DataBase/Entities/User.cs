@@ -17,7 +17,7 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public int UserId { get; set; }
         /// <summary>
-        /// نام کاربری
+        /// نام کاربری - ایمیل
         /// </summary>
         public string UserName { get; set; }
         /// <summary>
@@ -29,6 +29,22 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public string MobileNo { get; set; }
         /// <summary>
+        /// تلفن ثابت
+        /// </summary>
+        public string Tel { get; set; }
+        /// <summary>
+        /// آدرس
+        /// </summary>
+        public string Address { get; set; }
+        /// <summary>
+        /// شهر
+        /// </summary>
+        public string City { get; set; }
+        /// <summary>
+        /// استان
+        /// </summary>
+        public string Province { get; set; }
+        /// <summary>
         /// بیوگرافی
         /// </summary>
         public string Biography { get; set; }
@@ -39,7 +55,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// گذر واژه
         /// </summary>
-        public string PassWord { get; set; }
+        public string Password { get; set; }
         /// <summary>
         /// توکن ارسالی
         /// </summary>
@@ -55,11 +71,11 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی پی ریجستر شده
         /// </summary>
-        public string UserIpRegistered { get; set; }
+        //public string UserIpRegistered { get; set; }
         /// <summary>
         /// ایمیل
         /// </summary>
-        public string Email { get; set; }
+        //public string Email { get; set; }//username
         /// <summary>
         /// وضعیت تایید
         /// </summary>
@@ -101,11 +117,11 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// نقش کاربر
         /// </summary>
-        public string RoleId { get; set; }
+        public string Role { get; set; }//role string
         #endregion
 
         #region NavigationProps
-        public City City { get; set; }
+        //public City City { get; set; }
         //public ShopingCart ShopingCart { get; set; }
         //public ICollection<Order> Orders { get; set; }
         #endregion
@@ -118,20 +134,26 @@ namespace Store.Models.DataBase.Entities
             builder.HasKey(k => k.UserId);
             //builder.HasOne<City>().WithMany(b => b.Users).HasForeignKey(fk => fk.CityId);
             builder.HasMany<Order>().WithOne(p => p.User).HasForeignKey(fk => fk.UserId);
-            builder.HasMany<Address>().WithOne(p => p.User).HasForeignKey(fk => fk.UserId);
+            //builder.HasMany<Address>().WithOne(p => p.User).HasForeignKey(fk => fk.UserId);
             #endregion
 
             #region Properties
             builder.Property(p => p.UserName).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.FullName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.UserName).IsRequired();
+            builder.Property(p => p.FullName).HasColumnType("nvarchar(100)");
             builder.Property(p => p.MobileNo).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Tel).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Address).HasColumnType("nvarchar(500)");
+            builder.Property(p => p.City).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Province).HasColumnType("nvarchar(50)");
             builder.Property(p => p.Biography).HasColumnType("nvarchar(500)");
-            builder.Property(p => p.PassWord).HasColumnType("nvarchar(250)");
+            builder.Property(p => p.Password).HasColumnType("nvarchar(250)");
+            builder.Property(p => p.Password).IsRequired();
             builder.Property(p => p.Salt).HasColumnType("nvarchar(250)");
             builder.Property(p => p.RegisterDate).HasColumnType("smalldatetime");
-            builder.Property(p => p.UserIpRegistered).HasColumnType("nvarchar(20)");
-            builder.Property(p => p.Email).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.RoleId).HasColumnType("nvarchar(50)");
+            //builder.Property(p => p.UserIpRegistered).HasColumnType("nvarchar(20)");
+            //builder.Property(p => p.Email).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Role).HasColumnType("nvarchar(50)");
             builder.Property(p => p.ActivationCode).HasColumnType("nvarchar(50)");
             builder.Property(p => p.ActivationCodeExpireDate).HasColumnType("smalldatetime");
             builder.Property(p => p.BlockedDate).HasColumnType("smalldatetime");

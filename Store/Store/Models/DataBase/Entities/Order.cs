@@ -23,35 +23,35 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// موبایل
         /// </summary>
-        public string Mobile { get; set; }
-        /// <summary>
-        /// شماره تلفن ثابت
-        /// </summary>
-        public string Telphone { get; set; }
+        //public string Mobile { get; set; }
+        ///// <summary>
+        ///// شماره تلفن ثابت
+        ///// </summary>
+        //public string Telphone { get; set; }
         /// <summary>
         /// مبلغ پرداخت شده
         /// </summary>
-        public decimal PayCost { get; set; }
+        //public decimal PayCost { get; set; }
         /// <summary>
         /// آیا خرید کامل بوده است
         /// </summary>
-        public bool BuyIsOk { get; set; }
+        //public bool BuyIsOk { get; set; }
         /// <summary>
         /// تاریخ خرید
         /// </summary>
-        public DateTime BuyTime { get; set; }
+        public DateTime OrderDate { get; set; }
         /// <summary>
         /// وضعیت خرید
         /// </summary>
-        public int BuyStatus { get; set; }
+        public int OrderStatus { get; set; }
         /// <summary>
         /// جمع کل هزینه ها
         /// </summary>
-        public decimal SumPrice { get; set; }
+        public decimal OrderPrice { get; set; }
         /// <summary>
         /// جمع کل بدون تخفیف
         /// </summary>
-        public decimal SumPriceNoDiscount { get; set; }
+        public decimal OrderPriceNoDiscount { get; set; }
         /// <summary>
         /// کد رهگیری
         /// </summary>
@@ -76,21 +76,30 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت حذف
         /// </summary>
         public bool IsDeleted { get; set; }
+        /// <summary>
+        /// کد بازگشتی از درگاه
+        /// </summary>
+        public string PaymentCode { get; set; }
+        /// <summary>
+        /// آی دی کد تخفیف
+        /// </summary>
+        public string DiscountName { get; set; }
+        /// <summary>
+        /// مبلغ تخفیف داده شده
+        /// </summary>
+        public decimal DiscountPrice { get; set; }
 
         #region ForeignKeys
         /// <summary>
         /// آی دی کاربر
         /// </summary>
         public int UserId { get; set; }
-        /// <summary>
-        /// آی دی کد تخفیف
-        /// </summary>
-        public int DiscountId { get; set; }
+        
         #endregion
 
         #region NavigationProps
         public User User { get; set; }
-        public Discount Discount { get; set; }
+        //public Discount Discount { get; set; }
         //public ICollection<Factor> Factors { get; set; }
         #endregion
     }
@@ -104,13 +113,14 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.Mobile).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Telphone).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.PayCost).HasColumnType("decimal(16,3)");
-            builder.Property(p => p.BuyTime).HasColumnType("datetime");
-            builder.Property(p => p.SumPrice).HasColumnType("decimal(16,3)");
-            builder.Property(p => p.SumPriceNoDiscount).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.OrderDate).HasColumnType("datetime");
+            builder.Property(p => p.OrderPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.OrderPriceNoDiscount).HasColumnType("decimal(16,3)");
             builder.Property(p => p.TrackingCode).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.TrackingCode).IsUnicode();
+            builder.Property(p => p.DiscountName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.DiscountPrice).HasColumnType("decimal(16,3)");
+
             #endregion
         }
     }

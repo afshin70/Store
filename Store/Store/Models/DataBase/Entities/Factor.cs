@@ -28,7 +28,18 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت حذف
         /// </summary>
         public bool IsDeleted { get; set; }
-
+        /// <summary>
+        /// ﺷﻨﺎﺳﻪ ﻣﺮﺟﻊ
+        /// </summary>
+        public string Authority { get; set; }
+        /// <summary>
+        /// ﻭﺿﻌﻴﺖ 
+        /// </summary>
+        public string Status { get; set; }
+        /// <summary>
+        /// ﺷﻤﺎﺭﻩ ﺗﺮﺍﻛﻨﺶ ﺧﺮﻳﺪ
+        /// </summary>
+        public string RefID { get; set; }
         #region ForeignKeys
         /// <summary>
         /// شماره سفارش
@@ -50,7 +61,11 @@ namespace Store.Models.DataBase.Entities
 
             #region Properties
             builder.Property(p => p.SumPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.SumPrice).IsRequired();
             builder.Property(p => p.FactorDate).HasColumnType("datetime");
+            builder.Property(p => p.Authority).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Status).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.RefID).HasColumnType("nvarchar(100)");
             #endregion
         }
     }

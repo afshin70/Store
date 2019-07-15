@@ -17,6 +17,5 @@ namespace Store.Models.DataBase.Dto.Frount.Header
         /// </summary>
         public string SupportNumber { get; set; }
         //بقیه فیلد ها را از دسته بندی نویگیشن بنویس
-
     }
 }

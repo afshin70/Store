@@ -35,4 +35,27 @@ namespace Store.Models.DataBase.Dto.Frount.Category
         /// </summary>
         public string Icon { get; set; }
     }
+    public class SubCategory
+    {
+
+    }
+    public class MainCategory
+    {
+        /// <summary>
+        /// آی دی
+        /// </summary>
+        public int MainCategoryId { get; set; }
+        /// <summary>
+        /// نام
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// نام انگلیسی
+        /// </summary>
+        public string EName { get; set; }
+        /// <summary>
+        /// آیکن
+        /// </summary>
+        public string Icon { get; set; }
+    }
 }

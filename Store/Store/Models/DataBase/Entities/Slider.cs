@@ -19,7 +19,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// تصویر
         /// </summary>
-        public string Image { get; set; }
+        public string ImageUrl { get; set; }
         /// <summary>
         /// عنوان
         /// </summary>
@@ -46,7 +46,12 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            //builder.Property(p => p.Title).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.ImageUrl).HasColumnType("nvarchar(300)");
+            builder.Property(p => p.ImageUrl).IsRequired();
+            builder.Property(p => p.Title).HasColumnType("nvarchar(300)");
+            builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
+            builder.Property(p => p.UrlLink).HasColumnType("nvarchar(300)");
+            builder.Property(p => p.UrlText).HasColumnType("nvarchar(300)");
             //builder.Property(p => p.SendedDate).HasColumnType("smalldatetime");
             #endregion
         }

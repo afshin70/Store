@@ -29,13 +29,13 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public string Description { get; set; }
         /// <summary>
-        /// بیشترین درصد تخفیف
-        /// </summary>
-        public int MaxPercent { get; set; }
-        /// <summary>
         /// بیشترین مبلغ تخفیف
         /// </summary>
-        public decimal MaxPrice { get; set; }
+        public decimal DiscountPrice { get; set; }
+        /// <summary>
+        /// حداقل مبلغ خریداری برای اعمال کد تخفیف
+        /// </summary>
+        public decimal MinPriceToDiscount { get; set; }
         /// <summary>
         /// شروع تاریخ
         /// </summary>
@@ -48,10 +48,6 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت فعال بودن
         /// </summary>
         public bool IsActive { get; set; }
-        /// <summary>
-        /// وضعیت حذف شدن
-        /// </summary>
-        public bool IsDeleted { get; set; }
 
         #region NavigationProps
         //public ICollection<Order> Orders { get; set; }
@@ -63,14 +59,18 @@ namespace Store.Models.DataBase.Entities
         {
             #region Relations
             builder.HasKey(k => k.DiscountId);
-            builder.HasMany<Order>().WithOne(p => p.Discount).HasForeignKey(fk => fk.DiscountId);
+            //builder.HasMany<Order>().WithOne(p => p.Discount).HasForeignKey(fk => fk.DiscountId);
             #endregion
 
             #region Properties
-            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Name).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.EName).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.EName).IsRequired();
+            builder.Property(p => p.EName).IsUnicode();
             builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
-            builder.Property(p => p.MaxPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.DiscountPrice).HasColumnType("decimal(16,3)");
+            builder.Property(p => p.MinPriceToDiscount).HasColumnType("decimal(16,3)");
             builder.Property(p => p.StartDate).HasColumnType("smalldatetime");
             builder.Property(p => p.EndDate).HasColumnType("smalldatetime");
             #endregion

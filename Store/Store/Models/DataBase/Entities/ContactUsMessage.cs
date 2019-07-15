@@ -41,10 +41,6 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public DateTime SendedDate { get; set; }
         /// <summary>
-        /// سطح پیام پاسخ داده شده
-        /// </summary>
-        public int MessageLevel { get; set; }
-        /// <summary>
         /// وضعیت حذف پیام
         /// </summary>
         public int IsDeleted { get; set; }
@@ -59,10 +55,13 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.Title).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Email).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Description).HasColumnType("nvarchar(500)");
+            builder.Property(p => p.Title).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Title).IsRequired();
+            builder.Property(p => p.Name).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.Email).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
+            builder.Property(p => p.Description).IsRequired();
             builder.Property(p => p.SendedDate).HasColumnType("smalldatetime");
             #endregion
         }

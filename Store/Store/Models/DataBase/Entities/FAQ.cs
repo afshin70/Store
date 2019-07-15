@@ -38,7 +38,8 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-
+            builder.Property(p => p.Question).IsRequired();
+            builder.Property(p => p.Answer).IsRequired();
             #endregion
         }
     }

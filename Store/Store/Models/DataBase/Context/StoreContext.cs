@@ -11,10 +11,10 @@ namespace Store.Models.DataBase.Context
     public class StoreContext : DbContext
     {
         #region DbSets
-        public DbSet<Address> Addresses { get; set; }
+        //public DbSet<Address> Addresses { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<City> Cities { get; set; }
+        //public DbSet<City> Cities { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ContactUsMessage> ContactUsMessages{ get; set; }
         public DbSet<Discount> Discounts { get; set; }
@@ -25,7 +25,7 @@ namespace Store.Models.DataBase.Context
         public DbSet<NewsLetter> NewsLetters { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Province> Provinces { get; set; }
+        //public DbSet<Province> Provinces { get; set; }
         //public DbSet<Role> Roles { get; set; }
         public DbSet<Setting> Settings { get; set; }
         //public DbSet<ShopingCart> ShopingCarts { get; set; }
@@ -46,10 +46,10 @@ namespace Store.Models.DataBase.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AddressConfig());
+            //modelBuilder.ApplyConfiguration(new AddressConfig());
             modelBuilder.ApplyConfiguration(new BrandConfig());
             modelBuilder.ApplyConfiguration(new CategoryConfig());
-            modelBuilder.ApplyConfiguration(new CityConfig());
+            //modelBuilder.ApplyConfiguration(new CityConfig());
             modelBuilder.ApplyConfiguration(new CommentConfig());
             modelBuilder.ApplyConfiguration(new ContactUsMessageConfig());
             modelBuilder.ApplyConfiguration(new DiscountConfig());
@@ -60,7 +60,7 @@ namespace Store.Models.DataBase.Context
             modelBuilder.ApplyConfiguration(new NewsLetterConfig());
             modelBuilder.ApplyConfiguration(new OrderConfig());
             modelBuilder.ApplyConfiguration(new ProductConfig());
-            modelBuilder.ApplyConfiguration(new ProvinceConfig());
+            //modelBuilder.ApplyConfiguration(new ProvinceConfig());
             modelBuilder.ApplyConfiguration(new SettingConfig());
             modelBuilder.ApplyConfiguration(new SliderConfig());
             //modelBuilder.ApplyConfiguration(new ShopingCartConfig());

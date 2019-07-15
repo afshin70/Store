@@ -23,8 +23,8 @@ namespace Store.Models.Services
 
                 using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
                 {
-                    var user = _Storedb.Users.Where(x => x.UserName == username & x.PassWord == Cryptography.Encrypt(old_passwor, x.Salt)).First();
-                    user.PassWord = new_password;
+                    var user = _Storedb.Users.Where(x => x.UserName == username & x.Password == Cryptography.Encrypt(old_passwor, x.Salt)).First();
+                    user.Password = new_password;
                     user.Token = Guid.NewGuid().ToString();
                     _Storedb.SaveChanges();
                 }
@@ -76,7 +76,7 @@ namespace Store.Models.Services
                         UserId=user.UserId,
                         UserName=user.UserName,
                         FullName=user.FullName,
-                        Email=user.Email,
+                        //Email=user.Email,
                         Gender=user.Gender,
                         Biography=user.Biography,
                         IsBlock=user.IsBlock,
@@ -110,7 +110,7 @@ namespace Store.Models.Services
                         UserId = user.UserId,
                         UserName = user.UserName,
                         FullName = user.FullName,
-                        Email = user.Email,
+                        //Email = user.Email,
                         Gender = user.Gender,
                         Biography = user.Biography,
                         IsBlock = user.IsBlock,

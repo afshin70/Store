@@ -31,11 +31,11 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// تصویر بند انگشتی
         /// </summary>
-        public string TumbImageUrl { get; set; }
+        //public string TumbImageUrl { get; set; }
         /// <summary>
         /// وضعیت حذف
         /// </summary>
-        public bool IsDeleted { get; set; }
+        //public bool IsDeleted { get; set; }
         #region NavigationProps
         //public ICollection<Product> Products { get; set; }
         #endregion
@@ -50,10 +50,13 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Name).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.EName).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.EName).IsUnicode();
+            builder.Property(p => p.EName).IsRequired();
             builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
-            builder.Property(p => p.TumbImageUrl).HasColumnType("nvarchar(250)");
+            //builder.Property(p => p.TumbImageUrl).HasColumnType("nvarchar(250)");
             #endregion
         }
     }

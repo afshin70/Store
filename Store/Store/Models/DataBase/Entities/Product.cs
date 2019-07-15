@@ -124,12 +124,15 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Name).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.EName).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.EName).IsUnicode();
+            builder.Property(p => p.EName).IsRequired();
             builder.Property(p => p.ShortDescription).HasColumnType("nvarchar(1000)");
             builder.Property(p => p.MaxDiscountPrice).HasColumnType("decimal(16,3)");
-            builder.Property(p => p.Tags).HasColumnType("nvarchar(250)");
-            builder.Property(p => p.UnitType).HasColumnType("nvarchar(20)");
+            builder.Property(p => p.Tags).HasColumnType("nvarchar(500)");
+            builder.Property(p => p.UnitType).HasColumnType("nvarchar(50)");
             builder.Property(p => p.SalesPrice).HasColumnType("decimal(16,3)");
             builder.Property(p => p.WrittenPrice).HasColumnType("decimal(16,3)");
             builder.Property(p => p.InsertedDate).HasColumnType("smalldatetime");

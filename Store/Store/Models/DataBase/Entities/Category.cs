@@ -31,11 +31,11 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آدرس تصویر
         /// </summary>
-        public string ImageUrl { get; set; }
+        //public string ImageUrl { get; set; }
         /// <summary>
         /// آیکن دسته بندی
         /// </summary>
-        public string Icon { get; set; }
+        //public string Icon { get; set; }
         /// <summary>
         /// شماره اولویت
         /// </summary>
@@ -47,7 +47,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// وضعیت حذف شدن
         /// </summary>
-        public bool IsDeleted { get; set; }
+        //public bool IsDeleted { get; set; }
         /// <summary>
         /// آیا جزو دسته محبو ها است؟
         /// </summary>
@@ -76,11 +76,14 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Name).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.EName).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.EName).IsRequired();
+            builder.Property(p => p.EName).IsUnicode();
             builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
-            builder.Property(p => p.ImageUrl).HasColumnType("nvarchar(250)");
-            builder.Property(p => p.Icon).HasColumnType("nvarchar(50)");
+            //builder.Property(p => p.ImageUrl).HasColumnType("nvarchar(250)");
+            //builder.Property(p => p.Icon).HasColumnType("nvarchar(50)");
             #endregion
         }
     }

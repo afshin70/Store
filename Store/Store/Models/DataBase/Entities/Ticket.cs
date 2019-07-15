@@ -69,7 +69,8 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.Title).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Title).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Title).IsRequired();
             builder.Property(p => p.SendedDate).HasColumnType("smalldatetime");
             #endregion
         }

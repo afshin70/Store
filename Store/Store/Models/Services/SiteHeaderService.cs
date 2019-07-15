@@ -1,5 +1,6 @@
 ﻿using Store.Models.DataBase.Dto.Frount.Category;
 using Store.Models.DataBase.Dto.Frount.Header;
+using Store.Models.DataBase.Dto.Frount.Product;
 using Store.Models.DataBase.Dto.Frount.Public;
 using Store.Models.IService;
 using System;
@@ -22,7 +23,7 @@ namespace Store.Models.Services
             {
                 _Storedb.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
 
-                var categories = _Storedb.Categories.Where(x => x.IsDeleted == false & x.IsEnabled == true).OrderBy(x => x.OrderNumber).ToList();
+                var categories = _Storedb.Categories.Where(x => x.IsEnabled == true & x.IsEnabled == true).OrderBy(x => x.OrderNumber).ToList();
                 List<Category> categories_list = new List<Category>();
                 foreach (var cat in categories)
                 {
@@ -31,7 +32,7 @@ namespace Store.Models.Services
                         CategoryId=cat.CategoryId,
                         Description=cat.Description,
                         EName=cat.EName,
-                        Icon=cat.Icon,
+                        //Icon=cat.Icon,
                         MainCategoryId=cat.MainCategoryId,
                         Name=cat.Name
                     };
@@ -40,22 +41,17 @@ namespace Store.Models.Services
             }
         }
 
-        public NavBarMenu GetFooterMenu()
-        {
-            throw new NotImplementedException();
-        }
-
         public NavBarMenu GetNavBarMenu()
         {
             throw new NotImplementedException();
         }
 
-        public Slider GetSlider()
+        public List<Product> GetProductsBySearch(string search_text)
         {
             throw new NotImplementedException();
         }
 
-        NavBarMenu ISiteHeaderService.GetNavBarMenu()
+        public Slider GetSlider()
         {
             throw new NotImplementedException();
         }

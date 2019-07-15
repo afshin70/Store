@@ -27,7 +27,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آیکن
         /// </summary>
-        public string Icon { get; set; }
+        //public string Icon { get; set; }
         /// <summary>
         /// وضعیت فعال بودن
         /// </summary>
@@ -35,7 +35,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// وضعیت حذف
         /// </summary>
-        public bool IsDeleted { get; set; }
+        //public bool IsDeleted { get; set; }
 
         #region NavigationProps
         //public ICollection<Category> Categories { get; set; }
@@ -51,9 +51,11 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.Name).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.EName).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Icon).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Name).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Name).IsUnicode();
+            builder.Property(p => p.Name).IsRequired();
+            builder.Property(p => p.EName).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.EName).IsRequired();
             #endregion
         }
     }

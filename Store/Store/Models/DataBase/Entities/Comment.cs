@@ -65,10 +65,14 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.FullName).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Email).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.FullName).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.FullName).IsRequired();
+            builder.Property(p => p.Email).HasColumnType("nvarchar(100)");
+            builder.Property(p => p.Email).IsRequired();
             builder.Property(p => p.CommentText).HasColumnType("nvarchar(1000)");
+            builder.Property(p => p.CommentText).IsRequired();
             builder.Property(p => p.CommentedDate).HasColumnType("smalldatetime");
+            builder.Property(p => p.CommentedDate).IsRequired();
             #endregion
         }
     }
