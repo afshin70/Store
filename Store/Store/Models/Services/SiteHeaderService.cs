@@ -47,14 +47,6 @@ namespace Store.Models.Services
         }
 
         public List<Product> GetProductsBySearch(string search_text)
-<<<<<<< HEAD
-=======
-        {
-            throw new NotImplementedException();
-        }
-
-        public Slider GetSlider()
->>>>>>> 4a5cad46415c0d3f254b7ec0f6eed15972753a65
         {
             throw new NotImplementedException();
         }
@@ -63,5 +55,6 @@ namespace Store.Models.Services
         {
             throw new NotImplementedException();
         }
+
     }
 }
