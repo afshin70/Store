@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// آی دی
         /// </summary>
-        public int Id { get; set; }
+        public int SliderId { get; set; }
         /// <summary>
         /// تصویر
         /// </summary>
@@ -34,5 +36,19 @@ namespace Store.Models.DataBase.Entities
         /// آدرس لینک
         /// </summary>
         public string UrlLink { get; set; }
+    }
+    public class SliderConfig : IEntityTypeConfiguration<Slider>
+    {
+        public void Configure(EntityTypeBuilder<Slider> builder)
+        {
+            #region Relations
+            builder.HasKey(k => k.SliderId);
+            #endregion
+
+            #region Properties
+            //builder.Property(p => p.Title).HasColumnType("nvarchar(50)");
+            //builder.Property(p => p.SendedDate).HasColumnType("smalldatetime");
+            #endregion
+        }
     }
 }
