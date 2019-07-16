@@ -23,7 +23,7 @@ namespace Store.Models.Services
             {
                 _Storedb.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
 
-                var categories = _Storedb.Categories.Where(x => x.IsEnabled == true & x.IsEnabled == true).OrderBy(x => x.OrderNumber).ToList();
+                var categories = _Storedb.Categories.Where(x => x.IsActive== true ).OrderBy(x => x.OrderNumber).ToList();
                 List<Category> categories_list = new List<Category>();
                 foreach (var cat in categories)
                 {

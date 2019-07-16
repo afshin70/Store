@@ -17,7 +17,7 @@ namespace Store.Models.DataBase.Context
         //public DbSet<City> Cities { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ContactUsMessage> ContactUsMessages{ get; set; }
-        public DbSet<Discount> Discounts { get; set; }
+        //public DbSet<Discount> Discounts { get; set; }
         public DbSet<Factor> Factors { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<MainCategory> MainCategories { get; set; }
@@ -52,7 +52,7 @@ namespace Store.Models.DataBase.Context
             //modelBuilder.ApplyConfiguration(new CityConfig());
             modelBuilder.ApplyConfiguration(new CommentConfig());
             modelBuilder.ApplyConfiguration(new ContactUsMessageConfig());
-            modelBuilder.ApplyConfiguration(new DiscountConfig());
+            //modelBuilder.ApplyConfiguration(new DiscountConfig());
             modelBuilder.ApplyConfiguration(new FactorConfig());
             modelBuilder.ApplyConfiguration(new FAQConfig());
             modelBuilder.ApplyConfiguration(new MainCategoryConfig());
