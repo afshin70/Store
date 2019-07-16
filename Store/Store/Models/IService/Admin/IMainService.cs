@@ -105,7 +105,7 @@ namespace Store.Models.IService.Admin
         #endregion
 
         #region  اسلایدر
-       /// <summary>
+        /// <summary>
        /// لیست اسلایدرها بر اساس اینکه آیا همه باشد یا آنهایی که قرار است در صفحه اصلی نمایش داده شود
        /// </summary>
        /// <param name="show_in_main_page">آیا در صفحه اصلی نمایش داده شود یا فعال باشد؟</param>
