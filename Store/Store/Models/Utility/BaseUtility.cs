@@ -8,6 +8,7 @@ namespace Store.Models.Utility
 {
     public class BaseUtility
     {
+
         /// <summary>
         /// ارسال ایمیل    
         /// </summary>
