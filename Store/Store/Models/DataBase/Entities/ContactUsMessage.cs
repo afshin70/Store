@@ -43,7 +43,7 @@ namespace Store.Models.DataBase.Entities
         /// <summary>
         /// وضعیت حذف پیام
         /// </summary>
-        public int IsDeleted { get; set; }
+        //public int IsDeleted { get; set; }
 
     }
     public class ContactUsMessageConfig : IEntityTypeConfiguration<ContactUsMessage>

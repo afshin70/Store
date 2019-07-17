@@ -49,7 +49,13 @@ namespace Store.Models.DataBase.Entities
         /// صفحه سوالات متداول
         /// </summary>
         public string FAQPage { get; set; }
+        /// <summary>
+        /// نام آدرس بنر
+        /// </summary>
         public string BanerImageName { get; set; }
+        /// <summary>
+        /// نام ادرس بنر موبایل
+        /// </summary>
         public string BanerImageNameMob { get; set; }
     }
     public class SettingConfig : IEntityTypeConfiguration<Setting>
