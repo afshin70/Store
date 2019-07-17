@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 
 namespace Store.Models.Utility
 {
+    public static class MediaTypeNames
+    {
+        public const string image_jpeg = "image/jpeg";
+    }
+    public static class FileExtention
+    {
+        public const string JPEG = ".jpeg";
+        public const string JPG = ".jpg";
+    }
+
     public class BaseUtility
     {
-
         /// <summary>
         /// ارسال ایمیل    
         /// </summary>
@@ -17,8 +26,10 @@ namespace Store.Models.Utility
         /// <param name="body">محتوای ایمیل</param>
         /// <param name="is_body_html">آیا محتوای ایمیل اچ تی ام ال است؟</param>
         /// <returns></returns>
-        public bool SendMail(string mail_address, string subject, string body,bool is_body_html)
+        public bool SendMail(string mail_address, string subject, string body, bool is_body_html)
         {
+
+
             try
             {
                 MailMessage mail = new MailMessage();
@@ -42,5 +53,7 @@ namespace Store.Models.Utility
                 return false;
             }
         }
+
+
     }
 }

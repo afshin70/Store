@@ -54,8 +54,8 @@ namespace Store.Models.DataBase.Entities
             #endregion
 
             #region Properties
-            builder.Property(p => p.ImageUrl).HasColumnType("nvarchar(300)");
-            builder.Property(p => p.ImageUrl).IsRequired();
+            //builder.Property(p => p.ImageUrl).HasColumnType("nvarchar(300)");
+            //builder.Property(p => p.ImageUrl).IsRequired();
             builder.Property(p => p.Title).HasColumnType("nvarchar(300)");
             builder.Property(p => p.Description).HasColumnType("nvarchar(1000)");
             builder.Property(p => p.UrlLink).HasColumnType("nvarchar(300)");
