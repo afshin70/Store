@@ -3,13 +3,39 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace Store.Models
 {
     public static class Extentions
     {
+        /// <summary>
+        /// چک کردن فرمت عکس بصورت jpeg
+        /// </summary>
+        /// <param name="file">فایل عکس</param>
+        /// <returns></returns>
+        public static bool CheckJPEGContentType(this IFormFile file)
+        {
+            if (file.ContentType.ToLower() == "image/jpeg")
+            {
+                if (Path.GetExtension(file.FileName).ToLower() == "jpeg" || Path.GetExtension(file.FileName).ToLower() == "jpg")
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// چک کردن محتوای فایل تصویر
+        /// </summary>
+        /// <param name="formFile">فایل</param>
+        /// <returns></returns>
         public static bool IsImageValid(this IFormFile formFile)
         {
             try
@@ -23,6 +49,7 @@ namespace Store.Models
                 return false;
             }
         }
+        
         private static string[] yakan = new string[10] { "صفر", "یک", "دو", "سه", "چهار", "پنج", "شش", "هفت", "هشت", "نه" };
         private static string[] dahgan = new string[10] { "", "", "بیست", "سی", "چهل", "پنجاه", "شصت", "هفتاد", "هشتاد", "نود" };
         private static string[] dahyek = new string[10] { "ده", "یازده", "دوازده", "سیزده", "چهارده", "پانزده", "شانزده", "هفده", "هجده", "نوزده" };
