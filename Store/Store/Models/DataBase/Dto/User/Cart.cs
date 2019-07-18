@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.DataBase.Dto.Customer
+namespace Store.Models.DataBase.Dto.User
 {
-    public class CustomerCart
+    public class Cart
     {
-
     }
 }

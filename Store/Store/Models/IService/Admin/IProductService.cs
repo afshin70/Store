@@ -192,7 +192,7 @@ namespace Store.Models.IService.Admin
         List<MainCatrgory> GetMainCatrgories();
         #endregion
 
-        #region عملیات مدیریت
+        #region عملیات مدیریت محصول
         /// <summary>
         /// اضافه کردن محصول جدید
         /// </summary>

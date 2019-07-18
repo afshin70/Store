@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Store.Models.DataBase.Context;
 
 namespace Store.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("13980426150231_up1")]
+    partial class up1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -431,11 +433,6 @@ namespace Store.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(300)");
 
-<<<<<<< HEAD
-                    b.Property<bool>("IsActive");
-
-=======
->>>>>>> e844b6cba943a164bdd73569f26ee2328285e3f3
                     b.Property<bool>("IsShowInMainPage");
 
                     b.Property<string>("Title")
@@ -555,7 +552,7 @@ namespace Store.Migrations
                     b.Property<DateTime>("ActivationCodeExpireDate")
                         .HasColumnType("smalldatetime");
 
-                    b.Property<string>("Address_Json")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Biography")
@@ -563,6 +560,9 @@ namespace Store.Migrations
 
                     b.Property<DateTime>("BlockedDate")
                         .HasColumnType("smalldatetime");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("smalldatetime");
@@ -589,6 +589,9 @@ namespace Store.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("Province")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("smalldatetime");
 
@@ -598,7 +601,8 @@ namespace Store.Migrations
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("ShopingCart_Json");
+                    b.Property<string>("Tel")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Token");
 
@@ -609,33 +613,6 @@ namespace Store.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            ActivationCode = "b56ee35024564af080e84c7dab6a1986",
-                            ActivationCodeExpireDate = new DateTime(2019, 7, 18, 5, 44, 36, 504, DateTimeKind.Local).AddTicks(6317),
-                            Address_Json = "",
-                            Biography = "",
-                            BlockedDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(1053),
-                            DeletedDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(1649),
-                            FavorateProduct_Json = "",
-                            FullName = "مدیر سایت",
-                            Gender = true,
-                            IsActive = true,
-                            IsBlock = false,
-                            IsDeleted = false,
-                            IsVerified = true,
-                            MobileNo = "",
-                            Password = "Lgg8zugUE4TskeG7IYoTXg==",
-                            RegisterDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(3252),
-                            Role = "Admin",
-                            Salt = "bc3c079f79764d76b1fcbe3f753ec95d",
-                            ShopingCart_Json = "",
-                            Token = "02b82a3c4cfd488693b77fb151bda1f6",
-                            UserName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Category", b =>
