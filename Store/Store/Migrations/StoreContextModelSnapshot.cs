@@ -56,7 +56,7 @@ namespace Store.Migrations
                         .HasColumnType("nvarchar(100)")
                         .IsUnicode(true);
 
-                    b.Property<bool>("IsEnabled");
+                    b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsFavorate");
 
@@ -124,8 +124,6 @@ namespace Store.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("IsDeleted");
-
                     b.Property<bool>("IsSeen");
 
                     b.Property<string>("Name")
@@ -144,43 +142,6 @@ namespace Store.Migrations
                     b.ToTable("ContactUsMessages");
                 });
 
-            modelBuilder.Entity("Store.Models.DataBase.Entities.Discount", b =>
-                {
-                    b.Property<int>("DiscountId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<decimal>("DiscountPrice")
-                        .HasColumnType("decimal(16,3)");
-
-                    b.Property<string>("EName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .IsUnicode(true);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<decimal>("MinPriceToDiscount")
-                        .HasColumnType("decimal(16,3)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.HasKey("DiscountId");
-
-                    b.ToTable("Discounts");
-                });
-
             modelBuilder.Entity("Store.Models.DataBase.Entities.FAQ", b =>
                 {
                     b.Property<int>("FAQId")
@@ -189,6 +150,8 @@ namespace Store.Migrations
 
                     b.Property<string>("Answer")
                         .IsRequired();
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<int>("OrderNumber");
 
@@ -261,8 +224,6 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -428,6 +389,10 @@ namespace Store.Migrations
 
                     b.Property<string>("AboutUsPage");
 
+                    b.Property<string>("BanerImageName");
+
+                    b.Property<string>("BanerImageNameMob");
+
                     b.Property<string>("ContactUsMapUrl");
 
                     b.Property<string>("ContactUsPage");
@@ -458,9 +423,15 @@ namespace Store.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("ImageNameMob")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<bool>("IsShowInMainPage");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(300)");
@@ -500,8 +471,6 @@ namespace Store.Migrations
 
                     b.Property<int>("OrderNumber");
 
-                    b.Property<string>("Url");
-
                     b.HasKey("SubCategoryId");
 
                     b.HasIndex("CategoryId");
@@ -516,8 +485,6 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
 
                     b.Property<int>("MenuId");
 

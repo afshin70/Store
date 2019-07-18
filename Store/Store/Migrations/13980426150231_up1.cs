@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Store.Migrations
 {
-    public partial class updb : Migration
+    public partial class up1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,32 +34,11 @@ namespace Store.Migrations
                     Title = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     IsSeen = table.Column<bool>(nullable: false),
-                    SendedDate = table.Column<DateTime>(type: "smalldatetime", nullable: false),
-                    IsDeleted = table.Column<int>(nullable: false)
+                    SendedDate = table.Column<DateTime>(type: "smalldatetime", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ContactUsMessages", x => x.MessageId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Discounts",
-                columns: table => new
-                {
-                    DiscountId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    EName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
-                    DiscountPrice = table.Column<decimal>(type: "decimal(16,3)", nullable: false),
-                    MinPriceToDiscount = table.Column<decimal>(type: "decimal(16,3)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "smalldatetime", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "smalldatetime", nullable: false),
-                    IsActive = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Discounts", x => x.DiscountId);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,7 +49,8 @@ namespace Store.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Question = table.Column<string>(nullable: false),
                     Answer = table.Column<string>(nullable: false),
-                    OrderNumber = table.Column<int>(nullable: false)
+                    OrderNumber = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,8 +80,7 @@ namespace Store.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(300)", nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -137,7 +116,9 @@ namespace Store.Migrations
                     ContactUsPage = table.Column<string>(nullable: true),
                     ContactUsMapUrl = table.Column<string>(nullable: true),
                     Terms_ConditionsPage = table.Column<string>(nullable: true),
-                    FAQPage = table.Column<string>(nullable: true)
+                    FAQPage = table.Column<string>(nullable: true),
+                    BanerImageName = table.Column<string>(nullable: true),
+                    BanerImageNameMob = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -150,11 +131,13 @@ namespace Store.Migrations
                 {
                     SliderId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ImageUrl = table.Column<string>(type: "nvarchar(300)", nullable: false),
+                    ImageName = table.Column<string>(type: "nvarchar(300)", nullable: false),
+                    ImageNameMob = table.Column<string>(type: "nvarchar(300)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(300)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     UrlText = table.Column<string>(type: "nvarchar(300)", nullable: true),
-                    UrlLink = table.Column<string>(type: "nvarchar(300)", nullable: true)
+                    UrlLink = table.Column<string>(type: "nvarchar(300)", nullable: true),
+                    IsShowInMainPage = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,7 +189,7 @@ namespace Store.Migrations
                     EName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     OrderNumber = table.Column<int>(nullable: false),
-                    IsEnabled = table.Column<bool>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
                     IsFavorate = table.Column<bool>(nullable: false),
                     MainCategoryId = table.Column<int>(nullable: false)
                 },
@@ -230,7 +213,6 @@ namespace Store.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Url = table.Column<string>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
                     MenuId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -314,7 +296,6 @@ namespace Store.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     EName = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Url = table.Column<string>(nullable: true),
                     OrderNumber = table.Column<int>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
@@ -480,9 +461,6 @@ namespace Store.Migrations
 
             migrationBuilder.DropTable(
                 name: "ContactUsMessages");
-
-            migrationBuilder.DropTable(
-                name: "Discounts");
 
             migrationBuilder.DropTable(
                 name: "Factors");
