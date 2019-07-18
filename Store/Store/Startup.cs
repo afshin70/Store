@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Store.Models.DataBase.Context;
 using Store.Models.IService;
+using Store.Models.Services;
+using Store.Models.Utility.Convertor;
 
 namespace Store
 {
@@ -29,6 +31,10 @@ namespace Store
             services.AddDbContext<StoreContext>(option =>
             option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //view Render
+            services.AddTransient<IViewRenderService, RenderViewToString>();
+            //data base service
+            services.AddTransient<IUserService, UserService>();
             //Configure Authentication By Cooki Base
             services.AddAuthentication(options =>
             {

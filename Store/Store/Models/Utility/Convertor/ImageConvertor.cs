@@ -11,9 +11,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.Utility
+namespace Store.Models.Utility.Convertor
 {
-    public class Convertor
+    public class ImageConvertor
     {
 
         /// <summary>
@@ -99,6 +99,7 @@ namespace Store.Models.Utility
                 return false;
             }
         }
+
     }
 
 }

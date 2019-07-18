@@ -14,18 +14,26 @@ namespace Store.Areas.Admin.Models.ViewModels
         /// آی دی
         /// </summary>
         public int ProductId { get; set; }
-        [DisplayName("نام محصول")]
+        [DisplayName("نام محصول:")]
         [Required(ErrorMessage ="فیلد {0} را وارد نکرده اید.",AllowEmptyStrings =false)]
-        [MaxLength(50,ErrorMessage ="حداکثر طول {0}، {1} کاراکتر میباشد.")]
+        [MaxLength(100,ErrorMessage ="حداکثر طول {0}، {1} کاراکتر میباشد.")]
         [MinLength(3, ErrorMessage = "حداقل طول {0}، {1} کاراکتر میباشد.")]
         /// <summary>
         /// نام
         /// </summary>
         public string Name { get; set; }
+        [DisplayName("نام انگلیسی:")]
+        [Required(ErrorMessage = "فیلد {0} را وارد نکرده اید.", AllowEmptyStrings = false)]
+        [MaxLength(100, ErrorMessage = "حداکثر طول {0}، {1} کاراکتر میباشد.")]
+        [MinLength(3, ErrorMessage = "حداقل طول {0}، {1} کاراکتر میباشد.")]
         /// <summary>
         /// نام انگلیسی
         /// </summary>
         public string EName { get; set; }
+        [DisplayName("توضیحات کوتاه:")]
+        [Required(ErrorMessage = "فیلد {0} را وارد نکرده اید.", AllowEmptyStrings = false)]
+        [MaxLength(1000, ErrorMessage = "حداکثر طول {0}، {1} کاراکتر میباشد.")]
+        [MinLength(5, ErrorMessage = "حداقل طول {0}، {1} کاراکتر میباشد.")]
         /// <summary>
         /// توضیحات کوتاه
         /// </summary>
