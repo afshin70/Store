@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Store.Models.Utility;
 
 namespace Store.Models.DataBase.Entities
 {
@@ -29,21 +30,9 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public string MobileNo { get; set; }
         /// <summary>
-        /// تلفن ثابت
-        /// </summary>
-        public string Tel { get; set; }
-        /// <summary>
         /// آدرس
         /// </summary>
-        public string Address { get; set; }
-        /// <summary>
-        /// شهر
-        /// </summary>
-        public string City { get; set; }
-        /// <summary>
-        /// استان
-        /// </summary>
-        public string Province { get; set; }
+        public string Address_Json { get; set; }
         /// <summary>
         /// بیوگرافی
         /// </summary>
@@ -112,6 +101,10 @@ namespace Store.Models.DataBase.Entities
         /// محصولات مورد علاقه
         /// </summary>
         public string FavorateProduct_Json { get; set; }
+        /// <summary>
+        /// سبد خرید
+        /// </summary>
+        public string ShopingCart_Json { get; set; }
 
         #region ForeignKeys
         /// <summary>
@@ -142,10 +135,7 @@ namespace Store.Models.DataBase.Entities
             builder.Property(p => p.UserName).IsRequired();
             builder.Property(p => p.FullName).HasColumnType("nvarchar(100)");
             builder.Property(p => p.MobileNo).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Tel).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Address).HasColumnType("nvarchar(500)");
-            builder.Property(p => p.City).HasColumnType("nvarchar(50)");
-            builder.Property(p => p.Province).HasColumnType("nvarchar(50)");
+            builder.Property(p => p.Address_Json).HasColumnType("nvarchar(500)");
             builder.Property(p => p.Biography).HasColumnType("nvarchar(500)");
             builder.Property(p => p.Password).HasColumnType("nvarchar(250)");
             builder.Property(p => p.Password).IsRequired();
@@ -158,6 +148,35 @@ namespace Store.Models.DataBase.Entities
             builder.Property(p => p.ActivationCodeExpireDate).HasColumnType("smalldatetime");
             builder.Property(p => p.BlockedDate).HasColumnType("smalldatetime");
             builder.Property(p => p.DeletedDate).HasColumnType("smalldatetime");
+            #endregion
+
+            #region SeedData
+            string salt = string.Empty.GetNewToken();
+            builder.HasData(new User
+            {
+                UserId = 1,
+                Role = "Admin",
+                UserName = "Admin",
+                Password = Cryptography.Encrypt("Admin", salt),
+                Salt = salt,
+                IsActive = true,
+                Token = string.Empty.GetNewToken(),
+                IsDeleted = false,
+                IsVerified = true,
+                IsBlock = false,
+                FullName = "مدیر سایت",
+                Gender = true,
+                ActivationCode = string.Empty.GetNewToken(),
+                ActivationCodeExpireDate = DateTime.Now,
+                Address_Json = "",
+                Biography = "",
+                BlockedDate = DateTime.Now,
+                DeletedDate = DateTime.Now,
+                MobileNo = "",
+                FavorateProduct_Json = "",
+                RegisterDate = DateTime.Now,
+                ShopingCart_Json = ""
+            });
             #endregion
         }
     }

@@ -44,6 +44,10 @@ namespace Store.Models.DataBase.Entities
         /// وضعیت نمایش در صفحه اصلی
         /// </summary>
         public bool IsShowInMainPage { get; set; }
+        /// <summary>
+        /// وضعیت فعال بودن
+        /// </summary>
+        public bool IsActive { get; set; }
     }
     public class SliderConfig : IEntityTypeConfiguration<Slider>
     {

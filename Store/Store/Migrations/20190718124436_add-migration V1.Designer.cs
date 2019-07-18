@@ -10,14 +10,14 @@ using Store.Models.DataBase.Context;
 namespace Store.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("13980425041720_up-db")]
-    partial class updb
+    [Migration("20190718124436_add-migration V1")]
+    partial class addmigrationV1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -58,7 +58,7 @@ namespace Store.Migrations
                         .HasColumnType("nvarchar(100)")
                         .IsUnicode(true);
 
-                    b.Property<bool>("IsEnabled");
+                    b.Property<bool>("IsActive");
 
                     b.Property<bool>("IsFavorate");
 
@@ -126,8 +126,6 @@ namespace Store.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("IsDeleted");
-
                     b.Property<bool>("IsSeen");
 
                     b.Property<string>("Name")
@@ -146,43 +144,6 @@ namespace Store.Migrations
                     b.ToTable("ContactUsMessages");
                 });
 
-            modelBuilder.Entity("Store.Models.DataBase.Entities.Discount", b =>
-                {
-                    b.Property<int>("DiscountId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<decimal>("DiscountPrice")
-                        .HasColumnType("decimal(16,3)");
-
-                    b.Property<string>("EName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .IsUnicode(true);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<decimal>("MinPriceToDiscount")
-                        .HasColumnType("decimal(16,3)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("smalldatetime");
-
-                    b.HasKey("DiscountId");
-
-                    b.ToTable("Discounts");
-                });
-
             modelBuilder.Entity("Store.Models.DataBase.Entities.FAQ", b =>
                 {
                     b.Property<int>("FAQId")
@@ -191,6 +152,8 @@ namespace Store.Migrations
 
                     b.Property<string>("Answer")
                         .IsRequired();
+
+                    b.Property<bool>("IsActive");
 
                     b.Property<int>("OrderNumber");
 
@@ -263,8 +226,6 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -430,6 +391,10 @@ namespace Store.Migrations
 
                     b.Property<string>("AboutUsPage");
 
+                    b.Property<string>("BanerImageName");
+
+                    b.Property<string>("BanerImageNameMob");
+
                     b.Property<string>("ContactUsMapUrl");
 
                     b.Property<string>("ContactUsPage");
@@ -460,9 +425,17 @@ namespace Store.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("ImageNameMob")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsShowInMainPage");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(300)");
@@ -502,8 +475,6 @@ namespace Store.Migrations
 
                     b.Property<int>("OrderNumber");
 
-                    b.Property<string>("Url");
-
                     b.HasKey("SubCategoryId");
 
                     b.HasIndex("CategoryId");
@@ -518,8 +489,6 @@ namespace Store.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive");
-
-                    b.Property<bool>("IsDeleted");
 
                     b.Property<int>("MenuId");
 
@@ -585,7 +554,7 @@ namespace Store.Migrations
                     b.Property<DateTime>("ActivationCodeExpireDate")
                         .HasColumnType("smalldatetime");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Address_Json")
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Biography")
@@ -593,9 +562,6 @@ namespace Store.Migrations
 
                     b.Property<DateTime>("BlockedDate")
                         .HasColumnType("smalldatetime");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("smalldatetime");
@@ -622,9 +588,6 @@ namespace Store.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Province")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("smalldatetime");
 
@@ -634,8 +597,7 @@ namespace Store.Migrations
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Tel")
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<string>("ShopingCart_Json");
 
                     b.Property<string>("Token");
 
@@ -646,6 +608,33 @@ namespace Store.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            ActivationCode = "b56ee35024564af080e84c7dab6a1986",
+                            ActivationCodeExpireDate = new DateTime(2019, 7, 18, 5, 44, 36, 504, DateTimeKind.Local).AddTicks(6317),
+                            Address_Json = "",
+                            Biography = "",
+                            BlockedDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(1053),
+                            DeletedDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(1649),
+                            FavorateProduct_Json = "",
+                            FullName = "مدیر سایت",
+                            Gender = true,
+                            IsActive = true,
+                            IsBlock = false,
+                            IsDeleted = false,
+                            IsVerified = true,
+                            MobileNo = "",
+                            Password = "Lgg8zugUE4TskeG7IYoTXg==",
+                            RegisterDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(3252),
+                            Role = "Admin",
+                            Salt = "bc3c079f79764d76b1fcbe3f753ec95d",
+                            ShopingCart_Json = "",
+                            Token = "02b82a3c4cfd488693b77fb151bda1f6",
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Category", b =>

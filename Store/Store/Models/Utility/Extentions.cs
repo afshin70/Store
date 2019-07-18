@@ -1,9 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Store.Models.Utility;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Store.Models
@@ -224,7 +228,7 @@ namespace Store.Models
         /// </summary>
         /// <param name="input">تاریخ میلادی</param>
         /// <returns>مثال : شنبه</returns>
-        public static string sm_ToShamsiDayName(this DateTime input)
+        public static string ToShamsiDayName(this DateTime input)
         {
             PersianCalendar p = new PersianCalendar();
             int Year = p.GetYear(input);
@@ -262,6 +266,66 @@ namespace Store.Models
                     break;
             }
             return DayName;
+        }
+        /// <summary>
+        /// دریافت توکن جدید
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string GetNewToken(this string input)
+        {
+            return Guid.NewGuid().ToString().Replace("-","");
+        }
+        /// <summary>
+        /// رمزنگاری متن
+        /// </summary>
+        /// <param name="plainText">متن ورودی</param>
+        /// <param name="SaltKey">متن زائد جهت رمزنگاری</param>
+        /// <returns></returns>
+        public static string Encrypt(this string input, string SaltKey)
+        {
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(input);
+
+            byte[] keyBytes = new Rfc2898DeriveBytes(StoreAssembly.StorePasswordHash, Encoding.ASCII.GetBytes(SaltKey)).GetBytes(256 / 8);
+            var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.Zeros };
+            var encryptor = symmetricKey.CreateEncryptor(keyBytes, Encoding.ASCII.GetBytes(StoreAssembly.StoreVIKey));
+
+            byte[] cipherTextBytes;
+
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                {
+                    cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                    cryptoStream.FlushFinalBlock();
+                    cipherTextBytes = memoryStream.ToArray();
+                    cryptoStream.Close();
+                }
+                memoryStream.Close();
+            }
+            return Convert.ToBase64String(cipherTextBytes);
+        }
+        /// <summary>
+        /// رمزگشایی متن
+        /// </summary>
+        /// <param name="encryptedText">متن رمز شده</param>
+        /// <param name="SaltKey">متن زائد رمز شده</param>
+        /// <returns></returns>
+        public static string Decrypt(this string input, string SaltKey)
+        {
+            byte[] cipherTextBytes = Convert.FromBase64String(input);
+            byte[] keyBytes = new Rfc2898DeriveBytes(StoreAssembly.StorePasswordHash, Encoding.ASCII.GetBytes(SaltKey)).GetBytes(256 / 8);
+            var symmetricKey = new RijndaelManaged() { Mode = CipherMode.CBC, Padding = PaddingMode.None };
+
+            var decryptor = symmetricKey.CreateDecryptor(keyBytes, Encoding.ASCII.GetBytes(StoreAssembly.StoreVIKey));
+            var memoryStream = new MemoryStream(cipherTextBytes);
+            var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
+            byte[] plainTextBytes = new byte[cipherTextBytes.Length];
+
+            int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+            memoryStream.Close();
+            cryptoStream.Close();
+            return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount).TrimEnd("\0".ToCharArray());
         }
     }
 }

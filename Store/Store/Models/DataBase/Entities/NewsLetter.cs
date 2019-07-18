@@ -52,7 +52,7 @@ namespace Store.Models.DataBase.Entities
             #region Relations
             builder.HasKey(k => k.Id);
             #endregion
-
+            builder.HasQueryFilter(x => x.IsDeleted == false);
             #region Properties
             builder.Property(p => p.Email).HasColumnType("nvarchar(100)");
             builder.Property(p => p.Email).IsRequired();
