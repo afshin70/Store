@@ -173,9 +173,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-
-    <Folder Include="Models\Services\Admin\" />
-    <Folder Include="Models\Services\Frount\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

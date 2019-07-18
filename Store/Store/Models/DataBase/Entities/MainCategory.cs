@@ -25,6 +25,10 @@ namespace Store.Models.DataBase.Entities
         /// </summary>
         public string EName { get; set; }
         /// <summary>
+        /// شماره اولویت بندی
+        /// </summary>
+        public int OrderNumber { get; set; }
+        /// <summary>
         /// آیکن
         /// </summary>
         //public string Icon { get; set; }
