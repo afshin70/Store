@@ -10,6 +10,13 @@ namespace Store.Models.IService
     {
         #region عملیات مربوط به یوزر
         /// <summary>
+        /// چک کردن رول کاربر
+        /// </summary>
+        /// <param name="username">نام کاربری</param>
+        /// <param name="role">رول</param>
+        /// <returns></returns>
+        bool CheckUserRole(string username,string role);
+        /// <summary>
         /// دریافت اطلاعات یوزر با نام کاربری
         /// </summary>
         /// <param name="username">نام کاربری</param>
@@ -64,7 +71,13 @@ namespace Store.Models.IService
         /// <returns></returns>
         bool ResetPassword(string username,string newPassword);
         #endregion
-        
+
+        #region تیکت
+        bool SendTiket(Ticket ticket,string username);
+        bool IsSeen(int ticketId);
+
+        #endregion
+
         #region داشبورد یا پروفایل مشتری
         /// <summary>
         /// اطلاعات داخل داشبورد مشتری شامل لیست سفارشات اخیر و نام و ایمیل و آدرس و ...

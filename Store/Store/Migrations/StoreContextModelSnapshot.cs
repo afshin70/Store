@@ -15,7 +15,7 @@ namespace Store.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -431,11 +431,8 @@ namespace Store.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(300)");
 
-<<<<<<< HEAD
                     b.Property<bool>("IsActive");
 
-=======
->>>>>>> e844b6cba943a164bdd73569f26ee2328285e3f3
                     b.Property<bool>("IsShowInMainPage");
 
                     b.Property<string>("Title")
@@ -614,12 +611,12 @@ namespace Store.Migrations
                         new
                         {
                             UserId = 1,
-                            ActivationCode = "b56ee35024564af080e84c7dab6a1986",
-                            ActivationCodeExpireDate = new DateTime(2019, 7, 18, 5, 44, 36, 504, DateTimeKind.Local).AddTicks(6317),
+                            ActivationCode = "f69848b78933438db1a2f3fe0354c6cf",
+                            ActivationCodeExpireDate = new DateTime(2019, 7, 19, 8, 28, 56, 79, DateTimeKind.Local).AddTicks(5350),
                             Address_Json = "",
                             Biography = "",
-                            BlockedDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(1053),
-                            DeletedDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(1649),
+                            BlockedDate = new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(1557),
+                            DeletedDate = new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(2147),
                             FavorateProduct_Json = "",
                             FullName = "مدیر سایت",
                             Gender = true,
@@ -628,12 +625,12 @@ namespace Store.Migrations
                             IsDeleted = false,
                             IsVerified = true,
                             MobileNo = "",
-                            Password = "Lgg8zugUE4TskeG7IYoTXg==",
-                            RegisterDate = new DateTime(2019, 7, 18, 5, 44, 36, 509, DateTimeKind.Local).AddTicks(3252),
+                            Password = "tYrR5KCiuiHwp5qG4ZLinQ==",
+                            RegisterDate = new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(3642),
                             Role = "Admin",
-                            Salt = "bc3c079f79764d76b1fcbe3f753ec95d",
+                            Salt = "653079a1f0384eadb89279b7bebb4fba",
                             ShopingCart_Json = "",
-                            Token = "02b82a3c4cfd488693b77fb151bda1f6",
+                            Token = "993ce7cd1ce2411b9c5e340451989f85",
                             UserName = "Admin"
                         });
                 });

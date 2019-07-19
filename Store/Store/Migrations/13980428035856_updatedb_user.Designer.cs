@@ -10,8 +10,8 @@ using Store.Models.DataBase.Context;
 namespace Store.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("13980426150231_up1")]
-    partial class up1
+    [Migration("13980428035856_updatedb_user")]
+    partial class updatedb_user
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -433,6 +433,8 @@ namespace Store.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<bool>("IsShowInMainPage");
 
                     b.Property<string>("Title")
@@ -552,7 +554,7 @@ namespace Store.Migrations
                     b.Property<DateTime>("ActivationCodeExpireDate")
                         .HasColumnType("smalldatetime");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Address_Json")
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Biography")
@@ -560,9 +562,6 @@ namespace Store.Migrations
 
                     b.Property<DateTime>("BlockedDate")
                         .HasColumnType("smalldatetime");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("smalldatetime");
@@ -589,9 +588,6 @@ namespace Store.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Province")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("smalldatetime");
 
@@ -601,8 +597,7 @@ namespace Store.Migrations
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Tel")
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<string>("ShopingCart_Json");
 
                     b.Property<string>("Token");
 
@@ -613,6 +608,33 @@ namespace Store.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            ActivationCode = "f69848b78933438db1a2f3fe0354c6cf",
+                            ActivationCodeExpireDate = new DateTime(2019, 7, 19, 8, 28, 56, 79, DateTimeKind.Local).AddTicks(5350),
+                            Address_Json = "",
+                            Biography = "",
+                            BlockedDate = new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(1557),
+                            DeletedDate = new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(2147),
+                            FavorateProduct_Json = "",
+                            FullName = "مدیر سایت",
+                            Gender = true,
+                            IsActive = true,
+                            IsBlock = false,
+                            IsDeleted = false,
+                            IsVerified = true,
+                            MobileNo = "",
+                            Password = "tYrR5KCiuiHwp5qG4ZLinQ==",
+                            RegisterDate = new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(3642),
+                            Role = "Admin",
+                            Salt = "653079a1f0384eadb89279b7bebb4fba",
+                            ShopingCart_Json = "",
+                            Token = "993ce7cd1ce2411b9c5e340451989f85",
+                            UserName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Store.Models.DataBase.Entities.Category", b =>

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Store.Migrations
 {
-    public partial class up1 : Migration
+    public partial class updatedb_user : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -137,7 +137,8 @@ namespace Store.Migrations
                     Description = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     UrlText = table.Column<string>(type: "nvarchar(300)", nullable: true),
                     UrlLink = table.Column<string>(type: "nvarchar(300)", nullable: true),
-                    IsShowInMainPage = table.Column<bool>(nullable: false)
+                    IsShowInMainPage = table.Column<bool>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,10 +154,7 @@ namespace Store.Migrations
                     UserName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     MobileNo = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    Tel = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(500)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    Province = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Address_Json = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     Biography = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     Gender = table.Column<bool>(nullable: false),
                     Password = table.Column<string>(type: "nvarchar(250)", nullable: false),
@@ -172,6 +170,7 @@ namespace Store.Migrations
                     DeletedDate = table.Column<DateTime>(type: "smalldatetime", nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     FavorateProduct_Json = table.Column<string>(nullable: true),
+                    ShopingCart_Json = table.Column<string>(nullable: true),
                     Role = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
@@ -407,6 +406,11 @@ namespace Store.Migrations
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "UserId", "ActivationCode", "ActivationCodeExpireDate", "Address_Json", "Biography", "BlockedDate", "DeletedDate", "FavorateProduct_Json", "FullName", "Gender", "IsActive", "IsBlock", "IsDeleted", "IsVerified", "MobileNo", "Password", "RegisterDate", "Role", "Salt", "ShopingCart_Json", "Token", "UserName" },
+                values: new object[] { 1, "f69848b78933438db1a2f3fe0354c6cf", new DateTime(2019, 7, 19, 8, 28, 56, 79, DateTimeKind.Local).AddTicks(5350), "", "", new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(1557), new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(2147), "", "مدیر سایت", true, true, false, false, true, "", "tYrR5KCiuiHwp5qG4ZLinQ==", new DateTime(2019, 7, 19, 8, 28, 56, 96, DateTimeKind.Local).AddTicks(3642), "Admin", "653079a1f0384eadb89279b7bebb4fba", "", "993ce7cd1ce2411b9c5e340451989f85", "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_MainCategoryId",
