@@ -6,6 +6,28 @@ using System.Threading.Tasks;
 namespace Store.Models.DataBase.Dto.Frount.Category
 {
     /// <summary>
+    /// دسته بندی اصلی
+    /// </summary>
+    public class MainCategory
+    {
+        /// <summary>
+        /// آی دی
+        /// </summary>
+        public int MainCategoryId { get; set; }
+        /// <summary>
+        /// نام
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// نام انگلیسی
+        /// </summary>
+        public string EName { get; set; }
+        /// <summary>
+        /// گروه های زیرین
+        /// </summary>
+        public List<Category> Categories { get; set; }
+    }
+    /// <summary>
     /// دسته بندی 
     /// </summary>
     public class Category
@@ -30,32 +52,34 @@ namespace Store.Models.DataBase.Dto.Frount.Category
         /// توضیحات
         /// </summary>
         public string Description { get; set; }
-        /// <summary>
-        /// آیکن دسته بندی
-        /// </summary>
-        public string Icon { get; set; }
-    }
-    public class SubCategory
-    {
+        public List<SubCategory> SubCategoriess { get; set; }
 
     }
-    public class MainCategory
+    /// <summary>
+    /// زیر دسته بندی
+    /// </summary>
+    public class SubCategory
     {
         /// <summary>
-        /// آی دی
+        /// آی دی 
         /// </summary>
-        public int MainCategoryId { get; set; }
+        public int SubCategoryId { get; set; }
+        /// <summary>
+        /// آی دی دسته بندی
+        /// </summary>
+        public int CategoryId { get; set; }
         /// <summary>
         /// نام
         /// </summary>
         public string Name { get; set; }
         /// <summary>
+        /// توضیحات
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
         /// نام انگلیسی
         /// </summary>
         public string EName { get; set; }
-        /// <summary>
-        /// آیکن
-        /// </summary>
-        public string Icon { get; set; }
     }
+    
 }

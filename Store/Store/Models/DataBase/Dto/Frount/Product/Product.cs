@@ -36,5 +36,13 @@ namespace Store.Models.DataBase.Dto.Frount.Product
         /// وضعیت موجود بودن محصول
         /// </summary>
         public bool IsExist { get; set; }
+        /// <summary>
+        ///  واحد کالا
+        /// </summary>
+        public string UnitType { get; set; }
+        /// <summary>
+        /// محصول ویژه
+        /// </summary>
+        public bool IsSpecial { get; set; }
     }
 }
