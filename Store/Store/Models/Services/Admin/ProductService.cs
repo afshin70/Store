@@ -208,11 +208,5 @@ namespace Store.Models.Services.Admin
             return null;
         }
         #endregion
-
-
-
-
-
-
     }
 }
