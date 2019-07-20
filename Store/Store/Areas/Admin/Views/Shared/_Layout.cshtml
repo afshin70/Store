@@ -266,16 +266,19 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" href="index.html"><i class="fa fa-dashboard fa-fw"></i> مدیریت</a>
+                            <a class="active" asp-action="index"><i class="fa fa-dashboard fa-fw"></i> مدیریت</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> نمودار<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت دسته بندی محصولات<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">نمودارهای صاف</a>
+                                    <a asp-action="MainCategory">دسته بندی اصلی</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js نمودارهای</a>
+                                    <a asp-action="MainCategory">دسته بندی فرعی</a>
+                                </li>
+                                <li>
+                                    <a asp-action="MainCategory">زیر دسته ها</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -364,6 +367,7 @@
     <!-- /#wrapper -->
     <!-- jQuery Version 1.11.0 -->
     <partial name="ScriptsPV" />
+    @RenderSection("Scripts",false)
 </body>
 
 </html>

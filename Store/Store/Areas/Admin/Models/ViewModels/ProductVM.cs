@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Store.Models.DataBase.Dto.Admin;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ namespace Store.Areas.Admin.Models.ViewModels
 {
     public class ProductVM
     {
-
+        [ScaffoldColumn(false)]
         /// <summary>
         /// آی دی
         /// </summary>
@@ -31,13 +32,15 @@ namespace Store.Areas.Admin.Models.ViewModels
         /// </summary>
         public string EName { get; set; }
         [DisplayName("توضیحات کوتاه:")]
-        [Required(ErrorMessage = "فیلد {0} را وارد نکرده اید.", AllowEmptyStrings = false)]
         [MaxLength(1000, ErrorMessage = "حداکثر طول {0}، {1} کاراکتر میباشد.")]
-        [MinLength(5, ErrorMessage = "حداقل طول {0}، {1} کاراکتر میباشد.")]
+        [DataType(DataType.MultilineText)]
         /// <summary>
         /// توضیحات کوتاه
         /// </summary>
         public string ShortDescription { get; set; }
+        [DisplayName("توضیحات کامل:")]
+        [Required(ErrorMessage = "فیلد {0} را وارد نکرده اید.", AllowEmptyStrings = false)]
+        [DataType(DataType.Html)]
         /// <summary>
         /// توضیحات اصلی
         /// </summary>
@@ -45,7 +48,7 @@ namespace Store.Areas.Admin.Models.ViewModels
         /// <summary>
         /// تصاویر
         /// </summary>
-        public string Images_Json { get; set; }
+        public ProductImage Images_Json { get; set; }
         /// <summary>
         /// تگ محصول
         /// </summary>
@@ -54,69 +57,47 @@ namespace Store.Areas.Admin.Models.ViewModels
         /// برند کالا
         /// </summary>
         public int BrandId { get; set; }
-        /// <summary>
-        /// تعداد فروش
-        /// </summary>
-        public int SoldCount { get; set; }
-        /// <summary>
-        /// تعداد بادید
-        /// </summary>
-        public int VisitedCount { get; set; }
+        [DisplayName("موجودی(تعداد):")]
+        [Required(ErrorMessage = "فیلد {0} را وارد نکرده اید.", AllowEmptyStrings = false)]
+        [DefaultValue(0)]
         /// <summary>
         /// تعداد موجود
         /// </summary>
         public int ExistCount { get; set; }
-        /// <summary>
-        /// بیشترین مبلغی که تخفیف مجاز است
-        /// </summary>
-        public decimal MaxDiscountPrice { get; set; }
+        [DisplayName("ویژگی ها:")]
+        [DataType(DataType.Html)]
         /// <summary>
         /// ویژگی ها بصورت html
         /// </summary>
         public string Features { get; set; }
+        [DisplayName("وضعیت انتشار:")]
         /// <summary>
         /// وضعیت فعال بودن
         /// </summary>
         public bool IsActive { get; set; }
+        [DisplayName("واحد کالا:")]
+        [MaxLength(50, ErrorMessage = "حداکثر طول {0}، {1} کاراکتر میباشد.")]
+        [DefaultValue("عدد")]
         /// <summary>
         ///  واحد کالا
         /// </summary>
         public string UnitType { get; set; }
+        [DisplayName("مبلغ فروش(تومان):")]
+        [Required(ErrorMessage = "فیلد {0} را وارد نکرده اید.", AllowEmptyStrings = false)]
+        [DefaultValue(0)]
         /// <summary>
         /// مبلغ فروش
         /// </summary>
-        public decimal SalesPrice { get; set; }
+        public int SalesPrice { get; set; }
+        [DisplayName("مبلغ فروش با تخفیف (تومان):")]
         /// <summary>
         /// مبلغ اصلی
         /// </summary>
-        public decimal WrittenPrice { get; set; }
+        public int WrittenPrice { get; set; }
+        [DisplayName("محصول ویژه:")]
         /// <summary>
         /// محصول ویژه
         /// </summary>
         public bool IsSpecial { get; set; }
-        /// <summary>
-        /// هشدار کمتر از
-        /// </summary>
-        public int MinCountNotify { get; set; }
-        /// <summary>
-        /// تاریخ افزودن محصول
-        /// </summary>
-        public DateTime InsertedDate { get; set; }
-        /// <summary>
-        /// وضعیت حذف
-        /// </summary>
-        public bool IsDeleted { get; set; }
-        /// <summary>
-        /// امتیاز کالا
-        /// </summary>
-        public int Rating { get; set; }
-        #region ForeignKeys
-        /// <summary>
-        /// آی دی زیر دسته بندی
-        /// </summary>
-        public int SubCategoryId { get; set; }
-        #endregion
-
-
     }
 }

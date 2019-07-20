@@ -1,0 +1,51 @@
+﻿@model Store.Areas.Admin.Models.ViewModels.MainCategoryVM
+
+@{
+    ViewData["Title"] = "MainCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <br />
+    <div class="row">
+        <div class="col-md-12 alert-success">
+            <form asp-action="MainCategory">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Name" class="control-label"></label>:
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="EName" class="control-label"></label>:
+                    <input asp-for="EName" class="form-control" />
+                    <span asp-validation-for="EName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label asp-for="OrderNumber" class="control-label"></label>:
+                    <input asp-for="OrderNumber" class="form-control" />
+                    <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group form-check col-md-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                        </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input type="submit" value="ایجاد گروه اصلی" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="alert-info">
+            <a asp-action="MainCategory" class=" btn-xs btn-warning">تازه سازی صفحه</a>
+        </div>
+    </div>
+
+
+</div>
+@section Scripts {
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+}

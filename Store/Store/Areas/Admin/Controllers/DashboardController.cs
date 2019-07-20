@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Store.Areas.Admin.Models.ViewModels;
+using Store.Models.Utility.Authorizetion;
 
 namespace Store.Areas.Admin.Controllers
 {
@@ -13,5 +15,20 @@ namespace Store.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult MainCategory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult MainCategory(MainCategoryVM mainCategory)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(mainCategory);
+            }
+            return View();
+        }
+
     }
 }
