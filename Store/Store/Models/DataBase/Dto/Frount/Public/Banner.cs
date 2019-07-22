@@ -7,5 +7,7 @@ namespace Store.Models.DataBase.Dto.Frount.Public
 {
     public class Banner
     {
+        public string ImageName { get; set; }
+        public string ImageNameMob { get; set; }
     }
 }
