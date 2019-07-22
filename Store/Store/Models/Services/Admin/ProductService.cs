@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Store.Models.DataBase.Dto.Admin;
 using Store.Models.DataBase.Dto.Frount.Category;
 using Store.Models.DataBase.Dto.Frount.Product;
@@ -162,50 +163,27 @@ namespace Store.Models.Services.Admin
                 }).ToList();
             }
         }
-        /// <summary>
-        /// -  دریافت دسته بندی های محبوب
-        /// دسته ها و زیر دسته ها
-        /// </summary>
-        /// <returns></returns>
-        public Category GetPopularCategory()
+
+        public List<Category> GetPopularCategory()
         {
-            //using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            //{
-            //    //_Storedb.
-            //    List<MainCategory> mainCategories = _Storedb.MainCategories.OrderBy(x => x.OrderNumber).Select(x => new MainCategory
-            //    {
-            //        MainCategoryId = x.MainCategoryId,
-            //        EName = x.EName,
-            //        Name = x.Name
-            //    }).ToList();
-            //    foreach (var maincat in mainCategories)
-            //    {
-            //        List<Category> Cat = _Storedb.Categories.OrderBy(x => x.OrderNumber).Select(x => new Category
-            //        {
-            //            CategoryId = x.CategoryId,
-            //            MainCategoryId = maincat.MainCategoryId,
-            //            Description = x.Description,
-            //            EName = x.EName,
-            //            Name = x.Name
-            //        }).ToList();
-            //        List<SubCategory> subCat = new List<SubCategory>();
-            //        foreach (var cat in Cat)
-            //        {
-            //            subCat = _Storedb.SubCategories.OrderBy(x => x.OrderNumber).Select(x => new SubCategory
-            //            {
-            //                SubCategoryId = x.SubCategoryId,
-            //                CategoryId = cat.CategoryId,
-            //                Description = x.Description,
-            //                EName = x.EName,
-            //                Name = x.Name
-            //            }).ToList();
-            //            maincat.Categories.Where(x => x.CategoryId == cat.CategoryId).First().SubCategoriess.AddRange(subCat);
-            //        }
-            //        mainCategories.Where(x => x.MainCategoryId == maincat.MainCategoryId).First().Categories = new List<Category>(Cat);
-            //    }
-            //    return mainCategories;
-            //}
-            return null;
+            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
+            {
+                return _Storedb.Categories.Where(x => x.IsFavorate).Select(x => new DataBase.Dto.Frount.Category.Category
+                {
+                    CategoryId = x.CategoryId,
+                    Description = x.Description,
+                    EName = x.EName,
+                    Name = x.Name,
+                    SubCategoriess=_Storedb.SubCategories.Where(p=>p.CategoryId==x.CategoryId)
+                    .Select(y=>new SubCategory {
+                        SubCategoryId=y.SubCategoryId,
+                        CategoryId=x.CategoryId,
+                        EName=y.EName,
+                        Name=y.Name,
+                        Description=y.Description
+                    }).ToList()
+                }).ToList();
+            }
         }
         #endregion
     }

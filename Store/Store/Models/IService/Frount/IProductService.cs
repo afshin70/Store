@@ -57,7 +57,7 @@ namespace Store.Models.IService
         /// دسته ها و زیر دسته ها
         /// </summary>
         /// <returns></returns>
-        Category GetPopularCategory();
+        List<Category> GetPopularCategory();
         #endregion
 
     }
