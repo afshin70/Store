@@ -107,6 +107,18 @@ namespace Store.Models.IService.Admin
         /// <returns></returns>
         bool RemoveSubCategory(int subCatrgoryId);
         /// <summary>
+        /// بالا بردن اولویت نمایش دسته
+        /// </summary>
+        /// <param name="subCatrgoryId">آی دی دسته</param>
+        /// <returns></returns>
+        bool LevelUpSubCategory(int subCatrgoryId);
+        /// <summary>
+        /// پایین آوردن اویت دسته
+        /// </summary>
+        /// <param name="subCatrgoryId">آی دی دسته</param>
+        /// <returns></returns>
+        bool LevelDownSubCategory(int subCatrgoryId);
+        /// <summary>
         /// بروزرسانی زیردسته
         /// </summary>
         /// <param name="subCatrgory">زیردسته بروزرسانی شده</param>
@@ -158,6 +170,18 @@ namespace Store.Models.IService.Admin
         /// <param name="CatrgoryId">آی دی دسته</param>
         /// <returns></returns>
         bool RemoveCategory(int CatrgoryId);
+        /// <summary>
+        /// بالا بردن اولویت
+        /// </summary>
+        /// <param name="CatrgoryId">آی دی گروه</param>
+        /// <returns></returns>
+        bool LevelUpCategory(int CatrgoryId);
+        /// <summary>
+        /// پایین آوردن اولویت
+        /// </summary>
+        /// <param name="CatrgoryId">آی دی گروه</param>
+        /// <returns></returns>
+        bool LevelDownCategory(int CatrgoryId);
         /// <summary>
         /// آپدیت یک دسته
         /// </summary>
@@ -216,6 +240,20 @@ namespace Store.Models.IService.Admin
         /// <param name="mainCatrgoryId">آی دی دسته </param>
         /// <returns></returns>
         bool RemoveMainCategory(int mainCatrrgoryId);
+
+        /// <summary>
+        /// بالا بردن اولویت نمایش
+        /// </summary>
+        /// <param name="mainCatrrgoryId">ای دی گروه</param>
+        /// <returns></returns>
+        bool LevelUpMainCategory(int mainCatrrgoryId);
+        /// <summary>
+        /// پایین آوردن اولویت نمایش
+        /// </summary>
+        /// <param name="mainCatrrgoryId">آی دی گروه</param>
+        /// <returns></returns>
+        bool LevelDownMainCategory(int mainCatrrgoryId);
+
         /// <summary>
         /// آپدیت دسته
         /// </summary>
