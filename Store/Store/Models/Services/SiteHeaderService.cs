@@ -51,10 +51,9 @@ namespace Store.Models.Services
             throw new NotImplementedException();
         }
 
-        public Slider GetSlider()
+        List<Slider> ISiteHeaderService.GetSlider()
         {
             throw new NotImplementedException();
         }
-
     }
 }

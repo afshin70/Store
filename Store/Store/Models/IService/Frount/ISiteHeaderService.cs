@@ -30,7 +30,7 @@ namespace Store.Models.IService
         /// دریافت اسلایدر
         /// </summary>
         /// <returns></returns>
-        Slider GetSlider();
+        List<Slider> GetSlider();
         /// <summary>
         /// دریافت تصویر بنر و ...
         /// </summary>
