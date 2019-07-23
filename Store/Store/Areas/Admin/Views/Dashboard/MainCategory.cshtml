@@ -70,7 +70,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in mainCatrgories)
+                        @foreach (var item in mainCatrgories.OrderByDescending(x=>x.OrderNumber))
                         {
                             <tr>
                                 <td>
@@ -90,7 +90,6 @@
                                     <a href="#" class="btn-xs btn-danger btndelete" id="@item.MainCategoryId">حذف</a>
                                 </td>
                             </tr>
-
                         }
 
                     </tbody>
