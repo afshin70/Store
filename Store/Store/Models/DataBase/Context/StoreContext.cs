@@ -35,7 +35,7 @@ namespace Store.Models.DataBase.Context
         public DbSet<Ticket> Ticket { get; set; }
         public DbSet<User> Users { get; set; }
         #endregion
-        public StoreContext(DbContextOptions<StoreContext> options) : base(options)
+        public StoreContext(DbContextOptions<StoreContext> options) /*: base(options)*/
         {
 
         }

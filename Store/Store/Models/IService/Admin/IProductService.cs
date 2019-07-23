@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Store.Models.IService.Admin
 {
-    interface IProductService
+   public interface IProductService
     {
         #region عملیات برند
         /// <summary>
@@ -126,7 +126,7 @@ namespace Store.Models.IService.Admin
         /// </summary>
         /// <param name="catrgory">دسته جدید</param>
         /// <returns></returns>
-        bool AddMainCategory(Catrgory catrgory);
+        bool AddCategory(Catrgory catrgory);
         /// <summary>
         /// حذف دسته بندی
         /// </summary>
@@ -185,6 +185,12 @@ namespace Store.Models.IService.Admin
         /// <param name="CategoryName">نام دسته</param>
         /// <returns></returns>
         bool CheckExistMainCategoryName(string CategoryName);
+        /// <summary>
+        /// چک کردن وجود یک دسته براساس نام انگلیسی
+        /// </summary>
+        /// <param name="CategoryEName">نام انگلیسی دسته</param>
+        /// <returns></returns>
+        bool CheckExistMainCategoryEName(string CategoryEName);
         /// <summary>
         /// لیست دسته بندی های اصلی
         /// </summary>
