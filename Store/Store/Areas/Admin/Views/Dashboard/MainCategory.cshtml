@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "MainCategory";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    List<Store.Models.DataBase.Dto.Admin.MainCatrgory> mainCatrgories = _pservice.GetMainCatrgories();
+    List<Store.Models.DataBase.Entities.MainCategory> mainCatrgories = _pservice.GetMainCategories();
 }
 @section css{
-    <link href="@Url.Content("~/lib/js/jquery-confirm.min.css")" rel="stylesheet" />
+
+
 }
 <div id="page-wrapper">
     <br />
@@ -53,7 +54,7 @@
             {
                 <table class="table table-responsive table-striped table-bordered">
                     <thead>
-                        <tr>
+                        <tr  style="color:black;font-weight:bold">
                             <td>
                                 نام گروه
                             </td>
@@ -85,8 +86,8 @@
                                     @item.OrderNumber
                                 </td>
                                 <td>
-                                    <a asp-action="EditMainCategory" asp-route-id="@item.MainCategoryId" class="btn-xs btn-info">ویرایش</a>|
-                                    <button class="btn-xs btn-danger btndelete" id="@item.MainCategoryId">حذف</button>
+                                    <a asp-action="EditMainCategory" asp-route-id="@item.MainCategoryId" class="btn-xs btn-info">ویرایش</a> |
+                                    <a href="#" class="btn-xs btn-danger btndelete" id="@item.MainCategoryId">حذف</a>
                                 </td>
                             </tr>
 
@@ -102,39 +103,39 @@
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
- 
+
     <script>
         $(".btndelete").click(function () {
             var id = $(this).attr('id');
            //---------------------
+
             $.confirm({
                 title: 'حذف محصول...',
-                content: 'آیا محصول انتخابی حذف شود؟',
+                content: 'آیا از حذف مطمعن هستید؟',
                 autoClose: 'انصراف|15000',
+
                 buttons: {
                     deleteUser: {
-                        text: 'حذف شود!',
+                        text: 'تایید',
                         action: function () {
                            $.ajax({
-                type: "POST",
-                url: '@Url.Action("DeleteProduct", "Admin")',
-                data: { id:id },
-                dataType: "Json",
-                success: function (result3) {
-                    if (result3.state==1) {
-                        window.location.reload();
-                        $("#msg").html(result3.msg);
-                    } else if (result3.state == 2) {
-                        $("#msg").html(result3.msg);
-                    } else if (result3.state == 3) {
-                        $("#msg").html(result3.msg);
-                    }
+                                        type: "POST",
+                                        url: '@Url.Action("DeleteMainCategory", "Dashboard")',
+                                        data: { main_category_id:id },
+                                        dataType: "Json",
+                               success: function (result) {
+                                   if (result.Result == true) {
+                                       window.location.reload();
 
-                },
-                error: function () {
-                 $.alert("خطایی رخ داده است. مجددا تلاش کنید!")
-                }
-            });
+                                   } else {
+                                       $.alert("بنا به دلایلی حذف انجام نشد");
+                                   }
+                               },
+                               error: function ()
+                               {
+                                          $.alert("خطایی رخ داده است. مجددا تلاش کنید!");
+                               }
+                           });
                         }
                     },
                     انصراف: function () {

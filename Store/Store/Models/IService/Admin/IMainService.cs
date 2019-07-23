@@ -8,6 +8,67 @@ namespace Store.Models.IService.Admin
 {
     public interface IMainService
     {
+
+
+        #region تماس با ما
+        bool DeleteMessage(int contactUsId);
+        bool IsSeen(int contactUsId);
+        List<ContactUsMessage> GetContactUsMessages();
+        ContactUsMessage GetContactUsMessage(int contactUsId);
+        #endregion
+
+        #region تنظیمات
+        /// <summary>
+        /// بروزرسانی تنظیمات
+        /// </summary>
+        /// <param name="setting">تنظیمات </param>
+        /// <returns></returns>
+        bool UpdateSetting(Setting setting);
+        /// <summary>
+        /// دریافت تنظیمات
+        /// </summary>
+        /// <returns></returns>
+        Setting GetSetting();
+        #endregion
+
+        #region پرسش و پاسخ
+        /// <summary>
+        /// افزودن پرسش و پاسخ
+        /// </summary>
+        /// <param name="fAQ">یک پرسش و پاسخ</param>
+        /// <returns></returns>
+        bool AddFAQ(FAQ fAQ);
+        /// <summary>
+        /// پیدا کردن یک پرسش و پاسخ
+        /// </summary>
+        /// <param name="id">ایدی پرسش</param>
+        /// <returns></returns>
+        FAQ GetFAQById(int id);
+        /// <summary>
+        /// بروزرسانی پسش و پاسخ
+        /// </summary>
+        /// <param name="fAQ">پرسش</param>
+        /// <returns></returns>
+        bool UpdateFAQ(FAQ fAQ);
+        /// <summary>
+        ///فعال یا غیر فعال سازی پرسش و پاسخ
+        /// </summary>
+        /// <param name="id">آی دی پرسش</param>
+        /// <returns></returns>
+        bool ActiveOrDeActiveFAQ(int id);
+        /// <summary>
+        /// حذف پرسشو پاسخ
+        /// </summary>
+        /// <param name="id">آی دی </param>
+        /// <returns></returns>
+        bool DeleteFAQ(int id);
+        /// <summary>
+        /// لیست پرسش و پاسخ
+        /// </summary>
+        /// <returns></returns>
+        List<FAQ> GetAllFAQs();
+        #endregion
+
         #region عملیات مربوط به نویگیشن منو
         /// <summary>
         /// لیست نویگیشن منو

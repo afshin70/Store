@@ -199,6 +199,12 @@ namespace Store.Models.IService.Admin
 
         #region عملیات دسته بندی اصلی محصول
         /// <summary>
+        /// گرفتن اطلاعات یک دسته اصلی
+        /// </summary>
+        /// <param name="MainCategoryId"></param>
+        /// <returns></returns>
+        MainCategory GetMainCategory(int MainCategoryId);
+        /// <summary>
         /// اضافه کردن دسته بندی اصلی
         /// </summary>
         /// <param name="mainCategory">مشخصات دسته بندی</param>

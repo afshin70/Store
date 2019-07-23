@@ -20,6 +20,16 @@ namespace Store.Models.Services.Admin
             throw new NotImplementedException();
         }
 
+        public bool ActiveOrDeActiveFAQ(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddFAQ(FAQ fAQ)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool AddNavMainMenu(Menu menu)
         {
             throw new NotImplementedException();
@@ -40,12 +50,42 @@ namespace Store.Models.Services.Admin
             throw new NotImplementedException();
         }
 
+        public bool DeleteFAQ(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteMessage(int contactUsId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<FAQ> GetAllFAQs()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Slider> GetAllSliders()
         {
             throw new NotImplementedException();
         }
 
+        public ContactUsMessage GetContactUsMessage(int contactUsId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ContactUsMessage> GetContactUsMessages()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<string> GetEmails()
+        {
+            throw new NotImplementedException();
+        }
+
+        public FAQ GetFAQById(int id)
         {
             throw new NotImplementedException();
         }
@@ -60,7 +100,17 @@ namespace Store.Models.Services.Admin
             throw new NotImplementedException();
         }
 
+        public Setting GetSetting()
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Slider> GetSliders(bool show_in_main_page = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsSeen(int contactUsId)
         {
             throw new NotImplementedException();
         }
@@ -95,12 +145,22 @@ namespace Store.Models.Services.Admin
             throw new NotImplementedException();
         }
 
+        public bool UpdateFAQ(FAQ fAQ)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool UpdateNavMainMenu(Menu menu, int id)
         {
             throw new NotImplementedException();
         }
 
         public bool UpdateNavSubMenu(SubMenu subMenu, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateSetting(Setting setting)
         {
             throw new NotImplementedException();
         }

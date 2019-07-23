@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Store.Models.DataBase.Context;
 using Store.Models.DataBase.Entities;
 using Store.Models.IService;
 using Store.Models.IService.Admin;
@@ -148,6 +149,14 @@ namespace Store.Models.Services.Admin
         }
 
         public List<MainCategory> GetMainCategories()
+        {
+            using (var db=new StoreContext(null))
+            {
+                return db.MainCategories.ToList();
+            }
+        }
+
+        public MainCategory GetMainCategory(int MainCategoryId)
         {
             throw new NotImplementedException();
         }
