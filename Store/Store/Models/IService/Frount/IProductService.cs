@@ -1,5 +1,4 @@
-﻿using Store.Models.DataBase.Dto.Frount.Category;
-using Store.Models.DataBase.Dto.Frount.Product;
+﻿using Store.Models.DataBase.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +17,7 @@ namespace Store.Models.IService.Frount
         /// <param name="comment">کامنت</param>
         /// <param name="ProductId">آی دی محصول</param>
         /// <returns></returns>
-        bool AddComment(DataBase.Dto.Admin.Comment comment, int ProductId);
+        bool AddComment(Comment comment, int ProductId);
         #endregion
 
         #region متدهای صفحه اصلی

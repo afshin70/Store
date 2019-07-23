@@ -1,4 +1,4 @@
-﻿using Store.Models.DataBase.Dto.Admin;
+﻿using Store.Models.DataBase.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +34,12 @@ namespace Store.Models.IService.Admin
         /// <param name="eName">نام انگلیسی و منحصر به فرد</param>
         /// <returns></returns>
         bool CheckExistBrandEName(string eName);
+        /// <summary>
+        /// چک کردن اینکه نام  برند تکراری نباشد
+        /// </summary>
+        /// <param name="name">نام انگلیسی و منحصر به فرد</param>
+        /// <returns></returns>
+        bool CheckExistBrandName(string name);
         /// <summary>
         /// لیست همه برند ها
         /// </summary>
@@ -79,6 +85,12 @@ namespace Store.Models.IService.Admin
         /// <param name="commentId">آی دی کامنت</param>
         /// <returns></returns>
         bool CommentShow(int commentId);
+        /// <summary>
+        /// لیست کامنتهای یک محصول
+        /// </summary>
+        /// <param name="productId">آی دی محصول</param>
+        /// <returns></returns>
+        List<Comment> GetProductComments(int productId);
         #endregion
 
         #region عملیات زیر دسته بندی محصول
@@ -87,20 +99,20 @@ namespace Store.Models.IService.Admin
         /// </summary>
         /// <param name="subCatrgory">زیردسته جدید</param>
         /// <returns></returns>
-        bool AddMainSubCategory(SubCatrgory subCatrgory);
+        bool AddSubCategory(SubCategory subCategory);
         /// <summary>
         /// حذف زیردسته
         /// </summary>
         /// <param name="CatrgoryId">آی دی زیردسته</param>
         /// <returns></returns>
-        bool RemoveSubCategory(int CatrgoryId);
+        bool RemoveSubCategory(int subCatrgoryId);
         /// <summary>
         /// بروزرسانی زیردسته
         /// </summary>
         /// <param name="subCatrgory">زیردسته بروزرسانی شده</param>
         /// <param name="SubCatrgoryId">آی دی زردسته ای که قرار است بروز شود</param>
         /// <returns></returns>
-        bool UpdateSubCaregory(SubCatrgory subCatrgory, int SubCatrgoryId);
+        bool UpdateSubCaregory(SubCategory subCategory, int SubCatrgoryId);
         /// <summary>
         /// چک کردن زیردسته تکراری
         /// </summary>
@@ -108,16 +120,29 @@ namespace Store.Models.IService.Admin
         /// <returns></returns>
         bool CheckExistSubCategoryName(string SubCategoryName);
         /// <summary>
-        /// لیست زیردسته ها
+        /// چک کردن نام انگلیسی تکراری
+        /// </summary>
+        /// <param name="SubCategoryEName">نام انگلیسی</param>
+        /// <returns></returns>
+        bool CheckExistSubCategoryEName(string SubCategoryEName);
+        /// <summary>
+        /// فعال و غیر فعال کردن زیرگروه یا زیر دسته
+        /// </summary>
+        /// <param name="subctegory_id">آی دی گروه یا دسته</param>
+        /// <param name="isActive">فعال باشه یا نباشه</param>
+        /// <returns></returns>
+        bool ActiveSubCategory(int subctegory_id, bool isActive);
+        /// <summary>
+        /// لیست تمام زیردسته ها
         /// </summary>
         /// <returns></returns>
-        List<SubCatrgory> GetSubCatrgories();
+        List<SubCategory> GetSubCatrgories();
         /// <summary>
         /// لیست زیردسته ها برحسب دسته
         /// </summary>
         /// <param name="CategoryId">آی دی دسته</param>
         /// <returns></returns>
-        List<SubCatrgory> GetSubCatrgories(int CategoryId);
+        List<SubCategory> GetSubCatrgories(int CategoryId);
         #endregion
 
         #region عملیات دسته بندی محصول
@@ -126,7 +151,7 @@ namespace Store.Models.IService.Admin
         /// </summary>
         /// <param name="catrgory">دسته جدید</param>
         /// <returns></returns>
-        bool AddCategory(Catrgory catrgory);
+        bool AddCategory(Category catrgory);
         /// <summary>
         /// حذف دسته بندی
         /// </summary>
@@ -139,7 +164,14 @@ namespace Store.Models.IService.Admin
         /// <param name="catrgory">مشخصات دسته جدید</param>
         /// <param name="CatrgoryId">آی دی دسته ای که آپدیت میشود</param>
         /// <returns></returns>
-        bool UpdateCaregory(Catrgory catrgory, int CatrgoryId);
+        bool UpdateCaregory(Category category, int CatrgoryId);
+        /// <summary>
+        /// فعال و غیر فعال کردن گروه یا دسته
+        /// </summary>
+        /// <param name="ctegory_id">آی دی گروه یا دسته</param>
+        /// <param name="isActive">فعال باشه یا نباشه</param>
+        /// <returns></returns>
+        bool ActiveCategory(int ctegory_id, bool isActive);
         /// <summary>
         /// چک کردن وجود دسته تکراری برای دسته جدید
         /// </summary>
@@ -147,38 +179,44 @@ namespace Store.Models.IService.Admin
         /// <returns></returns>
         bool CheckExistCategoryName(string CategoryName);
         /// <summary>
+        /// چک کردن نام انگلیسی
+        /// </summary>
+        /// <param name="CategoryEName">نام انگلیسی</param>
+        /// <returns></returns>
+        bool CheckExistCategoryEName(string CategoryEName);
+        /// <summary>
         /// لیست دسته ها
         /// </summary>
         /// <returns></returns>
-        List<Catrgory> GetCatrgories();
+        List<Category> GetCategories();
         /// <summary>
         /// لیست دسته ها برحسب دسته اصلی
         /// </summary>
         /// <param name="MainCategoryId"></param>
         /// <returns></returns>
-        List<Catrgory> GetCatrgories(int MainCategoryId);
+        List<Category> GetCatrgories(int MainCategoryId);
         #endregion
 
         #region عملیات دسته بندی اصلی محصول
         /// <summary>
         /// اضافه کردن دسته بندی اصلی
         /// </summary>
-        /// <param name="mainCatrgory">مشخصات دسته بندی</param>
+        /// <param name="mainCategory">مشخصات دسته بندی</param>
         /// <returns></returns>
-        bool AddMainCategory(MainCatrgory mainCatrgory);
+        bool AddMainCategory(MainCategory mainCategory);
         /// <summary>
         /// حذف دسته بندی اصلی
         /// </summary>
         /// <param name="mainCatrgoryId">آی دی دسته </param>
         /// <returns></returns>
-        bool RemoveMainCategory(int mainCatrgoryId);
+        bool RemoveMainCategory(int mainCatrrgoryId);
         /// <summary>
         /// آپدیت دسته
         /// </summary>
         /// <param name="mainCatrgory">مشخصات جدید</param>
         /// <param name="mainCatrgoryId">آی دی دسته ای که آپدیت می شود</param>
         /// <returns></returns>
-        bool UpdateMainCaregory(MainCatrgory mainCatrgory, int mainCatrgoryId);
+        bool UpdateMainCaregory(MainCategory mainCatrgory, int mainCatrgoryId);
         /// <summary>
         /// چک کردن وجود یک دسته براساس نام
         /// </summary>
@@ -192,10 +230,17 @@ namespace Store.Models.IService.Admin
         /// <returns></returns>
         bool CheckExistMainCategoryEName(string CategoryEName);
         /// <summary>
+        /// فعال و غیر فعال کردن گروه یا دسته اصلی
+        /// </summary>
+        /// <param name="main_ctegory_id">آی دی گروه یا دسته</param>
+        /// <param name="isActive">فعال باشه یا نباشه</param>
+        /// <returns></returns>
+        bool ActiveMainCategory(int main_ctegory_id, bool isActive);
+        /// <summary>
         /// لیست دسته بندی های اصلی
         /// </summary>
         /// <returns></returns>
-        List<MainCatrgory> GetMainCatrgories();
+        List<MainCategory> GetMainCategories();
         #endregion
 
         #region عملیات مدیریت محصول

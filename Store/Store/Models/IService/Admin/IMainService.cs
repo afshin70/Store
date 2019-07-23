@@ -1,5 +1,4 @@
-﻿using Store.Models.DataBase.Dto;
-using Store.Models.DataBase.Dto.Admin.NavBar;
+﻿using Store.Models.DataBase.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,52 +13,52 @@ namespace Store.Models.IService.Admin
         /// لیست نویگیشن منو
         /// </summary>
         /// <returns></returns>
-        List<NavMenu> GetNavMenus();
+        List<Menu> GetNavMenus();
         /// <summary>
         /// لیست زیر منو های نویگیشن منو
         /// </summary>
-        /// <param name="main_menu_id">آی دی والد ساب منو</param>
+        /// <param name="sub_menu_id">آی دی والد ساب منو</param>
         /// <returns></returns>
-        List<NavSubMenu> GetNavSubMenus(int main_menu_id);
+        List<SubMenu> GetNavSubMenus(int sub_menu_id);
         /// <summary>
         /// نویگیشن منو نمایش داده شود؟
         /// اگر خیر، باید تمام زیر منو های این منو، نمایششان غیر فعال شود
         /// </summary>
         /// <param name="id">آی دی نویگیشن منو</param>
         /// <returns></returns>
-        bool ShowNavMainMenu(int id);
+        bool ActiveNavMainMenu(int menu_id);
         /// <summary>
         /// زیر منو نویگیشن منو نمایش داده شود یا نه
         /// </summary>
-        /// <param name="id">زیر منو نویگیشن منو</param>
+        /// <param name="sub_menu_id">زیر منو نویگیشن منو</param>
         /// <returns></returns>
-        bool ShowNavSubMenu(int id);
+        bool ActiveNavSubMenu(int sub_menu_id);
         /// <summary>
         /// افزودن منو نویگیشن جدید
         /// </summary>
         /// <param name="menu">منو جدید</param>
         /// <returns></returns>
-        bool AddNavMainMenu(NavMenu menu);
+        bool AddNavMainMenu(Menu menu);
         /// <summary>
         /// افزودن زیر منو جدید برای نویگیشن
         /// </summary>
         /// <param name="menu">زیر منو جدید</param>
         /// <param name="nav_main_id">آی دی والد این منو</param>
         /// <returns></returns>
-        bool AddNavSubMenu(NavSubMenu menu,int nav_main_id);
+        bool AddNavSubMenu(SubMenu subMenu);
         /// <summary>
         /// حذف منو نویگیشن
         /// اگر حذف شد، باید فرزندان نیز حذف شود
         /// </summary>
-        /// <param name="id">آی دی نویگیشن منو</param>
+        /// <param name="menu_id">آی دی نویگیشن منو</param>
         /// <returns></returns>
-        bool RemoveNavMainMenu(int id);
+        bool RemoveNavMainMenu(int menu_id);
         /// <summary>
         /// حذف زیر منو نویگیشن منو
         /// </summary>
-        /// <param name="id">آی دی زیر منو</param>
+        /// <param name="sub_menu_id">آی دی زیر منو</param>
         /// <returns></returns>
-        bool RemoveNavSubMenu(int id);
+        bool RemoveNavSubMenu(int sub_menu_id);
         /// <summary>
         /// بروزرسانی نویگیشن منو
         /// فقط نام منو آپدیت شود!!!!!!!!!!!!!!!!
@@ -67,15 +66,15 @@ namespace Store.Models.IService.Admin
         /// <param name="menu">منو جدید</param>
         /// <param name="id">آی دی منو جدید</param>
         /// <returns></returns>
-        bool UpdateNavMainMenu(NavMenu menu,int id);
+        bool UpdateNavMainMenu(Menu menu,int id);
         /// <summary>
         /// بروزرسانی زیر منو
         /// فقط نام منو آپدیت شود
         /// </summary>
-        /// <param name="menu">زیر منو بروز شده</param>
+        /// <param name="subMenu">زیر منو بروز شده</param>
         /// <param name="id">آی دی زیر منو</param>
         /// <returns></returns>
-        bool UpdateNavSubMenu(NavSubMenu menu,int id);
+        bool UpdateNavSubMenu(SubMenu subMenu,int id);
         #endregion
 
         #region عضویت در خبرنامه
@@ -111,6 +110,11 @@ namespace Store.Models.IService.Admin
        /// <param name="show_in_main_page">آیا در صفحه اصلی نمایش داده شود یا فعال باشد؟</param>
        /// <returns></returns>
         List<Slider> GetSliders(bool show_in_main_page=true);
+        /// <summary>
+        /// لیست اسلایدرها
+        /// </summary>
+        /// <returns></returns>
+        List<Slider> GetAllSliders();
         /// <summary>
         /// حذف اسلایدر
         /// </summary>
