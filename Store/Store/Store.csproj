@@ -121,6 +121,7 @@
     <None Include="wwwroot\lib\fonts\vazir-700.woff2" />
     <None Include="wwwroot\lib\fonts\yekan-2-400.woff2" />
     <None Include="wwwroot\lib\images\sprite.svg" />
+    <None Include="wwwroot\lib\js\jquery-ui\jquery-ui-1.10.1.custom.min.js" />
     <None Include="wwwroot\lib\js\main.js" />
     <None Include="wwwroot\lib\js\number.js" />
     <None Include="wwwroot\lib\vendor\bootstrap-4.2.1\js\bootstrap.bundle.min.js" />

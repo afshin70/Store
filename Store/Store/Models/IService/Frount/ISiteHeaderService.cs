@@ -1,5 +1,4 @@
 using Store.Models.DataBase.Dto.Frount;
-﻿using Store.Models.DataBase.Dto.Frount;
 using Store.Models.DataBase.Dto.Frount.Category;
 using Store.Models.DataBase.Dto.Frount.Header;
 using Store.Models.DataBase.Dto.Frount.Product;
@@ -9,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.IService
+namespace Store.Models.IService.Frount
 {
     /// <summary>
     /// سرویس هدر سایت و بنر صفحه اصلی

@@ -22,7 +22,7 @@ namespace Store.Models.Services.Admin
             {
                 return _Storedb.Menus.Where(x => x.IsActive == true).Select(x => new NavMenu
                 {
-                    Id = x.MenuId,
+                    MenuId = x.MenuId,
                     IsActive = x.IsActive,
                     Name = x.Name,
                     Url = x.Url
@@ -40,8 +40,8 @@ namespace Store.Models.Services.Admin
             {
                 return _Storedb.SubMenus.Where(x => x.IsActive == true & x.MenuId == main_menu_id).Select(x => new NavSubMenu
                 {
-                    Id = x.SubMenuId,
-                    MainMenuId = x.MenuId,
+                    SubMenuId = x.SubMenuId,
+                    MenuId = x.MenuId,
                     IsActive = x.IsActive,
                     Name = x.Name,
                     Url = x.Url
@@ -135,7 +135,7 @@ namespace Store.Models.Services.Admin
                 _Storedb.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
                 _Storedb.SubMenus.Add(new DataBase.Entities.SubMenu()
                 {
-                    MenuId = menu.MainMenuId,
+                    MenuId = menu.MenuId,
                     Name = menu.Name,
                     Url = menu.Url,
                     IsActive = menu.IsActive
@@ -214,7 +214,7 @@ namespace Store.Models.Services.Admin
                 _Storedb.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
                 try
                 {
-                    var record = _Storedb.Menus.Where(x => x.MenuId == menu.Id).First();
+                    var record = _Storedb.Menus.Where(x => x.MenuId == menu.MenuId).First();
                     record.IsActive = menu.IsActive;
                     record.Name = menu.Name;
                     record.Url = menu.Url;
@@ -241,11 +241,11 @@ namespace Store.Models.Services.Admin
                 _Storedb.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
                 try
                 {
-                    var record = _Storedb.SubMenus.Where(x => x.SubMenuId == menu.Id).First();
+                    var record = _Storedb.SubMenus.Where(x => x.SubMenuId == menu.MenuId).First();
                     record.IsActive = menu.IsActive;
                     record.Name = menu.Name;
                     record.Url = menu.Url;
-                    record.MenuId = menu.MainMenuId;
+                    record.MenuId = menu.MenuId;
                     _Storedb.SaveChanges();
                     return true;
                 }

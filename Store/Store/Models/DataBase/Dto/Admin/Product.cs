@@ -15,10 +15,6 @@ namespace Store.Models.DataBase.Dto.Admin
         /// </summary>
         public int ProductId { get; set; }
         /// <summary>
-        /// آی دی زیر دسته بندی
-        /// </summary>
-        public int SubCategoryId { get; set; }
-        /// <summary>
         /// نام
         /// </summary>
         public string Name { get; set; }
@@ -47,13 +43,21 @@ namespace Store.Models.DataBase.Dto.Admin
         /// </summary>
         public int BrandId { get; set; }
         /// <summary>
-        /// بیشترین مبلغی که تخفیف مجاز است
+        /// تعداد فروش
         /// </summary>
-        public decimal MaxDiscountPrice { get; set; }
+        public int SoldCount { get; set; }
+        /// <summary>
+        /// تعداد بادید
+        /// </summary>
+        public int VisitedCount { get; set; }
         /// <summary>
         /// تعداد موجود
         /// </summary>
         public int ExistCount { get; set; }
+        /// <summary>
+        /// بیشترین مبلغی که تخفیف مجاز است
+        /// </summary>
+        public decimal MaxDiscountPrice { get; set; }
         /// <summary>
         /// ویژگی ها بصورت html
         /// </summary>
@@ -83,9 +87,17 @@ namespace Store.Models.DataBase.Dto.Admin
         /// </summary>
         public int MinCountNotify { get; set; }
         /// <summary>
+        /// تاریخ افزودن محصول
+        /// </summary>
+        public DateTime InsertedDate { get; set; }
+        /// <summary>
+        /// وضعیت حذف
+        /// </summary>
+        public bool IsDeleted { get; set; }
+        /// <summary>
         /// امتیاز کالا
         /// </summary>
         public int Rating { get; set; }
-        
+
     }
 }

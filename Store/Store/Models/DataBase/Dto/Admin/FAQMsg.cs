@@ -5,30 +5,26 @@ using System.Threading.Tasks;
 
 namespace Store.Models.DataBase.Dto.Admin
 {
-    public class SubCatrgory
+    public class FAQMsg
     {
         /// <summary>
         /// آی دی 
         /// </summary>
-        public int SubCategoryId { get; set; }
+        public int FAQId { get; set; }
         /// <summary>
-        /// نام
+        /// سوال
         /// </summary>
-        public string Name { get; set; }
+        public string Question { get; set; }
         /// <summary>
-        /// توضیحات
+        /// پاسخ
         /// </summary>
-        public string Description { get; set; }
+        public string Answer { get; set; }
         /// <summary>
-        /// نام انگلیسی
-        /// </summary>
-        public string EName { get; set; }
-        /// <summary>
-        /// شماره اولویت
+        /// اولویت
         /// </summary>
         public int OrderNumber { get; set; }
         /// <summary>
-        /// وضعیت فال بودن
+        /// وضعیت فعال بودن
         /// </summary>
         public bool IsActive { get; set; }
     }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Store.Models.DataBase.Dto.Frount.Footer;
 using Store.Models.IService;
+using Store.Models.IService.Frount;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -23,7 +23,7 @@ namespace Store.Models.IService.Admin
         List<NavSubMenu> GetNavSubMenus(int main_menu_id);
         /// <summary>
         /// نویگیشن منو نمایش داده شود؟
-        /// اگر بله، باید تمام زیر منو های این منو، نمایششان غیر فعال شود
+        /// اگر خیر، باید تمام زیر منو های این منو، نمایششان غیر فعال شود
         /// </summary>
         /// <param name="id">آی دی نویگیشن منو</param>
         /// <returns></returns>

@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Store.Models.DataBase.Dto.Admin;
-using Store.Models.DataBase.Dto.Frount.Category;
-using Store.Models.DataBase.Dto.Frount.Product;
 using Store.Models.IService;
+using Store.Models.IService.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,178 +12,184 @@ namespace Store.Models.Services.Admin
 {
     public class ProductService : IProductService
     {
-        #region region
-        /// <summary>
-        /// کامنت جدید
-        /// </summary>
-        /// <param name="comment">کامنت</param>
-        /// <param name="ProductId">
-        public bool AddComment(Comment comment, int ProductId)
+        public bool AddCategory(Catrgory catrgory)
         {
-            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            {
-                _Storedb.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
-                _Storedb.Comments.Add(new DataBase.Entities.Comment()
-                {
-                    CommentedDate = DateTime.Now,
-                    CommentText = comment.CommentText,
-                    Email = comment.Email,
-                    FullName = comment.FullName,
-                    IsSeen = false,
-                    IsShow = true,
-                    IsVerified = false,
-                    ProductId = comment.ProductId
-                });
-                try
-                {
-                    _Storedb.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-        #endregion
-        #region  متدهای صفحه اصلی
-        /// <summary>
-        /// دریافت لیست محصولات ویژه
-        /// </summary>
-        /// <param name="count_Of">تعداد - پیشفرض 6 تا محصول</param>
-        /// <returns></returns>
-        public List<DataBase.Dto.Frount.Product.Product> GetSpecialProducts(int count_Of = 8)
-        {
-            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            {
-                return _Storedb.Products.Where(x => x.IsSpecial).Take(count_Of).Select(x => new DataBase.Dto.Frount.Product.Product
-                {
-                    ProductId = x.ProductId,
-                    Ename = x.EName,
-                    Name = x.Name,
-                    ImageName = JsonConvert.DeserializeObject<List<ImageProduct>>(x.Images_Json).Where(p => p.IsDefaultImage == true).First().EName,
-                    IsExist = x.ExistCount > 0 ? true : false,
-                    IsSpecial = x.IsSpecial,
-                    Price_New = x.SalesPrice.ToPriceStringFormat(),
-                    Price_Old = x.WrittenPrice.ToPriceStringFormat(),
-                    UnitType = x.UnitType,
-                }).ToList();
-            }
-        }
-        /// <summary>
-        /// دریافت محصولات پرفروش
-        /// </summary>
-        /// <param name="count_Of">تعداد که مقدار پیشفرض 7 است</param>
-        /// <returns></returns>
-        public List<DataBase.Dto.Frount.Product.Product> GetbestSellersProducts(int count_Of = 7)
-        {
-            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            {
-                return _Storedb.Products.OrderByDescending(o => o.SoldCount).Take(count_Of).Select(x => new DataBase.Dto.Frount.Product.Product
-                {
-                    ProductId = x.ProductId,
-                    Ename = x.EName,
-                    Name = x.Name,
-                    ImageName = JsonConvert.DeserializeObject<List<ImageProduct>>(x.Images_Json).Where(p => p.IsDefaultImage == true).First().EName,
-                    IsExist = x.ExistCount > 0 ? true : false,
-                    IsSpecial = x.IsSpecial,
-                    Price_New = x.SalesPrice.ToPriceStringFormat(),
-                    Price_Old = x.WrittenPrice.ToPriceStringFormat(),
-                    UnitType = x.UnitType,
-                }).ToList();
-            }
-        }
-        /// <summary>
-        /// دریافت محصولات امتیاز بالا
-        /// </summary>
-        /// <param name="count_Of">تعد محصولات که پیشفرض برابر 3 است</param>
-        /// <returns></returns>
-        public List<DataBase.Dto.Frount.Product.Product> GetHighScoreProducts(int count_Of = 3)
-        {
-            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            {
-                return _Storedb.Products.OrderByDescending(o => o.Rating).Take(count_Of).Select(x => new DataBase.Dto.Frount.Product.Product
-                {
-                    ProductId = x.ProductId,
-                    Ename = x.EName,
-                    Name = x.Name,
-                    ImageName = JsonConvert.DeserializeObject<List<ImageProduct>>(x.Images_Json).Where(p => p.IsDefaultImage == true).First().EName,
-                    IsExist = x.ExistCount > 0 ? true : false,
-                    IsSpecial = x.IsSpecial,
-                    Price_New = x.SalesPrice.ToPriceStringFormat(),
-                    Price_Old = x.WrittenPrice.ToPriceStringFormat(),
-                    UnitType = x.UnitType,
-                }).ToList();
-            }
-        }
-        /// <summary>
-        /// دریافت محصولات فروش ویژه
-        /// </summary>
-        /// <param name="count_Of">تعداد که پیشفرض برابر 3 است</param>
-        /// <returns></returns>
-        public List<DataBase.Dto.Frount.Product.Product> GetSpecialOffersProducts(int count_Of = 3)
-        {
-            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            {
-                return _Storedb.Products.Where(o => o.IsSpecial).OrderBy(x => Guid.NewGuid()).Take(count_Of).Select(x => new DataBase.Dto.Frount.Product.Product
-                {
-                    ProductId = x.ProductId,
-                    Ename = x.EName,
-                    Name = x.Name,
-                    ImageName = JsonConvert.DeserializeObject<List<ImageProduct>>(x.Images_Json).Where(p => p.IsDefaultImage == true).First().EName,
-                    IsExist = x.ExistCount > 0 ? true : false,
-                    IsSpecial = x.IsSpecial,
-                    Price_New = x.SalesPrice.ToPriceStringFormat(),
-                    Price_Old = x.WrittenPrice.ToPriceStringFormat(),
-                    UnitType = x.UnitType,
-                }).ToList();
-            }
-        }
-        /// <summary>
-        /// دریافت محصولات تصادفی
-        /// </summary>
-        /// <param name="count_Of">تعداد که پیشفرض 3 هست</param>
-        /// <returns></returns>
-        public List<DataBase.Dto.Frount.Product.Product> GetRandomProducts(int count_Of = 3)
-        {
-            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            {
-                return _Storedb.Products.OrderBy(x => Guid.NewGuid()).Take(count_Of).Select(x => new DataBase.Dto.Frount.Product.Product
-                {
-                    ProductId = x.ProductId,
-                    Ename = x.EName,
-                    Name = x.Name,
-                    ImageName = JsonConvert.DeserializeObject<List<ImageProduct>>(x.Images_Json).Where(p => p.IsDefaultImage == true).First().EName,
-                    IsExist = x.ExistCount > 0 ? true : false,
-                    IsSpecial = x.IsSpecial,
-                    Price_New = x.SalesPrice.ToPriceStringFormat(),
-                    Price_Old = x.WrittenPrice.ToPriceStringFormat(),
-                    UnitType = x.UnitType,
-                }).ToList();
-            }
+            throw new NotImplementedException();
         }
 
-        public List<Category> GetPopularCategory()
+        public bool AddMainCategory(MainCatrgory mainCatrgory)
         {
-            using (Store.Models.DataBase.Context.StoreContext _Storedb = new DataBase.Context.StoreContext(null))
-            {
-                return _Storedb.Categories.Where(x => x.IsFavorate).Select(x => new DataBase.Dto.Frount.Category.Category
-                {
-                    CategoryId = x.CategoryId,
-                    Description = x.Description,
-                    EName = x.EName,
-                    Name = x.Name,
-                    SubCategoriess=_Storedb.SubCategories.Where(p=>p.CategoryId==x.CategoryId)
-                    .Select(y=>new SubCategory {
-                        SubCategoryId=y.SubCategoryId,
-                        CategoryId=x.CategoryId,
-                        EName=y.EName,
-                        Name=y.Name,
-                        Description=y.Description
-                    }).ToList()
-                }).ToList();
-            }
+            throw new NotImplementedException();
         }
-        #endregion
+
+        public bool AddMainSubCategory(SubCatrgory subCatrgory)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddProduct(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddProductBrand(Brand brand)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckEnameOfProduct(string ename)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckExistBrandEName(string eName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckExistCategoryName(string CategoryName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckExistMainCategoryEName(string CategoryEName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckExistMainCategoryName(string CategoryName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CheckExistSubCategoryName(string SubCategoryName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CommentReaded(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CommentShow(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool CommentVerification(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Brand> GetAllBrands()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Brand GetBrandByEname(string eName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Brand GetBrandById(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Catrgory> GetCatrgories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Catrgory> GetCatrgories(int MainCategoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetListProductByParameters(string name, string ename, string description, string tags)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MainCatrgory> GetMainCatrgories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product GetProductById(int ProductId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SubCatrgory> GetSubCatrgories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<SubCatrgory> GetSubCatrgories(int CategoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveBrand(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveCategory(int CatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveComment(int commentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveMainCategory(int mainCatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveProduct(int ProductId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveSubCategory(int CatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateBrand(Brand brand, int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateCaregory(Catrgory catrgory, int CatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateMainCaregory(MainCatrgory mainCatrgory, int mainCatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateProduct(Product product, int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateSubCaregory(SubCatrgory subCatrgory, int SubCatrgoryId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

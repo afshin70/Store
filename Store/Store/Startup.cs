@@ -36,7 +36,7 @@ namespace Store
             services.AddTransient<IViewRenderService, RenderViewToString>();
             //data base service
             //AdminService 
-            services.AddTransient<Models.IService.Admin.IProductService, ProductService>();
+            services.AddTransient<Models.IService.Admin.IProductService,Models.Services.Admin.ProductService>();
             services.AddTransient<Models.IService.Admin.IMainService, MainService>();
             //FrountService
            

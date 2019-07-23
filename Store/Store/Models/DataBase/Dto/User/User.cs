@@ -52,14 +52,6 @@ namespace Store.Models.DataBase.Dto.User
         /// </summary>
         public DateTime RegisterDate { get; set; }
         /// <summary>
-        /// آی پی ریجستر شده
-        /// </summary>
-        //public string UserIpRegistered { get; set; }
-        /// <summary>
-        /// ایمیل
-        /// </summary>
-        //public string Email { get; set; }//username
-        /// <summary>
         /// وضعیت تایید
         /// </summary>
         public bool IsVerified { get; set; }
