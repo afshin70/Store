@@ -31,10 +31,10 @@ namespace Store.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult MainCategory()
         {
-            return View();
+            return View(null);
         }
         [HttpPost]
-        public IActionResult MainCategory(MainCategoryVM mainCategory)
+        public IActionResult MainCategory(MainCategoryAddVM mainCategory)
         {
             if (!ModelState.IsValid)
             {
@@ -54,38 +54,62 @@ namespace Store.Areas.Admin.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult EditMainCategory(int? MainCategoryId)
+        public IActionResult EditeMainCategory(int? id)
         {
-            if (!MainCategoryId.HasValue)
-                return BadRequest();
-            var MainCategory = PService.GetMainCategory(MainCategoryId.Value);
-            if (MainCategory!=null)
+            if (id.HasValue)
             {
-                return View(MainCategory);
+                var category = PService.GetMainCategory(id.Value);
+                if (category!=null)
+                {
+                    MainCategoryEditedVM mainCategory = new MainCategoryEditedVM {
+
+                        EName=category.EName,IsActive=category.IsActive,MainCategoryId=category.MainCategoryId,Name=category.Name,OrderNumber=category.OrderNumber
+                    };
+                    return View(mainCategory);
+                }
             }
             return BadRequest();
         }
         [HttpPost]
-        public IActionResult EditMainCategory(MainCategory mainCategory)
+        public IActionResult EditeMainCategory(MainCategoryEditedVM mainCategory)
         {
             if (mainCategory==null)
                 return BadRequest();
-         
-            if (PService.UpdateMainCaregory(mainCategory,mainCategory.MainCategoryId))
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            
+            if (PService.UpdateMainCaregory(new MainCategory
             {
-                return View("MainCategory");
+                EName = mainCategory.EName,
+                IsActive = mainCategory.IsActive,
+                Name = mainCategory.Name,
+                OrderNumber = mainCategory.OrderNumber,
+                MainCategoryId=mainCategory.MainCategoryId
+            },mainCategory.MainCategoryId))
+            {
+                return RedirectToAction("MainCategory");
             }
             return BadRequest();
         }
         [HttpPost]
-        public ActionResult DeleteMainCategory(int main_category_id)
+        public IActionResult DeleteMainCategory(int main_category_id)
         {
-            bool Result = false;
-            if (PService.RemoveMainCategory(main_category_id))
-            {
-                Result = true;
-            }
-            return Json(Result);
+            var state = PService.RemoveMainCategory(main_category_id);
+            return new JsonResult(state);
+        }
+
+        [HttpPost]
+        public IActionResult LevelUp(int main_category_id)
+        {
+            var state = PService.LevelUpMainCategory(main_category_id);
+            return new JsonResult(state);
+        }
+        [HttpPost]
+        public IActionResult LevelDown(int main_category_id)
+        {
+            var state = PService.LevelDownMainCategory(main_category_id);
+            return new JsonResult(state);
         }
         #endregion
 

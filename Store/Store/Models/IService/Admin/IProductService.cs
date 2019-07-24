@@ -253,7 +253,6 @@ namespace Store.Models.IService.Admin
         /// <param name="mainCatrrgoryId">آی دی گروه</param>
         /// <returns></returns>
         bool LevelDownMainCategory(int mainCatrrgoryId);
-
         /// <summary>
         /// آپدیت دسته
         /// </summary>
@@ -273,6 +272,10 @@ namespace Store.Models.IService.Admin
         /// <param name="CategoryEName">نام انگلیسی دسته</param>
         /// <returns></returns>
         bool CheckExistMainCategoryEName(string CategoryEName);
+
+        bool CheckExistOneMainCategoryName(string CategoryName, int MainCategoryId);
+        bool CheckExistOneMainCategoryEName(string CategoryEName, int MainCategoryId);
+
         /// <summary>
         /// فعال و غیر فعال کردن گروه یا دسته اصلی
         /// </summary>

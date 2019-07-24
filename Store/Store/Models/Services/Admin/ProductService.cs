@@ -208,6 +208,40 @@ namespace Store.Models.Services.Admin
             }
         }
 
+        public bool CheckExistOneMainCategoryEName(string CategoryEName, int MainCategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.MainCategories.Count(c => c.EName == CategoryEName);
+                var result2 = db.MainCategories.Count(c => c.EName == CategoryEName && c.MainCategoryId==MainCategoryId);
+                if (result2>=result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool CheckExistOneMainCategoryName(string CategoryName, int MainCategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.MainCategories.Count(c => c.Name == CategoryName);
+                var result2 = db.MainCategories.Count(c => c.Name == CategoryName && c.MainCategoryId == MainCategoryId);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public bool CheckExistSubCategoryEName(string SubCategoryEName)
         {
             using (var db = new StoreContext(null))
@@ -653,7 +687,7 @@ namespace Store.Models.Services.Admin
                     result.EName = mainCatrgory.EName;
                     result.IsActive = mainCatrgory.IsActive;
                     result.Name = mainCatrgory.Name;
-
+                    result.OrderNumber = mainCatrgory.OrderNumber;
                     db.SaveChanges();
                     return true;
                 }

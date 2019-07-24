@@ -23,5 +23,14 @@ namespace Store.Areas.Admin.Controllers
         {
             return Json(!AdminProductService.CheckExistMainCategoryName(Name));
         }
+        public JsonResult CheckExistOneMainCategoryName(string Name, int MainCategoryId)
+        {
+            return Json(AdminProductService.CheckExistOneMainCategoryName(Name, MainCategoryId));
+        }
+        public JsonResult CheckExistOneMainCategoryEName(string  EName,int MainCategoryId)
+        {
+            return Json(AdminProductService.CheckExistOneMainCategoryEName(EName,MainCategoryId));
+        }
+        
     }
 }
