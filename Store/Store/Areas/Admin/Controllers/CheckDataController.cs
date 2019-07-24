@@ -15,6 +15,8 @@ namespace Store.Areas.Admin.Controllers
         {
             AdminProductService = _AdminProductService;
         }
+
+                #region MainCategoryCheck
         public JsonResult CheckMainCategoryEname(string EName)
         {
             return Json(!AdminProductService.CheckExistMainCategoryEName(EName));
@@ -27,10 +29,33 @@ namespace Store.Areas.Admin.Controllers
         {
             return Json(AdminProductService.CheckExistOneMainCategoryName(Name, MainCategoryId));
         }
-        public JsonResult CheckExistOneMainCategoryEName(string  EName,int MainCategoryId)
+        public JsonResult CheckExistOneMainCategoryEName(string EName, int MainCategoryId)
         {
-            return Json(AdminProductService.CheckExistOneMainCategoryEName(EName,MainCategoryId));
+            return Json(AdminProductService.CheckExistOneMainCategoryEName(EName, MainCategoryId));
         }
-        
+
+        #endregion
+
+                #region CategoryCheck
+        public JsonResult CheckExistCategoryEName(string EName)
+        {
+            return Json(!AdminProductService.CheckExistCategoryEName(EName));
+        }
+        public JsonResult CheckExistCategoryName(string Name)
+        {
+            return Json(!AdminProductService.CheckExistCategoryName(Name));
+        }
+        public JsonResult CheckExistOneCategoryName(string Name, int CategoryId)
+        {
+            return Json(AdminProductService.CheckExistOneCategoryName(Name,CategoryId));
+        }
+        public JsonResult CheckExistOneCategoryEName(string EName, int CategoryId)
+        {
+            return Json(AdminProductService.CheckExistOneCategoryEName(EName, CategoryId));
+        }
+              #endregion
+
+
+
     }
 }

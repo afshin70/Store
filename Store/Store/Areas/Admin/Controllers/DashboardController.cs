@@ -26,7 +26,105 @@ namespace Store.Areas.Admin.Controllers
         }
         #endregion
 
+        #region Category
+        [HttpGet]
+        public IActionResult Category()
+        {
+           
+            return View(null);
+        }
+        [HttpPost]
+        public IActionResult Category(CategoryAddVM category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+            var result = PService.AddCategory(new Category
+            {
+                EName = category.EName,
+                IsActive = category.IsActive,
+                Name = category.Name,
+                OrderNumber = category.OrderNumber,
+                Description=category.Description,
+                IsFavorate=category.IsFavorate,
+                MainCategoryId=category.MainCategoryId
+            });
+            if (!result)
+            {
+                ModelState.AddModelError(nameof(category.Name), "خطایی ناخواسته رخ داده است لطفا بعدا دوباره امتحان کنید.");
+                return View(category);
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult EditeCategory(int? id)
+        {
+            if (id.HasValue)
+            {
+                var category = PService.GetCategory(id.Value);
+                if (category != null)
+                {
+                    CategoryEditedVM editedVM = new CategoryEditedVM
+                    {
+                        CategoryId=category.CategoryId,
+                        EName = category.EName,
+                        IsActive = category.IsActive,
+                        MainCategoryId = category.MainCategoryId,
+                        Name = category.Name,
+                        OrderNumber = category.OrderNumber,
+                        Description=category.Description,
+                        IsFavorate=category.IsFavorate
+                    };
+                    return View(editedVM);
+                }
+            }
+            return BadRequest();
+        }
+        [HttpPost]
+        public IActionResult EditeCategory(CategoryEditedVM Category)
+        {
+            if (Category == null)
+                return BadRequest();
+            if (!ModelState.IsValid)
+                return BadRequest();
 
+
+            if (PService.UpdateCaregory(new Category
+            {
+                EName = Category.EName,
+                IsActive = Category.IsActive,
+                Name = Category.Name,
+                OrderNumber = Category.OrderNumber,
+                MainCategoryId = Category.MainCategoryId,
+                Description=Category.Description,
+                IsFavorate=Category.IsFavorate,
+                CategoryId=Category.CategoryId
+            }, Category.CategoryId))
+            {
+                return RedirectToAction("Category");
+            }
+            return BadRequest();
+        }
+        [HttpPost]
+        public IActionResult DeleteCategory(int category_id)
+        {
+            var state = PService.RemoveCategory(category_id);
+            return new JsonResult(state);
+        }
+        [HttpPost]
+        public IActionResult LevelUpCategory(int category_id)
+        {
+            var state = PService.LevelUpCategory(category_id);
+            return new JsonResult(state);
+        }
+        [HttpPost]
+        public IActionResult LevelDownCategory(int category_id)
+        {
+            var state = PService.LevelDownCategory(category_id);
+            return new JsonResult(state);
+        }
+        #endregion
         #region MainCategory
         [HttpGet]
         public IActionResult MainCategory()
@@ -49,6 +147,7 @@ namespace Store.Areas.Admin.Controllers
             });
             if (!result)
             {
+                ModelState.AddModelError(nameof(mainCategory.Name), "خطایی ناخواسته رخ داده است لطفا بعدا دوباره امتحان کنید.");
                 return View(mainCategory);
             }
             return View();
@@ -98,7 +197,6 @@ namespace Store.Areas.Admin.Controllers
             var state = PService.RemoveMainCategory(main_category_id);
             return new JsonResult(state);
         }
-
         [HttpPost]
         public IActionResult LevelUp(int main_category_id)
         {

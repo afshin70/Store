@@ -208,6 +208,40 @@ namespace Store.Models.Services.Admin
             }
         }
 
+        public bool CheckExistOneCategoryEName(string CategoryEName, int CategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.Categories.Count(c => c.EName == CategoryEName);
+                var result2 = db.Categories.Count(c => c.EName == CategoryEName && c.CategoryId == CategoryId);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool CheckExistOneCategoryName(string CategoryName, int CategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.Categories.Count(c => c.Name == CategoryName);
+                var result2 = db.Categories.Count(c => c.Name == CategoryName && c.CategoryId == CategoryId);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public bool CheckExistOneMainCategoryEName(string CategoryEName, int MainCategoryId)
         {
             using (var db = new StoreContext(null))
@@ -352,11 +386,11 @@ namespace Store.Models.Services.Admin
             }
         }
 
-        public List<Category> GetCatrgories(int MainCategoryId)
+        public Category GetCategory(int CategoryId)
         {
             using (var db = new StoreContext(null))
             {
-                return db.Categories.Where(x => x.MainCategoryId == MainCategoryId).ToList();
+                return db.Categories.Where(x => x.CategoryId == CategoryId).First();
             }
         }
 

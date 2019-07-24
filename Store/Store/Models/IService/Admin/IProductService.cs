@@ -208,6 +208,10 @@ namespace Store.Models.IService.Admin
         /// <param name="CategoryEName">نام انگلیسی</param>
         /// <returns></returns>
         bool CheckExistCategoryEName(string CategoryEName);
+
+        bool CheckExistOneCategoryName(string CategoryName, int CategoryId);
+        bool CheckExistOneCategoryEName(string CategoryEName, int CategoryId);
+
         /// <summary>
         /// لیست دسته ها
         /// </summary>
@@ -218,7 +222,7 @@ namespace Store.Models.IService.Admin
         /// </summary>
         /// <param name="MainCategoryId"></param>
         /// <returns></returns>
-        List<Category> GetCatrgories(int MainCategoryId);
+        Category GetCategory(int CategoryId);
         #endregion
 
         #region عملیات دسته بندی اصلی محصول
