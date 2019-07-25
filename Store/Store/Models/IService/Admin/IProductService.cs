@@ -137,6 +137,10 @@ namespace Store.Models.IService.Admin
         /// <param name="SubCategoryEName">نام انگلیسی</param>
         /// <returns></returns>
         bool CheckExistSubCategoryEName(string SubCategoryEName);
+
+        bool CheckExistOneSubCategoryName(string subCategoryName, int subCategoryId);
+        bool CheckExistOneSubCategoryEName(string subCategoryEName, int subCategoryId);
+
         /// <summary>
         /// فعال و غیر فعال کردن زیرگروه یا زیر دسته
         /// </summary>
@@ -155,6 +159,7 @@ namespace Store.Models.IService.Admin
         /// <param name="CategoryId">آی دی دسته</param>
         /// <returns></returns>
         List<SubCategory> GetSubCatrgories(int CategoryId);
+        SubCategory GetSubCatrgory(int subCategoryId);
         #endregion
 
         #region عملیات دسته بندی محصول
@@ -217,6 +222,7 @@ namespace Store.Models.IService.Admin
         /// </summary>
         /// <returns></returns>
         List<Category> GetCategories();
+        List<Category> GetCategories(int mainCategoryId);
         /// <summary>
         /// لیست دسته ها برحسب دسته اصلی
         /// </summary>

@@ -19,24 +19,27 @@
                 <div class="panel-body">
                     <form asp-action="Category">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <select class="form-control" asp-for="MainCategoryId" asp-items="@(new SelectList(_pservice.GetMainCategories(),"MainCategoryId","Name"))">
-                                <option value="">انتخاب دسته اصلی</option>
-                            </select>
-                            <span asp-validation-for="MainCategoryId" class="text-danger"></span>
+                        <div class="row">
+                            <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <select class="form-control" asp-for="MainCategoryId" asp-items="@(new SelectList(_pservice.GetMainCategories(),"MainCategoryId","Name"))">
+                                    <option value="">انتخاب دسته اصلی</option>
+                                </select>
+                                <span asp-validation-for="MainCategoryId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <input asp-for="Name" class="form-control" placeholder="نام" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                <input asp-for="EName" class="form-control" placeholder="نام انگلیسی" />
+                                <span asp-validation-for="EName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <input asp-for="OrderNumber" class="form-control" placeholder="شماره اولویت" />
+                                <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                            </div>
                         </div>
-                        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <input asp-for="Name" class="form-control" placeholder="نام" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <input asp-for="EName" class="form-control" placeholder="نام انگلیسی" />
-                            <span asp-validation-for="EName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                            <input asp-for="OrderNumber" class="form-control" placeholder="شماره اولویت" />
-                            <span asp-validation-for="OrderNumber" class="text-danger"></span>
-                        </div>
+                        
                         <div class="form-group col-lg-7 col-md-7 col-sm-7 col-xs-12">
                             <textarea asp-for="Description" class="form-control" placeholder="توضیحات"></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>

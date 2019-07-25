@@ -53,9 +53,26 @@ namespace Store.Areas.Admin.Controllers
         {
             return Json(AdminProductService.CheckExistOneCategoryEName(EName, CategoryId));
         }
-              #endregion
+        #endregion
 
-
+                #region SubCategoryCheck
+        public JsonResult CheckExistSubCategoryEName(string EName)
+        {
+            return Json(!AdminProductService.CheckExistSubCategoryEName(EName));
+        }
+        public JsonResult CheckExistSubCategoryName(string Name)
+        {
+            return Json(!AdminProductService.CheckExistSubCategoryName(Name));
+        }
+        public JsonResult CheckExistOneSubCategoryName(string Name, int subCategoryId)
+        {
+            return Json(AdminProductService.CheckExistOneSubCategoryName(Name, subCategoryId));
+        }
+        public JsonResult CheckExistOneSubCategoryEName(string EName, int subCategoryId)
+        {
+            return Json(AdminProductService.CheckExistOneSubCategoryEName(EName, subCategoryId));
+        }
+                #endregion
 
     }
 }

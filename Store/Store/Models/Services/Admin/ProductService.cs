@@ -276,6 +276,40 @@ namespace Store.Models.Services.Admin
             }
         }
 
+        public bool CheckExistOneSubCategoryEName(string subCategoryEName, int subCategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.SubCategories.Count(c => c.EName == subCategoryEName);
+                var result2 = db.SubCategories.Count(c => c.EName == subCategoryEName && c.SubCategoryId == subCategoryId);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool CheckExistOneSubCategoryName(string subCategoryName, int subCategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.SubCategories.Count(c => c.Name == subCategoryName);
+                var result2 = db.SubCategories.Count(c => c.Name == subCategoryName && c.SubCategoryId == subCategoryId);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         public bool CheckExistSubCategoryEName(string SubCategoryEName)
         {
             using (var db = new StoreContext(null))
@@ -386,6 +420,14 @@ namespace Store.Models.Services.Admin
             }
         }
 
+        public List<Category> GetCategories(int mainCategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                return db.Categories.Where(c=>c.MainCategoryId==mainCategoryId).ToList();
+            }
+        }
+
         public Category GetCategory(int CategoryId)
         {
             using (var db = new StoreContext(null))
@@ -447,6 +489,14 @@ namespace Store.Models.Services.Admin
             using (var db = new StoreContext(null))
             {
                 return db.SubCategories.Where(x => x.CategoryId == CategoryId).ToList();
+            }
+        }
+
+        public SubCategory GetSubCatrgory(int subCategoryId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                return db.SubCategories.Where(x => x.SubCategoryId == subCategoryId).First();
             }
         }
 
