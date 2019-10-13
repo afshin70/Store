@@ -7,6 +7,8 @@ namespace Store.Models.DataBase.Dto.Admin
 {
     public class ProductImage
     {
+
+        public string Thumbnail { get; set; }
         public string Image_1 { get; set; }
         public string Image_2 { get; set; }
         public string Image_3 { get; set; }

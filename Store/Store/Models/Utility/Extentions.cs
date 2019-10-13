@@ -10,11 +10,31 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Store.Models.DataBase.Dto.Admin;
+using Newtonsoft.Json;
 
 namespace Store.Models
 {
     public static class Extentions
     {
+        /// <summary>
+        /// تبدیل کلاس تصویر به رشته جی سان
+        /// </summary>
+        /// <param name="productImage"></param>
+        /// <returns></returns>
+        public static string ToJsonImage(this ProductImage productImage)
+        {
+            return JsonConvert.SerializeObject(productImage);
+        }
+        /// <summary>
+        /// تبدیل رشته جی سان به کلاس پروداکت ایمیج
+        /// </summary>
+        /// <param name="JsonImage"></param>
+        /// <returns></returns>
+        public static ProductImage ToProductImage(this string JsonImage)
+        {
+            return JsonConvert.DeserializeObject<ProductImage>(JsonImage);
+        }
         /// <summary>
         /// چک کردن فرمت عکس بصورت jpeg
         /// </summary>
@@ -52,7 +72,7 @@ namespace Store.Models
                 return false;
             }
         }
-        
+
         private static string[] yakan = new string[10] { "صفر", "یک", "دو", "سه", "چهار", "پنج", "شش", "هفت", "هشت", "نه" };
         private static string[] dahgan = new string[10] { "", "", "بیست", "سی", "چهل", "پنجاه", "شصت", "هفتاد", "هشتاد", "نود" };
         private static string[] dahyek = new string[10] { "ده", "یازده", "دوازده", "سیزده", "چهارده", "پانزده", "شانزده", "هفده", "هجده", "نوزده" };
@@ -300,7 +320,16 @@ namespace Store.Models
         /// <returns></returns>
         public static string GetNewToken(this string input)
         {
-            return Guid.NewGuid().ToString().Replace("-","");
+            return Guid.NewGuid().ToString().Replace("-", "");
+        }
+        /// <summary>
+        /// دریافت نام جدید فایل
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string GetNewName(this string input)
+        {
+            return Guid.NewGuid().ToString().Replace("-", "");
         }
         /// <summary>
         /// رمزنگاری متن

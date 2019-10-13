@@ -72,7 +72,44 @@ namespace Store.Areas.Admin.Controllers
         {
             return Json(AdminProductService.CheckExistOneSubCategoryEName(EName, subCategoryId));
         }
-                #endregion
+        #endregion
 
+
+                #region Brand
+        public JsonResult CheckExistBrandName(string Name)
+        {
+            return Json(!AdminProductService.CheckExistBrandName(Name));
+        }
+        public JsonResult CheckExistBrandEName(string EName)
+        {
+            return Json(!AdminProductService.CheckExistBrandEName(EName));
+        }
+        public JsonResult CheckExistOneBrandName(string Name, int BrandId)
+        {
+            return Json(AdminProductService.CheckExistOneBrandName(Name, BrandId));
+        }
+        public JsonResult CheckExistOneBrandEName(string EName, int BrandId)
+        {
+            return Json(AdminProductService.CheckExistOneBrandEName(EName, BrandId));
+        }
+        #endregion
+        #region Product
+        public JsonResult CheckExistProductName(string Name)
+        {
+            return Json(!AdminProductService.CheckExistProductName(Name));
+        }
+        public JsonResult CheckExistProductEName(string EName)
+        {
+            return Json(!AdminProductService.CheckExistProductEName(EName));
+        }
+        public JsonResult CheckExistOneProductName(string Name, int ProductId)
+        {
+            return Json(AdminProductService.CheckExistOneProductName(Name, ProductId));
+        }
+        public JsonResult CheckExistOneProductEName(string EName, int ProductId)
+        {
+            return Json(AdminProductService.CheckExistOneProductEName(EName, ProductId));
+        }
+        #endregion
     }
 }

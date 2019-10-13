@@ -111,7 +111,7 @@
                                 <tbody>
                                     @foreach (var item in subCategory.OrderByDescending(x => x.OrderNumber))
                                     {
-                                        <tr>
+                                        <tr row-id="@item.SubCategoryId">
                                             <td>
                                                 @(row++)
                                             </td>
@@ -243,7 +243,7 @@
                                         dataType: "Json",
                                success: function (result) {
                                    if (result === true) {
-                                       window.location.reload();
+                                       $("tr[row-id='" + id + "']").fadeOut().remove();
 
                                    } else {
                                        $.alert("بنا به دلایلی حذف انجام نشد");

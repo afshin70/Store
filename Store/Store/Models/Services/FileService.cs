@@ -105,7 +105,7 @@ namespace Store.Models.Services
                 using (Image<Rgba32> image = Image.Load(img.OpenReadStream()))
                 {
                     image.Mutate(x => x.Resize(width: width, height: height));
-                    image.Save(savePath + @"\" + imageName);
+                    image.Save(savePath + @"\" + imageName+".jpg");
                     return true;
                 }
             }

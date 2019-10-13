@@ -175,6 +175,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\lib\images\products\thumbnail\" />
   </ItemGroup>
 
 </Project>

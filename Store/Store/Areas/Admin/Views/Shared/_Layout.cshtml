@@ -19,6 +19,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     @RenderSection("css", false)
+    
 </head>
 
 <body>
@@ -266,28 +267,30 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a class="active" asp-action="index"><i class="fa fa-dashboard fa-fw"></i> مدیریت</a>
+                            <a class="active" asp-action="index" asp-controller="Dashboard" asp-area="Admin"><i class="fa fa-bar-chart-o fa-fw"></i> داشبورد آمار</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> مدیریت دسته بندی محصولات<span class="fa arrow"></span></a>
+                            <a href="#"><i class=" fas fa-stream fa-fw"></i> مدیریت دسته بندی محصولات<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a asp-action="MainCategory">دسته بندی اصلی</a>
+                                    <a asp-action="MainCategory" asp-controller="Dashboard" asp-area="Admin"><i class="fa fa-sitemap fa-fw"></i> دسته بندی اصلی</a>
                                 </li>
                                 <li>
-                                    <a asp-action="Category">دسته بندی فرعی</a>
+                                    <a asp-action="Category" asp-controller="Dashboard" asp-area="Admin"><i class="fa fa-sitemap fa-fw"></i> دسته بندی فرعی</a>
                                 </li>
                                 <li>
-                                    <a asp-action="SubCategory">زیر دسته ها</a>
+                                    <a asp-action="SubCategory" asp-controller="Dashboard" asp-area="Admin"><i class="fa fa-sitemap fa-fw"></i> زیر دسته ها</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> جداول</a>
+                            <a asp-action="Brand" asp-controller="Dashboard" asp-area="Admin"><i class="fa fa-table fa-fw"></i> مدیریت برند محصول</a>
+                        
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> فرم ها</a>
+                            <a asp-area="Admin" asp-controller="ProductManager" asp-action="Index" ><i class="fa fa-edit fa-fw"></i> مدیریت محصولات</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

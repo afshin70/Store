@@ -39,8 +39,9 @@ namespace Store
             services.AddTransient<Models.IService.Admin.IProductService,Models.Services.Admin.ProductService>();
             services.AddTransient<Models.IService.Admin.IMainService, MainService>();
             //FrountService
-           
+
             //public Service
+            services.AddTransient<IFileService,FileService>();
             services.AddTransient<IUserService, UserService>();
             //Configure Authentication By Cooki Base
             services.AddAuthentication(options =>

@@ -106,7 +106,7 @@
                                 <tbody>
                                     @foreach (var item in _pservice.GetCategories().OrderByDescending(x => x.OrderNumber))
                                     {
-                                    <tr>
+                                    <tr row-id="@item.CategoryId">
                                         <td>
                                             @(row++)
                                         </td>
@@ -159,8 +159,8 @@
                                         dataType: "Json",
                                success: function (result) {
                                    if (result === true) {
+                                     
                                        window.location.reload();
-
                                    }
                                },
                                error: function ()
@@ -212,8 +212,8 @@
                                         dataType: "Json",
                                success: function (result) {
                                    if (result === true) {
-                                       window.location.reload();
-
+                                      
+                                       $("tr[row-id='" + id + "']").fadeOut().remove();
                                    } else {
                                        $.alert("بنا به دلایلی حذف انجام نشد");
                                    }

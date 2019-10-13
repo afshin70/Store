@@ -14,7 +14,7 @@ namespace Store.Areas.Admin.Controllers
     [Area("Admin")]
     public class DashboardController : Controller
     {
-        IProductService PService;
+       private IProductService PService;
         public DashboardController(IProductService productService)
         {
             PService = productService;
@@ -24,6 +24,82 @@ namespace Store.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        #endregion
+
+        #region Brand
+        [HttpGet]
+        public IActionResult Brand()
+        {
+            BrandAddVM brand = new BrandAddVM();
+            return View(brand);
+        }
+        [HttpPost]
+        public IActionResult Brand(BrandAddVM brand)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(brand);
+            }
+            if (!(PService.CheckExistBrandEName(brand.EName) || PService.CheckExistBrandName(brand.Name)))
+            {
+                PService.AddProductBrand(new Brand
+                {
+                    Description=brand.Description,
+                    EName=brand.EName,
+                    Name=brand.Name
+                });
+                brand = null;
+                return View();
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult EditeBrand(int? id)
+        {
+            if (id.HasValue)
+            {
+                var brand = PService.GetBrandById(id.Value);
+                if (brand != null)
+                {
+                    BrandEditedVM editedVM = new BrandEditedVM
+                    {
+                       Description=brand.Description,
+                       Name=brand.Name,
+                       EName=brand.EName,
+                       BrandId=brand.BrandId
+                    };
+                    return View(editedVM);
+                }
+            }
+            return BadRequest();
+        }
+        [HttpPost]
+        public IActionResult EditeBrand(BrandEditedVM brand)
+        {
+            if (brand == null)
+                return BadRequest();
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+
+            if (PService.UpdateBrand(new Brand
+            {
+                BrandId=brand.BrandId,
+                Description=brand.Description,
+                EName=brand.EName,
+                Name=brand.Name
+            }, brand.BrandId))
+            {
+                return RedirectToAction("Brand");
+            }
+            return BadRequest();
+        }
+        [HttpPost]
+        public IActionResult DeleteBrand(int brand_id)
+        {
+            var state = PService.RemoveBrand(brand_id);
+            return new JsonResult(state);
         }
         #endregion
 
@@ -41,7 +117,7 @@ namespace Store.Areas.Admin.Controllers
             {
                 return View(subCategory);
             }
-            if (!(PService.CheckExistSubCategoryEName(subCategory.EName)&& PService.CheckExistSubCategoryName(subCategory.Name)))
+            if (!(PService.CheckExistSubCategoryEName(subCategory.EName)|| PService.CheckExistSubCategoryName(subCategory.Name)))
             {
                 PService.AddSubCategory(new SubCategory
                 {
@@ -144,7 +220,7 @@ namespace Store.Areas.Admin.Controllers
             {
                 return View(category);
             }
-            if (!(PService.CheckExistCategoryEName(category.EName) && PService.CheckExistCategoryName(category.Name)))
+            if (!(PService.CheckExistCategoryEName(category.EName) || PService.CheckExistCategoryName(category.Name)))
             {
                 PService.AddCategory(new Category
                 {
@@ -227,6 +303,12 @@ namespace Store.Areas.Admin.Controllers
             var state = PService.LevelDownCategory(category_id);
             return new JsonResult(state);
         }
+
+        public JsonResult GetSubCategoriesByCategoryId(int id)
+        {
+            var categories = PService.GetSubCatrgories(id);
+            return Json(new SelectList(categories, "SubCategoryId", "Name"));
+        }
         #endregion
 
         #region MainCategory
@@ -242,7 +324,7 @@ namespace Store.Areas.Admin.Controllers
             {
                 return View(mainCategory);
             }
-            if (!(PService.CheckExistMainCategoryEName(mainCategory.EName) && PService.CheckExistMainCategoryName(mainCategory.Name)))
+            if (!(PService.CheckExistMainCategoryEName(mainCategory.EName) || PService.CheckExistMainCategoryName(mainCategory.Name)))
             {
                 PService.AddMainCategory(new MainCategory
                 {

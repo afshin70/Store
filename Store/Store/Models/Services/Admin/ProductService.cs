@@ -164,7 +164,7 @@ namespace Store.Models.Services.Admin
         {
             using (var db = new StoreContext(null))
             {
-                return db.SubCategories.Any(x => x.EName == eName);
+                return db.Brands.Any(x => x.EName == eName);
             }
         }
 
@@ -173,6 +173,38 @@ namespace Store.Models.Services.Admin
             using (var db = new StoreContext(null))
             {
                 return db.Brands.Any(x => x.Name == name);
+            }
+        }
+        public bool CheckExistOneBrandEName(string BrandEName, int brand_id)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.Brands.Count(c => c.EName == BrandEName);
+                var result2 = db.Brands.Count(c => c.EName == BrandEName && c.BrandId == brand_id);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public bool CheckExistOneBrandName(string BrandName, int brand_id)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.Brands.Count(c => c.Name == BrandName);
+                var result2 = db.Brands.Count(c => c.Name == BrandName && c.BrandId == brand_id);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -838,6 +870,65 @@ namespace Store.Models.Services.Admin
                     return true;
                 }
                 catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool IsUseageByProduct(int brand_id)
+        {
+            using (var db = new StoreContext(null))
+            {
+              return  db.Products.Any(c => c.BrandId == brand_id);
+               
+            }
+        }
+
+        public bool CheckExistProductEName(string eName)
+        {
+            using (var db = new StoreContext(null))
+            {
+                return db.Products.Any(x => x.EName == eName);
+            }
+        }
+
+        public bool CheckExistProductName(string Name)
+        {
+            using (var db = new StoreContext(null))
+            {
+                return db.Products.Any(x => x.Name == Name);
+            }
+        }
+
+        public bool CheckExistOneProductEName(string eName, int productId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.Products.Count(c => c.EName == eName);
+                var result2 = db.Products.Count(c => c.EName == eName && c.ProductId == productId);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool CheckExistOneProductName(string Name, int productId)
+        {
+            using (var db = new StoreContext(null))
+            {
+                var result1 = db.Products.Count(c => c.Name == Name);
+                var result2 = db.Products.Count(c => c.Name == Name && c.ProductId == productId);
+                if (result2 >= result1)
+                {
+                    return true;
+                }
+                else
                 {
                     return false;
                 }

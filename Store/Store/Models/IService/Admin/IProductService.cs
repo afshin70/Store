@@ -9,6 +9,7 @@ namespace Store.Models.IService.Admin
    public interface IProductService
     {
         #region عملیات برند
+        bool IsUseageByProduct(int brand_id);
         /// <summary>
         /// افزودن برند
         /// </summary>
@@ -40,6 +41,8 @@ namespace Store.Models.IService.Admin
         /// <param name="name">نام انگلیسی و منحصر به فرد</param>
         /// <returns></returns>
         bool CheckExistBrandName(string name);
+        bool CheckExistOneBrandName(string BrandName, int brand_id);
+        bool CheckExistOneBrandEName(string BrandEName, int brand_id);
         /// <summary>
         /// لیست همه برند ها
         /// </summary>
@@ -301,6 +304,11 @@ namespace Store.Models.IService.Admin
         #endregion
 
         #region عملیات مدیریت محصول
+        bool CheckExistProductEName(string eName);
+        bool CheckExistProductName(string Name);
+        bool CheckExistOneProductEName(string eName,int productId);
+        bool CheckExistOneProductName(string Name, int productId);
+
         /// <summary>
         /// اضافه کردن محصول جدید
         /// </summary>

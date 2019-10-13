@@ -1,0 +1,193 @@
+﻿@model IEnumerable<Store.Models.DataBase.Entities.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+    <br />
+    <p>
+        
+    </p>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            لیست محصولات
+            <a class="btn-sm btn-success pull-left" asp-action="AddProduct">افزودن محصول جدید</a>
+     
+        </div>
+        <div class="panel-body">
+            @if (Model != null)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ShortDescription)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MainDescription)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Images_Json)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tags)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BrandId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SoldCount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.VisitedCount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExistCount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MaxDiscountPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Features)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsActive)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UnitType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SalesPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WrittenPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsSpecial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MinCountNotify)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InsertedDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsDeleted)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Rating)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SubCategoryId)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShortDescription)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MainDescription)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Images_Json)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tags)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BrandId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SoldCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VisitedCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExistCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaxDiscountPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Features)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsActive)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UnitType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SalesPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WrittenPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsSpecial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MinCountNotify)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.InsertedDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Rating)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SubCategoryId)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else {
+<p>محصولی برای نمایش وجود ندارد.
+            <br />
+            با استفاده از دکمه "افزودن محصول جدید"  میتوانید محصولی را به فروشگاه اضافه کنید.
+            </p>
+            }
+        </div>
+        <div class="panel-footer">
+            Panel Footer
+        </div>
+    </div>
+
+</div>
